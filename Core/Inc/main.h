@@ -28,6 +28,11 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f1xx_hal.h"
+#include "ACDC_stdbool.h"
+#include "ACDC_stdint.h"
+#include "ACDC_string.h"
+
+#include "ACDC_GPIO.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
