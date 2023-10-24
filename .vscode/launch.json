@@ -5,6 +5,15 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "internalConsole",
+            "internalConsoleOptions": "openOnSessionStart",
+            "justMyCode": true            
+        },
+        {
             "name": "Cortex Debug",
             "cwd": "${workspaceFolder}",
             "executable": "./build/ACDC_SeniorProj.elf",
@@ -17,7 +26,7 @@
                 "interface/stlink.cfg",
                 "target/stm32f1x.cfg"
             ],
-            "svdFile": "./STM32F103.svd"
+            "svdFile": "./STM32F103.svd",
         }
     ]
 }
