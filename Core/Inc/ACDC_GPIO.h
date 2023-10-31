@@ -27,8 +27,10 @@
 #define GPIO_MODE_OUTPUT_SPEED_10MHz ((uint16_t)0b01)  /* GPIO Ouptut Mode @ 10Mhz */
 #define GPIO_MODE_OUTPUT_SPEED_50MHz ((uint16_t)0b11)  /* GPIO Output Mode @ 50Mhz */
 
-#define GPIO_CNF_OUTPUT_PUSH_PULL   ((uint16_t)0b00)   /* GPIO Output Mode Push-Pull  */
-#define GPIO_CNF_OUTPUT_OPEN_DRAIN  ((uint16_t)0b01)   /* GPIO Output Mode Open-Drain */
+#define GPIO_CNF_OUTPUT_PUSH_PULL       ((uint16_t)0b00)   /* GPIO Output Mode Push-Pull                     */
+#define GPIO_CNF_OUTPUT_OPEN_DRAIN      ((uint16_t)0b01)   /* GPIO Output Mode Open-Drain                    */
+#define GPIO_CNF_OUTPUT_AF_PUSH_PULL    ((uint16_t)0b10)   /* GPIO Alternate Function Output Mode Push-Pull  */
+#define GPIO_CNF_OUTPUT_AF_OPEN_DRAIN   ((uint16_t)0b11)   /* GPIO Alternate Function Output Mode Open Drain */
 
 #define GPIO_CNF_INPUT_ANALOG       ((uint16_t)0b000)  /* GPIO Input Mode Analog   */
 #define GPIO_CNF_INPUT_FLOATING     ((uint16_t)0b001)  /* GPIO Input Mode Floating */
