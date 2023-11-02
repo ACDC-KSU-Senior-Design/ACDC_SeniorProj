@@ -31,8 +31,8 @@ extern "C" {
 #include "ACDC_stdbool.h"
 #include "ACDC_stdint.h"
 #include "ACDC_string.h"
-
 #include "ACDC_GPIO.h"
+#include "ACDC_INTERRUPT.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
