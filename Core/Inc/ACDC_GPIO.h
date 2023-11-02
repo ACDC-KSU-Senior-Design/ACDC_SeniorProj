@@ -74,4 +74,9 @@ void GPIO_Toggle(GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN);
 /// @param GPIO_PIN Desired pin on port GPIOx (Ex. GPIO_PIN_0, GPIO_PIN_1, ...)
 /// @return >= 1 if Pin is High, else 0
 uint8_t GPIO_Read(GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN);
+
+/// @brief Returns the Pin number of the GPIO_PIN_#
+/// @param GPIO_PIN Desired pin (Ex. GPIO_PIN_0, GPIO_PIN_1, ...)
+/// @return Number of the pin (Ex. GPIO_PIN = GPIO_PIN_13, then 13 is retured)
+uint8_t GPIO_GetPinNumber(uint16_t GPIO_PIN);
 #endif

@@ -5,8 +5,6 @@
 #define GPIO_MODE_OFFSET 0
 #define GPIO_CNF_OFFSET 2
 
-static uint8_t GetPinFromGPIO(uint16_t GPIO_PIN);
-
 void GPIO_InitClk(GPIO_TypeDef *GPIOx){
     if(GPIOx == GPIOA)
         RCC->APB2ENR |= RCC_APB2ENR_IOPAEN; 
@@ -23,12 +21,18 @@ void GPIO_InitClk(GPIO_TypeDef *GPIOx){
 void GPIO_PinDirection(GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN, uint8_t GPIO_MODE, uint8_t GPIO_CNF){
     //Use CRL if it is the first 7 pins else use the CRH 
     volatile uint32_t *REG = (GPIO_PIN <= GPIO_PIN_7) ? &GPIOx->CRL : &GPIOx->CRH;
-    uint8_t PIN = GetPinFromGPIO(GPIO_PIN);
+    uint8_t PIN = GPIO_GetPinNumber(GPIO_PIN);
     if(PIN >= 8)
         PIN -= 8;
 
-    if(GPIO_MODE == GPIO_MODE_INPUT && ((GPIO_CNF & 0b11) == GPIO_CNF_INPUT_PULLUP_PULLDOWN))
-        GPIO_Write(GPIOx, GPIO_PIN, (GPIO_CNF & 0b100) >> 2);   //If it is Pullup/Pulldown set it to its desired value
+    if(GPIO_MODE == GPIO_MODE_INPUT){
+        GPIO_InitClk(GPIOx);
+        if(((GPIO_CNF & 0b11) == GPIO_CNF_INPUT_PULLUP_PULLDOWN))
+            GPIO_Write(GPIOx, GPIO_PIN, (GPIO_CNF & 0b100) >> 2);   
+            //If it is Pullup/Pulldown set GPIOx->ODR to the desired value
+    }
+
+    
 
     //The magic number 4 is the combined size of the MODE and CNF bits (PAGE 172/1136)
     *REG &= ~(GPIO_MODE_CNF << (PIN*4));                    //Clear both the MODE and CNF
@@ -56,11 +60,11 @@ void GPIO_Toggle(GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN){
 }
 
 uint8_t GPIO_Read(GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN){
-    uint8_t PIN = GetPinFromGPIO(GPIO_PIN);
+    uint8_t PIN = GPIO_GetPinNumber(GPIO_PIN);
     return (GPIOx->IDR & GPIO_PIN) >> PIN;
 }
 
-static uint8_t GetPinFromGPIO(uint16_t GPIO_PIN){
+uint8_t GPIO_GetPinNumber(uint16_t GPIO_PIN){
     if(GPIO_PIN == 1)
         return 0u;
     uint8_t pin = 0;

@@ -1,59 +1,58 @@
-# GPIO.h
+# ACDC_GPIO.h
 All functions below assume that you have included **"ACDC_GPIO.h"**
 
 ## Set Onboard LED Output
 ```C
-#define LD2_Pin         GPIO_PIN_5
-#define LD2_GPIO_Port   GPIOA
-
-void SetNucleoLedToOutput(void){
-    GPIO_PinDirection(LD2_GPIO_Port, GPIO_PIN_5, GPIO_MODE_OUTPUT_10MHz , GPIO_CNF_OUTPUT_PUSH_PULL);
-}
+//Green LED   => GPIOA, GPIO_PIN_5
+GPIO_PinDirection(GPIOA, GPIO_PIN_5, GPIO_MODE_OUTPUT_10MHz , GPIO_CNF_OUTPUT_PUSH_PULL);
 ```
 
-## Set Onboard Button to Input
+## Set Onboard Button to Input W/ Pullup Resistor
 ```C
-#define B1_Pin          GPIO_PIN_13
-#define B1_GPIO_Port    GPIOC
+//Blue Button => GPIOC, GPIO_PIN_13
+GPIO_PinDirection(GPIOC, GPIO_PIN_13, GPIO_MODE_INPUT, GPIO_CNF_INPUT_PULLUP);
+```
 
-void SetNucleoButtonToInput(void){
-    GPIO_PinDirection(B1_GPIO_Port, B1_Pin, GPIO_MODE_INPUT, GPIO_CNF_INPUT_PULLUP);
-    GPIO_InitClk(B1_GPIO_Port);
-}
+## Set Random GPIO to Input Floating
+```C
+GPIO_PinDirection(GPIOA, GPIO_PIN_0, GPIO_MODE_INPUT, GPIO_CNF_INPUT_FLOATING);
 ```
 
 ## Change Onboard LED with onboard Button
 ```C
-#define LD2_Pin         GPIO_PIN_5
-#define LD2_GPIO_Port   GPIOA
-#define B1_Pin          GPIO_PIN_13
-#define B1_GPIO_Port    GPIOC
+//Green LED   => GPIOA, GPIO_PIN_5
+//Blue Button => GPIOC, GPIO_PIN_13
 
-void SetLedtoButton(void){
-    GPIO_PinDirection(LD2_GPIO_Port, GPIO_PIN_5, GPIO_MODE_OUTPUT_10MHz , GPIO_CNF_OUTPUT_PUSH_PULL);
-    GPIO_PinDirection(B1_GPIO_Port, B1_Pin, GPIO_MODE_INPUT, GPIO_CNF_INPUT_PULLUP);
-    GPIO_InitClk(B1_GPIO_Port);
+int main(){
+    //Set Green LED to ouput, Blue Button to Input W/ Pullup Resistor
+    GPIO_PinDirection(GPIOA, GPIO_PIN_5 , GPIO_MODE_OUTPUT_10MHz , GPIO_CNF_OUTPUT_PUSH_PULL);
+    GPIO_PinDirection(GPIOC, GPIO_PIN_13, GPIO_MODE_INPUT        , GPIO_CNF_INPUT_PULLUP    );
 
-    uint8_t value = GPIO_Read(B1_GPIO_Port, B1_Pin);
-    GPIO_Write(LD2_GPIO_Port, LD2_Pin, value);
+    while(1){
+        uint8_t value = GPIO_Read(GPIOC, GPIO_PIN_13); //Read Blue Button State
+        GPIO_Write(GPIOA, GPIO_PIN_5, value);          //Write Blue Button state to Green LED
+    }
 }
 ```
 
-## Set Random GPIO and Pin to Input Floating
-```C
-void SetGPIOToInputFloating(void){
-    GPIO_PinDirection(GPIOA, GPIO_PIN_0, GPIO_MODE_INPUT, GPIO_CNF_INPUT_FLOATING);
-    GPIO_InitClk(GPIOA);
-}
-```
 
 ## Using Set and Clear
 ```C
-void setOutputLed(bool newLedState){
-    if(newLedState){
-        GPIO_Set(GPIOB, GPIO_PIN_13);
-    } else {
-        GPIO_Clear(GPIOB, GPIO_PIN_13);
+//Green LED   => GPIOA, GPIO_PIN_5
+//Blue Button => GPIOC, GPIO_PIN_13
+
+int main(){
+    //Set Green LED to ouput, Blue Button to Input W/ Pullup Resistor
+    GPIO_PinDirection(GPIOA, GPIO_PIN_5 , GPIO_MODE_OUTPUT_10MHz , GPIO_CNF_OUTPUT_PUSH_PULL);
+    GPIO_PinDirection(GPIOC, GPIO_PIN_13, GPIO_MODE_INPUT        , GPIO_CNF_INPUT_PULLUP    );
+
+    while(1){
+        uint8_t value = GPIO_Read(GPIOC, GPIO_PIN_13);  //Read Blue Button State
+        if(value){
+            GPIO_Set(GPIOA, GPIO_PIN_5);    //Set Green LED to 1
+        } else {
+            GPIO_Clear(GPIOA, GPIO_PIN_5);  //Clear Green LED to 0
+        }
     }
 }
 ```
