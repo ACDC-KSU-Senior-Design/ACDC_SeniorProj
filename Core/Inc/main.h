@@ -33,6 +33,7 @@ extern "C" {
 #include "ACDC_string.h"
 #include "ACDC_GPIO.h"
 #include "ACDC_INTERRUPT.h"
+#include "ACDC_USART.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
