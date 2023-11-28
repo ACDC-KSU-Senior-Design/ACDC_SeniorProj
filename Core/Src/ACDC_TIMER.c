@@ -2,7 +2,7 @@
 
 volatile static uint64_t SysTickCounter;
 
-void TIMER_Init(void){
+void TIMER_Init(void){  // TODO: When ACDC_CLOCK is pushed to main this should pass in SystemClockSpeed as a parameter (CLOCK_SetSystemClockSpeed should also call this function so the user doesnt have to)
     SysTick->CTRL |= SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_ENABLE_Msk | SysTick_CTRL_TICKINT_Msk;
     SysTick->LOAD = (72000 - 1) & SysTick_LOAD_RELOAD_Msk; //Need to Calcualate A Value
 }
