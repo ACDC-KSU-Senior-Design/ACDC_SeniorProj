@@ -1,6 +1,9 @@
 #include "ACDC_CLOCK.h"
+#include "ACDC_GPIO.h"
 
-static SystemClockSpeed currentSCS;
+#define MAX_MCO_CLK_SPEED 50000000
+
+static SystemClockSpeed currentSCS; /* Current System Clock Speed */
 
 /// @brief Disables the HSI and enables the PLL from the SysClock Mux
 static void DisableHSI_EnablePLL();
@@ -88,6 +91,36 @@ SystemClockSpeed CLOCK_GetSystemClockSpeed(void){
     return currentSCS;
 }
 
+void CLOCK_SetMcoOutput(MicroClockOutput MCO_x){
+
+    GPIO_PinDirection(GPIOA, GPIO_PIN_8, GPIO_MODE_OUTPUT_SPEED_50MHz, GPIO_CNF_OUTPUT_AF_PUSH_PULL);
+
+    int regVal = RCC->CFGR & ~(RCC_CFGR_MCO_Msk); // Clears the register
+
+    if(currentSCS > MAX_MCO_CLK_SPEED)
+        RCC->CFGR = regVal | RCC_CFGR_MCO_PLLCLK_DIV2;  // Sets the MCO output to 1/2 of PLL Clock
+    else
+        RCC->CFGR = regVal | MCO_x;                     // Sets the Desired MCO Bits
+}
+
+
+void CLOCK_SetADCPrescaler(ADC_Prescaler ADC_DIV_x){
+    uint32_t tempReg = RCC->CFGR & ~RCC_CFGR_ADCPRE_Msk;        // Clear the ADC Prescaler bits in RCC->CFGR
+    RCC->CFGR = tempReg | (ADC_DIV_x << RCC_CFGR_ADCPRE_Pos);   // Set the ADC_DIV_x bits in RCC->CFGR
+}
+
+void CLOCK_SetAPB1Prescaler(APB_Prescaler APB_DIV_x){
+    uint32_t tempReg = RCC->CFGR & ~RCC_CFGR_PPRE1_Msk;         // Clear the APB1 Bits in RCC->CFGR
+    RCC->CFGR = tempReg | (APB_DIV_x << RCC_CFGR_PPRE1_Pos);    // Set the APB_DIV_x bits in RCC->CFGR
+
+}
+
+void CLOCK_SetAPB2Prescaler(APB_Prescaler APB_DIV_x){
+    uint32_t tempReg = RCC->CFGR & ~RCC_CFGR_PPRE2_Msk;         // Clear the APB2 Bits in RCC->CFGR
+    RCC->CFGR = tempReg | (APB_DIV_x << RCC_CFGR_PPRE2_Pos);    // Set the APB_DIV_x bits in RCC->CFGR
+}
+
+
 static void DisableHSI_EnableHSE(){
     RCC->CR |= RCC_CR_HSEON;            // Turn on the HSE Clock
     while(!(RCC->CR & RCC_CR_HSERDY)){} // Wait until HSE oscillator is ready
@@ -107,3 +140,8 @@ static void EnableHSI_DisablePLL(){
 
     RCC->CR &= ~(RCC_CR_HSEON);         // Turn off the HSE Clock
 }
+
+/* DELETE CODE BELOW */
+//RCC->CFGR |= RCC_CFGR_PLLMULL9 | RCC_CFGR_ADCPRE_DIV6;  // PLL Mult = 9, ADC to 12Mhz    
+//RCC->CFGR |= RCC_CFGR_PPRE1_DIV2 | RCC_CFGR_PPRE2_DIV1; // Set APB1 Peripheral to 36Mhz, Set APB2 Peripheral to 72Mhz
+/* DELETE CODE ABOVE*/
