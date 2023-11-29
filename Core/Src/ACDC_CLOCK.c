@@ -6,10 +6,10 @@
 static SystemClockSpeed currentSCS; /* Current System Clock Speed */
 
 /// @brief Disables the HSI and enables the PLL from the SysClock Mux
-static void DisableHSI_EnablePLL();
+static void DisableHSI_EnablePLL(void);
 
 /// @brief Enables the HSI and disables the PLL from the SysClock Mux
-static void EnableHSI_DisablePLL();
+static void EnableHSI_DisablePLL(void);
 
 void CLOCK_SetSystemClockSpeed(SystemClockSpeed SCS_x){
 
@@ -17,7 +17,7 @@ void CLOCK_SetSystemClockSpeed(SystemClockSpeed SCS_x){
     EnableHSI_DisablePLL();         // Disables the PLL
 
     // Clears HSE DIV into PLL Source Mux, Clear PLL Mull 
-    RCC->CFGR &= ~(RCC_CFGR_PLLXTPRE_Msk | RCC_CFGR_PLLMULL | RCC_CFGR_HPRE_Msk | RCC_CFGR_PPRE1_Msk);
+    RCC->CFGR &= ~(RCC_CFGR_PLLXTPRE_Msk | RCC_CFGR_PLLMULL_Msk | RCC_CFGR_HPRE_Msk | RCC_CFGR_PPRE1_Msk);
 
     switch (SCS_x){
         case SCS_16MHz: //PLLMULL2
@@ -70,6 +70,7 @@ void CLOCK_SetSystemClockSpeed(SystemClockSpeed SCS_x){
             RCC->CFGR |= RCC_CFGR_HPRE_DIV4;                            // AHB Prescaler DIV4
             RCC->CFGR |= RCC_CFGR_PLLXTPRE_HSE_DIV2;                    // HSE DIV2 into PLL Src Mux
             RCC->CFGR |= (SCS_x / 1000000 - 2) << RCC_CFGR_PLLMULL_Pos; // Converts SCS into the PLL Multiplier
+        break;
 
         case SCS_1MHz:  //PLLMULL2
             RCC->CFGR |= RCC_CFGR_HPRE_DIV8;                            // AHB Prescaler DIV8
@@ -121,24 +122,26 @@ void CLOCK_SetAPB2Prescaler(APB_Prescaler APB_DIV_x){
 }
 
 
-static void DisableHSI_EnableHSE(){
-    RCC->CR |= RCC_CR_HSEON;            // Turn on the HSE Clock
-    while(!(RCC->CR & RCC_CR_HSERDY)){} // Wait until HSE oscillator is ready
+static void DisableHSI_EnablePLL(void){
+    RCC->CR |= RCC_CR_PLLON;            // Turn on the PLL Clock
+    while(!(RCC->CR & RCC_CR_PLLRDY)){} // Wait until the PLL oscillator is ready
 
     RCC->CFGR &= ~RCC_CFGR_SW_Msk;      // Clear the SW bits
     RCC->CFGR |= RCC_CFGR_SW_PLL;       // Set PLL as SysClock
 
-    RCC->CR &= ~(RCC_CR_HSION);         // Turn off the HSI Clock
+    while(!(RCC->CFGR & RCC_CFGR_SWS_PLL)){}    // Wait until PLL is the SysClk
 }
 
-static void EnableHSI_DisablePLL(){
-    RCC->CR |= RCC_CR_HSION;            // Turn on the HSI Clock
-    while(!(RCC->CR & RCC_CR_HSIRDY)){} // Wait until HSI oscillator is ready
+static void EnableHSI_DisablePLL(void){
+    RCC->CR |= RCC_CR_HSEON;            // Turn on the HSE Clock
+    while(!(RCC->CR & RCC_CR_HSERDY)){} // Wait until HSE oscillator is ready
 
-    RCC->CFGR &= ~RCC_CFGR_SW_Msk;      // Clean the SW bits
-    RCC->CFGR |= RCC_CFGR_SW_HSI;       // Set HSI as SysClock
+    RCC->CFGR &= ~RCC_CFGR_SW_Msk;      // Clear the SW bits
+    RCC->CFGR |= RCC_CFGR_SW_HSE;       // Set HSE as SysClock
 
-    RCC->CR &= ~(RCC_CR_HSEON);         // Turn off the HSE Clock
+    while(!(RCC->CFGR & RCC_CFGR_SWS_HSE)){}    // Wait until HSE is the SysClk
+
+    RCC->CR &= ~RCC_CR_PLLON;           // Disable the PLL
 }
 
 /* DELETE CODE BELOW */

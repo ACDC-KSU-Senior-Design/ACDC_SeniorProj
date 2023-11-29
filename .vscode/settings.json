@@ -1,0 +1,15 @@
+{
+    "terminal.integrated.env.windows": {
+        "Path": "${env:PATH}${env:ARMMAKE_DIR};"
+    },
+    "files.associations": {
+        "main.h": "c",
+        "stm32f103xb.h": "c",
+        "acdc_interrupt.h": "c",
+        "acdc_stdbool.h": "c",
+        "acdc_stdint.h": "c",
+        "acdc_string.h": "c",
+        "acdc_clock.h": "c",
+        "acdc_gpio.h": "c",
+    }
+}
