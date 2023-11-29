@@ -38,6 +38,7 @@ BUILD_DIR = build
 C_SOURCES =  \
 Core/Src/main.c \
 Core/Src/ACDC_GPIO.c \
+Core/Src/ACDC_TIMER.c \
 Core/Src/ACDC_CLOCK.c \
 Core/Src/ACDC_INTERRUPT.c \
 Core/Src/ACDC_string.c \

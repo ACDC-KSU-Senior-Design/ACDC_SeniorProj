@@ -34,6 +34,7 @@ extern "C" {
 #include "ACDC_GPIO.h"
 #include "ACDC_CLOCK.h"
 #include "ACDC_INTERRUPT.h"
+#include "ACDC_TIMER.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
