@@ -1,5 +1,6 @@
 #include "ACDC_CLOCK.h"
 #include "ACDC_GPIO.h"
+#include "ACDC_TIMER.h"
 
 #define MAX_MCO_CLK_SPEED 50000000
 
@@ -20,6 +21,12 @@ void CLOCK_SetSystemClockSpeed(SystemClockSpeed SCS_x){
     RCC->CFGR &= ~(RCC_CFGR_PLLXTPRE_Msk | RCC_CFGR_PLLMULL_Msk | RCC_CFGR_HPRE_Msk | RCC_CFGR_PPRE1_Msk);
 
     switch (SCS_x){
+        case SCS_72MHz: //PLLMULL9
+            RCC->CFGR |= RCC_CFGR_HPRE_DIV1;
+            RCC->CFGR |= RCC_CFGR_PLLXTPRE_HSE;
+            RCC->CFGR |= RCC_CFGR_PLLMULL9;    //Should be 9 but still doesnt work still too fast
+        break;
+
         case SCS_16MHz: //PLLMULL2
         case SCS_24MHz: //PLLMULL3
         case SCS_32MHz: //PLLMULL4
@@ -27,10 +34,10 @@ void CLOCK_SetSystemClockSpeed(SystemClockSpeed SCS_x){
         case SCS_48MHz: //PLLMULL6
         case SCS_56MHz: //PLLMULL7
         case SCS_64MHz: //PLLMULL8
-        case SCS_72MHz: //PLLMULL9
+        //case SCS_72MHz: //PLLMULL9  //Broken
             RCC->CFGR |= RCC_CFGR_HPRE_DIV1;                            // AHB Prescaler DIV1
             RCC->CFGR |= RCC_CFGR_PLLXTPRE_HSE;                         // HSE No DIV into PLL Src Mux
-            RCC->CFGR |= (SCS_x / 8000000 - 2) << RCC_CFGR_PLLMULL_Pos; // Converts SCS into the PLL Multiplier
+            RCC->CFGR |= (SCS_x / 4000000 - 2) << RCC_CFGR_PLLMULL_Pos; // Converts SCS into the PLL Multiplier
         break;
 
         case SCS_8MHz:  //PLLMULL2
@@ -51,9 +58,9 @@ void CLOCK_SetSystemClockSpeed(SystemClockSpeed SCS_x){
         case SCS_10MHz: //PLLMULL5
         case SCS_14MHz: //PLLMULL7
         case SCS_18MHz: //PLLMULL9
-        case SCS_22MHz: //PLLMULL11
-        case SCS_26MHz: //PLLMULL13
-        case SCS_30MHz: //PLLMULL15
+        case SCS_22MHz: //PLLMULL11     
+        case SCS_26MHz: //PLLMULL13     //Broken
+        case SCS_30MHz: //PLLMULL15     //Broken 
             RCC->CFGR |= RCC_CFGR_HPRE_DIV2;                            // AHB Prescaler DIV2
             RCC->CFGR |= RCC_CFGR_PLLXTPRE_HSE_DIV2;                    // HSE DIV2 into PLL Src Mux
             RCC->CFGR |= (SCS_x / 2000000 - 2) << RCC_CFGR_PLLMULL_Pos; // Converts SCS into the PLL Multiplier
@@ -65,14 +72,14 @@ void CLOCK_SetSystemClockSpeed(SystemClockSpeed SCS_x){
         case SCS_7MHz:  //PLLMULL7
         case SCS_9MHz:  //PLLMULL9
         case SCS_11MHz: //PLLMULL11
-        case SCS_13MHz: //PLLMULL13
-        case SCS_15MHz: //PLLMULL15
+        case SCS_13MHz: //PLLMULL13     //Broken
+        case SCS_15MHz: //PLLMULL15     //Broken
             RCC->CFGR |= RCC_CFGR_HPRE_DIV4;                            // AHB Prescaler DIV4
             RCC->CFGR |= RCC_CFGR_PLLXTPRE_HSE_DIV2;                    // HSE DIV2 into PLL Src Mux
             RCC->CFGR |= (SCS_x / 1000000 - 2) << RCC_CFGR_PLLMULL_Pos; // Converts SCS into the PLL Multiplier
         break;
 
-        case SCS_1MHz:  //PLLMULL2
+        case SCS_1MHz:  //PLLMULL2  // Somehow gives 8MHz
             RCC->CFGR |= RCC_CFGR_HPRE_DIV8;                            // AHB Prescaler DIV8
             RCC->CFGR |= RCC_CFGR_PLLXTPRE_HSE_DIV2;                    // HSE DIV2 into PLL Src Mux
             RCC->CFGR |= (SCS_x / 500000  - 2) << RCC_CFGR_PLLMULL_Pos; // Converts SCS into the PLL Multiplier
@@ -85,6 +92,7 @@ void CLOCK_SetSystemClockSpeed(SystemClockSpeed SCS_x){
     RCC->CFGR |= SCS_x > SCS_36MHz ? RCC_CFGR_PPRE1_DIV2 : RCC_CFGR_PPRE1_DIV1; // Sets the APB1 Prescaler based on SCS
 
     DisableHSI_EnablePLL(); //Enables the PLL
+    TIMER_Init(SCS_x);
     currentSCS = SCS_x; // Set currentSCS to SCS_x when clocks are done configuring
 }
 
@@ -103,7 +111,6 @@ void CLOCK_SetMcoOutput(MicroClockOutput MCO_x){
     else
         RCC->CFGR = regVal | MCO_x;                     // Sets the Desired MCO Bits
 }
-
 
 void CLOCK_SetADCPrescaler(ADC_Prescaler ADC_DIV_x){
     uint32_t tempReg = RCC->CFGR & ~RCC_CFGR_ADCPRE_Msk;        // Clear the ADC Prescaler bits in RCC->CFGR
