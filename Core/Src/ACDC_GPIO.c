@@ -19,20 +19,17 @@ void GPIO_InitClk(GPIO_TypeDef *GPIOx){
 }
 
 void GPIO_PinDirection(GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN, uint8_t GPIO_MODE, uint8_t GPIO_CNF){
+    GPIO_InitClk(GPIOx);    //Needed in order to use Output / Input
+
     //Use CRL if it is the first 7 pins else use the CRH 
     volatile uint32_t *REG = (GPIO_PIN <= GPIO_PIN_7) ? &GPIOx->CRL : &GPIOx->CRH;
     uint8_t PIN = GPIO_GetPinNumber(GPIO_PIN);
     if(PIN >= 8)
-        PIN -= 8;
+        PIN -= 8;   // shifts the pin down to accomadate for CRH & CRL
 
-    if(GPIO_MODE == GPIO_MODE_INPUT){
-        GPIO_InitClk(GPIOx);
-        if(((GPIO_CNF & 0b11) == GPIO_CNF_INPUT_PULLUP_PULLDOWN))
-            GPIO_Write(GPIOx, GPIO_PIN, (GPIO_CNF & 0b100) >> 2);   
-            //If it is Pullup/Pulldown set GPIOx->ODR to the desired value
-    }
-
-    
+    if(GPIO_MODE == GPIO_MODE_INPUT && (GPIO_CNF & 0b11) == GPIO_CNF_INPUT_PULLUP_PULLDOWN) //If Input & Pullup/Pulldown
+        GPIO_Write(GPIOx, GPIO_PIN, (GPIO_CNF & 0b100) >> 2);   
+        //ISet GPIOx->ODR to the desired value (Pullup/PullDown)
 
     //The magic number 4 is the combined size of the MODE and CNF bits (PAGE 172/1136)
     *REG &= ~(GPIO_MODE_CNF << (PIN*4));                    //Clear both the MODE and CNF
