@@ -5,7 +5,7 @@
 #define GPIO_MODE_OFFSET 0
 #define GPIO_CNF_OFFSET 2
 
-void GPIO_InitClk(GPIO_TypeDef *GPIOx){
+void GPIO_InitClk(const GPIO_TypeDef *GPIOx){
     if(GPIOx == GPIOA)
         RCC->APB2ENR |= RCC_APB2ENR_IOPAEN; 
     else if(GPIOx == GPIOB)

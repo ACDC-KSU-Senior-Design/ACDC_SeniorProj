@@ -39,7 +39,7 @@
 
 /// @brief Enables the GPIOx peripheral clock (Needed to read from a pin)
 /// @param GPIOx Port of the GPIO (Ex. GPIOA, GPIOB, ...) 
-void GPIO_InitClk(GPIO_TypeDef *GPIOx);
+void GPIO_InitClk(const GPIO_TypeDef *GPIOx);
 
 /// @brief Sets the Direction of the Pin to Input/Output (MODE) and the sets its Configuration (CNF) [CAN ONLY SET ONE PIN AT A TIME]
 /// @param GPIOx Port of the GPIO (Ex. GPIOA, GPIOB, ...) 
