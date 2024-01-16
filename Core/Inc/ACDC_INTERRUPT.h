@@ -1,7 +1,16 @@
+/**
+ * @file ACDC_INTERRUPT.h
+ * @author Devin Marx
+ * @brief Contains interrupt functions for hardware peripherals
+ * @version 0.1
+ * @date 2023-11-02
+ * @copyright Copyright (c) 2023-2024
+ */
+
 #ifndef __ACDC_INTERRUPT_H
 #define __ACDC_INTERRUPT_H
 
-#include "stm32f103xb.h"
+#include "stm32f1xx.h"
 #include "ACDC_stdint.h"
 
 typedef enum{

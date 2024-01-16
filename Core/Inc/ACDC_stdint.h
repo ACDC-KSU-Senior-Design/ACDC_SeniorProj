@@ -1,3 +1,14 @@
+/**
+ * @file ACDC_stdint.h
+ * @author Devin Marx
+ * @brief Header file for intx_t and uintx_t types
+ * @version 0.1
+ * @date 2023-10-10
+ * 
+ * @copyright Copyright (c) 2023-2024
+ * 
+ */
+
 #ifndef __ACDC_STDINT_H
 #define __ACDC_STDINT_H
 

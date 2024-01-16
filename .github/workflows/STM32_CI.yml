@@ -11,10 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3        
+    - uses: actions/checkout@v4        
       
     - name: Install CppCheck, Make, & ARM_GCC
-      if: steps.cache-dependencies.outputs.cache-hit != 'true'
       run: |
         sudo apt install cppcheck -y
         sudo apt install make -y

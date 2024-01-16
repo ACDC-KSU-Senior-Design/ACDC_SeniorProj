@@ -1,4 +1,21 @@
+/**
+ * @file ACDC_string.c
+ * @brief Implementation of string manipulation functions.
+ * 
+ * This file contains the implementation of various string manipulation functions,
+ * including functions for case conversion, checking character types, and string comparison.
+ * 
+ * @author Devin Marx
+ * @version 0.2
+ * @date 2023-1-16
+ * 
+ * @copyright Copyright (c) 2023-2024
+ */
+
 #include "ACDC_string.h"
+
+#define UPPER_TO_LOWER 32   //Number of characters to move to reach a lowercase character from a uppercase character
+#define LOWER_TO_UPPER 32
 
 int StringCompare(const char *str1, const char *str2){
     int i = 0;
@@ -32,7 +49,7 @@ char* StringConcat(char *dest, const char *source){
     return dest;                        //Return the Destination
 }
 
-int StringIndexOf(char *str, char c){
+int StringIndexOf(const char *str, char c){
     for(int i = 0; i < StringLength(str); i++)
         if(str[i] == c)
             return i;
@@ -52,11 +69,105 @@ bool StringStartsWith(char *str, const char *compareWith){
     return StringCompare(str, compareWith) == 0;
 }
 
-bool StringEndsWith(char *str, const char* compareWith){
+bool StringEndsWith(const char *str, const char* compareWith){
     int stringDiff = StringLength(str) - StringLength(compareWith);
     
     if(stringDiff < 0)
         return false;
         
     return StringCompare(str + stringDiff, compareWith) == 0;
+}
+
+
+char* StringToUpper(char* str){
+    if(str[0] == '\0')  // If the string is empty
+        return str;     // return the original string
+
+    for(int i = 0; str[i] != '\0'; i++)
+        if(str[i] >= 'a' && str[i] <= 'z')
+            str[i] -= LOWER_TO_UPPER;
+
+    return str;
+}
+
+char* StringToLower(char* str){
+    if(str[0] == '\0')  // If the string is empty
+        return str;     // return the original string
+
+    for(int i = 0; str[i] != '\0'; i++)
+        if(str[i] >= 'A' && str[i] <= 'Z')
+            str[i] += UPPER_TO_LOWER;
+
+    return str;
+}
+
+bool StringIsUpper(const char* str){
+    if(str[0] == '\0')
+        return false;
+
+    int index = 0;
+    while(str[index] != '\0'){
+        if(str[index] < 'A' || str[index] > 'Z')
+            return false;
+        index++;
+    }
+    
+    return true;
+}
+
+bool StringIsLower(const char* str){
+    if(str[0] == '\0')
+        return false;
+
+    int index = 0;
+    while(str[index] != '\0'){
+        if(str[index] < 'a' || str[index] > 'z')
+            return false;
+        index++;
+    }
+    
+    return true;
+}
+
+bool StringIsNumeric(const char* str){
+    if(str[0] == '\0')  // If the string is empty
+        return false;
+
+    int index = 0;
+    while(str[index] != '\0'){                    // Iterate over the entire string
+        if(str[index] < '0' || str[index] > '9')  // If the index is not a number 0-9
+            return false;
+        index++;
+    }
+
+    return true;
+}
+
+bool StringIsAlphabetic(const char* str){
+    if(str[0] == '\0')  // If the string is empty
+        return false;
+    
+    int index = 0;
+    while(str[index] != '\0'){                                                              // Iterate over the entire string
+        if(str[index] < 'A' || str[index] > 'z' || (str[index] > 'Z' && str[index] < 'a'))  // If the index is not a letter a-z or A-Z
+            return false;
+        index++;
+    }
+    
+    return true;
+}
+
+bool StringIsAlphanumeric(const char* str){
+    if(str[0] == '\0')  // If the string is empty
+        return false;
+
+    int index = 0;
+    while(str[index] != '\0'){  // Iterate over the entire string      
+        if(str[index] < '0' || str[index] > 'z' || (str[index] > 'Z' && str[index] < 'a')  
+           || (str[index] > '9' && str[index] < 'A'))   // Checks if the current index is a letter a-z or A-Z or number 0-9
+                return false;
+        index++;
+    }
+
+    return true;
 }
