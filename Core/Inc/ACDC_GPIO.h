@@ -1,7 +1,17 @@
+/**
+ * @file ACDC_GPIO.h
+ * @author Devin Marx
+ * @brief Header file for General Purpose Input Output pins
+ * @version 0.1
+ * @date 2023-10-11
+ * @copyright Copyright (c) 2023-2024
+ * 
+ */
+
 #ifndef __ACDC_GPIO_H
 #define __ACDC_GPIO_H
 
-#include "stm32f103xb.h"
+#include "stm32f1xx.h"
 #include "ACDC_stdint.h"
 
 #define GPIO_PIN_0                 ((uint16_t)0x0001)  /* Pin 0 selected    */
@@ -73,7 +83,7 @@ void GPIO_Toggle(GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN);
 /// @param GPIOx Port of the GPIO (Ex. GPIOA, GPIOB, ...) 
 /// @param GPIO_PIN Desired pin on port GPIOx (Ex. GPIO_PIN_0, GPIO_PIN_1, ...)
 /// @return >= 1 if Pin is High, else 0
-uint8_t GPIO_Read(GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN);
+uint8_t GPIO_Read(const GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN);
 
 /// @brief Returns the Pin number of the GPIO_PIN_#
 /// @param GPIO_PIN Desired pin (Ex. GPIO_PIN_0, GPIO_PIN_1, ...)
