@@ -23,6 +23,8 @@ TARGET = ACDC_SeniorProj
 DEBUG = 1
 # optimization
 OPT = -Og
+# cppcheck
+CPPCHECK = cppcheck
 
 
 #######################################
@@ -34,14 +36,17 @@ BUILD_DIR = build
 ######################################
 # source
 ######################################
-# C sources
-C_SOURCES =  \
+# ACDC C Files
+ACDC_C_SOURCES =  \
 Core/Src/main.c \
 Core/Src/ACDC_GPIO.c \
 Core/Src/ACDC_TIMER.c \
 Core/Src/ACDC_CLOCK.c \
 Core/Src/ACDC_INTERRUPT.c \
 Core/Src/ACDC_string.c \
+
+# STM Provided C Files
+STM_C_SOURCES = \
 Core/Src/stm32f1xx_it.c \
 Core/Src/stm32f1xx_hal_msp.c \
 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c \
@@ -59,6 +64,11 @@ Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c \
 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c \
 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c \
 Core/Src/system_stm32f1xx.c
+
+# C sources
+C_SOURCES = \
+$(ACDC_C_SOURCES) \
+$(STM_C_SOURCES)
 
 # ASM sources
 ASM_SOURCES =  \
@@ -113,13 +123,20 @@ C_DEFS =  \
 # AS includes
 AS_INCLUDES = 
 
-# C includes
-C_INCLUDES =  \
+# ACDC includes
+ACDC_C_INCLUDES = \
 -ICore/Inc \
--IDrivers/STM32F1xx_HAL_Driver/Inc \
--IDrivers/STM32F1xx_HAL_Driver/Inc/Legacy \
 -IDrivers/CMSIS/Device/ST/STM32F1xx/Include \
 -IDrivers/CMSIS/Include
+
+STM_C_INCLUDES = \
+-IDrivers/STM32F1xx_HAL_Driver/Inc \
+-IDrivers/STM32F1xx_HAL_Driver/Inc/Legacy \
+
+# C includes
+C_INCLUDES =  \
+$(ACDC_C_INCLUDES) \
+$(STM_C_INCLUDES)
 
 
 # compile gcc flags
@@ -192,6 +209,20 @@ clean:
 flash: all
 	openocd -f interface/stlink.cfg -f target/stm32f1x.cfg -c "program $(BUILD_DIR)/$(TARGET).elf verify reset exit"
   
+#######################################
+# CppCheck
+#######################################
+cppcheck:
+	$(CPPCHECK) --quiet --force  -v \
+	--enable=all \
+	--inline-suppr \
+	--error-exitcode=1 \
+	--suppress=unusedFunction \
+	--suppress=missingIncludeSystem \
+	--suppress=constVariablePointer:Drivers/CMSIS/Include/core_cm3.h \
+	--suppress=missingReturn:Drivers/CMSIS/Include/cmsis_armcc.h \
+	$(C_INCLUDES) $(ACDC_C_SOURCES)
+
 #######################################
 # dependencies
 #######################################
