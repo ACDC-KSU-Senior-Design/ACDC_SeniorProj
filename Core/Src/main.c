@@ -26,15 +26,14 @@ static void ACDC_Init(SystemClockSpeed SCS_x);
   */
 int main(void)
 {
-  HAL_Init();       //Need to look deeper into this
-  SystemClock_Config(); //Shoulnt need anymore
+  //HAL_Init();       //Need to look deeper into this
+  //SystemClock_Config(); //Shoulnt need anymore
 
-  ACDC_Init(SCS_36MHz);
+  ACDC_Init(SCS_6MHz);
 
   MX_GPIO_Init();
   MX_USART2_UART_Init();
-
-
+ 
   while (1)
   {
     GPIO_Toggle(GPIOA, GPIO_PIN_5);
@@ -50,7 +49,7 @@ static void ACDC_Init(SystemClockSpeed SCS_x){
   CLOCK_SetMcoOutput(MCO_SYSCLK);     //Sets PA8 as the output of SysClock
   GPIO_PinDirection(GPIOA, GPIO_PIN_5, GPIO_MODE_OUTPUT_SPEED_50MHz, GPIO_CNF_OUTPUT_PUSH_PULL);
   GPIO_PinDirection(GPIOC, GPIO_PIN_13, GPIO_MODE_INPUT, GPIO_CNF_INPUT_FLOATING);  //External Pullup/down resistor
-  GPIO_INT_SetToInterrupt(GPIOC, GPIO_PIN_13, RISING_EDGE);  
+  GPIO_INT_SetToInterrupt(GPIOC, GPIO_PIN_13, TT_RISING_EDGE);  
 }
 
 /**
