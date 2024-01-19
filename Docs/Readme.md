@@ -7,3 +7,7 @@
     * Read Pins State
 * [ACDC_INTERRUPT.h](INTERRUPT.md)
     * Set GPIO Pin to a Interrupt (Rising Edge, Falling Edge, Both Edges)
+* [ACDC_CLOCK.h](CLOCK.md)
+    * Set and retrieve the System Clock Speed
+    * Configure Prescalers for ADC, APB1, and APB2
+    * Use MCU's MCO output (outputs the the HSE, HSI, SYSCLK, etc. on the MCO pin PA8)
