@@ -1,3 +1,17 @@
+/**
+ * @file ACDC_CLOCK.h
+ * @author Devin Marx
+ * @brief Header file containing functions for configuring the system clock and clock-related peripherals.
+ * 
+ * This file defines enums and functions for configuring the system clock speed, enabling the MCO output,
+ * setting ADC and APB prescalers, and retrieving the current system clock speed.
+ * 
+ * @version 0.1
+ * @date 2023-11-3
+ * 
+ * @copyright Copyright (c) 2023-2024
+ */
+
 #ifndef __ACDC_CLOCK_H
 #define __ACDC_CLOCK_H
 

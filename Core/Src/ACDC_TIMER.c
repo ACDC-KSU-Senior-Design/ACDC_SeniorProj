@@ -4,8 +4,12 @@
 
 volatile static uint64_t SysTickCounter;
 
-void TIMER_Init(SystemClockSpeed SCS_x){  // TODO: When ACDC_CLOCK is pushed to main this should pass in SystemClockSpeed as a parameter (CLOCK_SetSystemClockSpeed should also call this function so the user doesnt have to)
+void TIMER_Init(SystemClockSpeed SCS_x){  //TODO: Should only ever be called once (Need to add an assert)
     SysTick->CTRL |= SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_ENABLE_Msk | SysTick_CTRL_TICKINT_Msk;
+    TIMER_SetSystemClockSpeed(SCS_x);
+}
+
+void TIMER_SetSystemClockSpeed(SystemClockSpeed SCS_x){
     SysTick->LOAD = ((SCS_x / MS_PER_SECOND) - 1) & SysTick_LOAD_RELOAD_Msk;
 }
 
