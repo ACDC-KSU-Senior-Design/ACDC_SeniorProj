@@ -1,21 +1,5 @@
 var searchData=
 [
-  ['stm32_20toolchain_20install_20with_20vscode_0',['STM32 Toolchain install with VSCode',['../index.html#autotoc_md3',1,'']]],
-  ['stringcompare_1',['StringCompare',['../ACDC__string_8h.html#a6c7fa9b330b08e7d0d8259df8915b795',1,'StringCompare(const char *str1, const char *str2):&#160;ACDC_string.c'],['../ACDC__string_8c.html#a6c7fa9b330b08e7d0d8259df8915b795',1,'StringCompare(const char *str1, const char *str2):&#160;ACDC_string.c']]],
-  ['stringconcat_2',['StringConcat',['../ACDC__string_8h.html#a4751d5aa1941ca761fb4d656744d82c3',1,'StringConcat(char *dest, const char *source):&#160;ACDC_string.c'],['../ACDC__string_8c.html#a4751d5aa1941ca761fb4d656744d82c3',1,'StringConcat(char *dest, const char *source):&#160;ACDC_string.c']]],
-  ['stringendswith_3',['StringEndsWith',['../ACDC__string_8h.html#af0d8f508f9c6b87608946dd1b0a5ddb6',1,'StringEndsWith(const char *str, const char *compareWith):&#160;ACDC_string.c'],['../ACDC__string_8c.html#af0d8f508f9c6b87608946dd1b0a5ddb6',1,'StringEndsWith(const char *str, const char *compareWith):&#160;ACDC_string.c']]],
-  ['stringindexof_4',['StringIndexOf',['../ACDC__string_8h.html#addf439076a938dfff99f9a522a37f846',1,'StringIndexOf(const char *str, char c):&#160;ACDC_string.c'],['../ACDC__string_8c.html#addf439076a938dfff99f9a522a37f846',1,'StringIndexOf(const char *str, char c):&#160;ACDC_string.c']]],
-  ['stringisalphabetic_5',['StringIsAlphabetic',['../ACDC__string_8h.html#a2120964fc170b171f139da671435dba6',1,'StringIsAlphabetic(const char *str):&#160;ACDC_string.c'],['../ACDC__string_8c.html#a2120964fc170b171f139da671435dba6',1,'StringIsAlphabetic(const char *str):&#160;ACDC_string.c']]],
-  ['stringisalphanumeric_6',['StringIsAlphanumeric',['../ACDC__string_8h.html#a7df23c0026351d6f7cfabab4f3e7f158',1,'StringIsAlphanumeric(const char *str):&#160;ACDC_string.c'],['../ACDC__string_8c.html#a7df23c0026351d6f7cfabab4f3e7f158',1,'StringIsAlphanumeric(const char *str):&#160;ACDC_string.c']]],
-  ['stringislower_7',['StringIsLower',['../ACDC__string_8h.html#aa41ca6278705383526afa1120c4bf12b',1,'StringIsLower(const char *str):&#160;ACDC_string.c'],['../ACDC__string_8c.html#aa41ca6278705383526afa1120c4bf12b',1,'StringIsLower(const char *str):&#160;ACDC_string.c']]],
-  ['stringisnumeric_8',['StringIsNumeric',['../ACDC__string_8h.html#aaae4ea53f38bee699d2b474124cc8521',1,'StringIsNumeric(const char *str):&#160;ACDC_string.c'],['../ACDC__string_8c.html#aaae4ea53f38bee699d2b474124cc8521',1,'StringIsNumeric(const char *str):&#160;ACDC_string.c']]],
-  ['stringisupper_9',['StringIsUpper',['../ACDC__string_8h.html#aa691c24285e3452ce2f39c6c932f0701',1,'StringIsUpper(const char *str):&#160;ACDC_string.c'],['../ACDC__string_8c.html#aa691c24285e3452ce2f39c6c932f0701',1,'StringIsUpper(const char *str):&#160;ACDC_string.c']]],
-  ['stringlength_10',['StringLength',['../ACDC__string_8h.html#aa7b45feb81c92c946beb7835f72246c4',1,'StringLength(const char *str):&#160;ACDC_string.c'],['../ACDC__string_8c.html#aa7b45feb81c92c946beb7835f72246c4',1,'StringLength(const char *str):&#160;ACDC_string.c']]],
-  ['stringstartswith_11',['StringStartsWith',['../ACDC__string_8h.html#afbd68f59184006ad6ad668327ccdf2bc',1,'StringStartsWith(char *str, const char *compareWith):&#160;ACDC_string.c'],['../ACDC__string_8c.html#afbd68f59184006ad6ad668327ccdf2bc',1,'StringStartsWith(char *str, const char *compareWith):&#160;ACDC_string.c']]],
-  ['stringsubstring_12',['StringSubstring',['../ACDC__string_8h.html#abd3a33829a4a597965f9cb9cd4e628d2',1,'StringSubstring(char *str, int index):&#160;ACDC_string.c'],['../ACDC__string_8c.html#abd3a33829a4a597965f9cb9cd4e628d2',1,'StringSubstring(char *str, int index):&#160;ACDC_string.c']]],
-  ['stringtolower_13',['StringToLower',['../ACDC__string_8h.html#a48198bbbdac7b98b0da8390ff0bef74b',1,'StringToLower(char *str):&#160;ACDC_string.c'],['../ACDC__string_8c.html#a48198bbbdac7b98b0da8390ff0bef74b',1,'StringToLower(char *str):&#160;ACDC_string.c']]],
-  ['stringtoupper_14',['StringToUpper',['../ACDC__string_8h.html#a6cf246a95ebacdb5e9e890d6bbf9026a',1,'StringToUpper(char *str):&#160;ACDC_string.c'],['../ACDC__string_8c.html#a6cf246a95ebacdb5e9e890d6bbf9026a',1,'StringToUpper(char *str):&#160;ACDC_string.c']]],
-  ['swo_5fgpio_5fport_15',['SWO_GPIO_Port',['../main_8h.html#a1540b1bd5614d42feb933c5b943263c0',1,'main.h']]],
-  ['swo_5fpin_16',['SWO_Pin',['../main_8h.html#a92aba89301afeefb00b6dfbc6e874027',1,'main.h']]],
-  ['systemclock_5fconfig_17',['SystemClock_Config',['../main_8c.html#a70af21c671abfcc773614a9a4f63d920',1,'main.c']]]
+  ['readme_2emd_0',['README.md',['../README_8md.html',1,'']]],
+  ['resources_1',['Resources',['../index.html#autotoc_md1',1,'']]]
 ];

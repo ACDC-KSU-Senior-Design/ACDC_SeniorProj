@@ -43,7 +43,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"ACDC__GPIO_8c.html"
+"ACDC__CLOCK_8c.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['ld2_5fgpio_5fport_0',['LD2_GPIO_Port',['../main_8h.html#a5aff6ddf7fe557e53b048115ad322aa0',1,'main.h']]],
-  ['ld2_5fpin_1',['LD2_Pin',['../main_8h.html#af17a94dd613cff35c699b06c7c6a2820',1,'main.h']]],
-  ['lower_5fto_5fupper_2',['LOWER_TO_UPPER',['../ACDC__string_8c.html#afb7dde8b5de3486f47afa6672839adcf',1,'ACDC_string.c']]]
+  ['install_20with_20vscode_0',['STM32 Toolchain install with VSCode',['../index.html#autotoc_md3',1,'']]],
+  ['int16_5ft_1',['int16_t',['../ACDC__stdint_8h.html#a269259c924dce846340ddbb810db2e3c',1,'ACDC_stdint.h']]],
+  ['int32_5ft_2',['int32_t',['../ACDC__stdint_8h.html#adb828ef50c2dbb783109824e94cf6c47',1,'ACDC_stdint.h']]],
+  ['int64_5ft_3',['int64_t',['../ACDC__stdint_8h.html#a831d6234342279926bb11bad3a37add9',1,'ACDC_stdint.h']]],
+  ['int8_5ft_4',['int8_t',['../ACDC__stdint_8h.html#aef44329758059c91c76d334e8fc09700',1,'ACDC_stdint.h']]]
 ];

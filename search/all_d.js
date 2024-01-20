@@ -1,12 +1,14 @@
 var searchData=
 [
-  ['uint16_5ft_0',['uint16_t',['../ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30',1,'ACDC_stdint.h']]],
-  ['uint32_5ft_1',['uint32_t',['../ACDC__stdint_8h.html#a33594304e786b158f3fb30289278f5af',1,'ACDC_stdint.h']]],
-  ['uint64_5ft_2',['uint64_t',['../ACDC__stdint_8h.html#ad27ed092432b64ff558d2254c278720f',1,'ACDC_stdint.h']]],
-  ['uint8_5ft_3',['uint8_t',['../ACDC__stdint_8h.html#aba7bc1797add20fe3efdf37ced1182c5',1,'ACDC_stdint.h']]],
-  ['upper_5fto_5flower_4',['UPPER_TO_LOWER',['../ACDC__string_8c.html#a9f91cb7839c2c02f1a4dd7444941241b',1,'ACDC_string.c']]],
-  ['usart_5frx_5fgpio_5fport_5',['USART_RX_GPIO_Port',['../main_8h.html#aae451289f2eda1c04e3bf6d6120b6c0b',1,'main.h']]],
-  ['usart_5frx_5fpin_6',['USART_RX_Pin',['../main_8h.html#ac93b92f1334823df872908c845c71afc',1,'main.h']]],
-  ['usart_5ftx_5fgpio_5fport_7',['USART_TX_GPIO_Port',['../main_8h.html#a79a3e098f5d738c55a12e4272b7b2f84',1,'main.h']]],
-  ['usart_5ftx_5fpin_8',['USART_TX_Pin',['../main_8h.html#a5644600bf1ed996688dd87dc3f88526c',1,'main.h']]]
+  ['tck_5fgpio_5fport_0',['TCK_GPIO_Port',['../main_8h.html#a1541f23b870848a43f0274857badd175',1,'main.h']]],
+  ['tck_5fpin_1',['TCK_Pin',['../main_8h.html#a9e21d9bed16b0275ff16a864ffb2ab6e',1,'main.h']]],
+  ['timer_5finit_2',['TIMER_Init',['../ACDC__TIMER_8h.html#acca53c8d27cadb38ec41f27b8da13969',1,'TIMER_Init(SystemClockSpeed SCS_x):&#160;ACDC_TIMER.c'],['../ACDC__TIMER_8c.html#acca53c8d27cadb38ec41f27b8da13969',1,'TIMER_Init(SystemClockSpeed SCS_x):&#160;ACDC_TIMER.c']]],
+  ['timer_5fsetsystemclockspeed_3',['TIMER_SetSystemClockSpeed',['../ACDC__TIMER_8h.html#a16b6f261d23886c5b62255d3a9bd4f4e',1,'TIMER_SetSystemClockSpeed(SystemClockSpeed SCS_x):&#160;ACDC_TIMER.c'],['../ACDC__TIMER_8c.html#a16b6f261d23886c5b62255d3a9bd4f4e',1,'TIMER_SetSystemClockSpeed(SystemClockSpeed SCS_x):&#160;ACDC_TIMER.c']]],
+  ['tms_5fgpio_5fport_4',['TMS_GPIO_Port',['../main_8h.html#affce477a22cc940d3962932cb33ec422',1,'main.h']]],
+  ['tms_5fpin_5',['TMS_Pin',['../main_8h.html#af2c8a7a0746106e52f6f415b8921c21b',1,'main.h']]],
+  ['toolchain_20install_20with_20vscode_6',['STM32 Toolchain install with VSCode',['../index.html#autotoc_md3',1,'']]],
+  ['true_7',['true',['../ACDC__stdbool_8h.html#af6a258d8f3ee5206d682d799316314b1a08f175a5505a10b9ed657defeb050e4b',1,'ACDC_stdbool.h']]],
+  ['tt_5ffalling_5fedge_8',['TT_FALLING_EDGE',['../ACDC__INTERRUPT_8h.html#aa0ae10dd46be9ed141334e3c8ab9af04aabc0b196fe128975c7780cccdff3834e',1,'ACDC_INTERRUPT.h']]],
+  ['tt_5frising_5fand_5ffalling_5fedge_9',['TT_RISING_AND_FALLING_EDGE',['../ACDC__INTERRUPT_8h.html#aa0ae10dd46be9ed141334e3c8ab9af04a2c043ce3a7873bb2e59001afb063c9b5',1,'ACDC_INTERRUPT.h']]],
+  ['tt_5frising_5fedge_10',['TT_RISING_EDGE',['../ACDC__INTERRUPT_8h.html#aa0ae10dd46be9ed141334e3c8ab9af04a40af312b7b0494b8678fe57495a14513',1,'ACDC_INTERRUPT.h']]]
 ];
