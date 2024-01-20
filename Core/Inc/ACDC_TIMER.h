@@ -15,8 +15,9 @@
 
 #ifndef __ACDC_TIMER_H
 #define __ACDC_TIMER_H
-#include "stm32f103xb.h"
+
 #include "ACDC_CLOCK.h"
+#include "ACDC_stdint.h"
 
 /// @brief (SHOULD NOT BE CALLED BY USER, CALLED IN ACDC_CLOCK.h) Initilizes the SysClock timer and sets the value of SysClock->LOAD
 /// @param SCS_x System Clock Speed (Ex. SCS_72Mhz, SCS_36Mhz, ...)

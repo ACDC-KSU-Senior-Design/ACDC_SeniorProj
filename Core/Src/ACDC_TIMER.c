@@ -1,4 +1,5 @@
 #include "ACDC_TIMER.h"
+#include "stm32f1xx.h"
 
 #define MS_PER_SECOND 1000
 

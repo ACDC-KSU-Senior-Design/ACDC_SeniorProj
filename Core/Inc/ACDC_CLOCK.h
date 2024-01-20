@@ -15,7 +15,7 @@
 #ifndef __ACDC_CLOCK_H
 #define __ACDC_CLOCK_H
 
-#include "stm32f103xb.h"
+#include "stm32f1xx.h"
 #include "ACDC_stdbool.h"
 
 typedef enum{   /* System Clock Speed */

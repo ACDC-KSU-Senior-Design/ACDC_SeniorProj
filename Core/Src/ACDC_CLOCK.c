@@ -1,6 +1,6 @@
 #include "ACDC_CLOCK.h"
-#include "ACDC_GPIO.h"
 #include "ACDC_TIMER.h"
+#include "ACDC_GPIO.h"
 
 #define MAX_MCO_CLK_SPEED 50000000
 
