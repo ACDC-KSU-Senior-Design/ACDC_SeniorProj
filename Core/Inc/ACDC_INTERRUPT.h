@@ -14,9 +14,9 @@
 #include "ACDC_stdint.h"
 
 typedef enum{
-    TT_RISING_EDGE             = 0b01,
-    TT_FALLING_EDGE            = 0b10,
-    TT_RISING_AND_FALLING_EDGE = 0b11
+    TT_RISING_EDGE             = 0b01, /**< Interrupt Occurs on Rising Edge                       */
+    TT_FALLING_EDGE            = 0b10, /**< Interrupt Occurs on Falling Edge                      */
+    TT_RISING_AND_FALLING_EDGE = 0b11  /**< Interrupt Occurs on both the Rising and Falling Edges */
 } GPIO_TriggerType;
 
 /// @brief Enables Interrupts for GPIO_PIN on GPIOx. (Make sure to set GPIO_PIN as an Input)

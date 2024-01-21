@@ -13,8 +13,8 @@
 #define __ACDC_STDBOOL_H
 
 typedef enum{
-    true = 1 ,
-    false = !true
+    true = 1 ,    /**< A Value of True or 1     */
+    false = !true /**< A Value that is not True */
 }bool;
 
 #endif
