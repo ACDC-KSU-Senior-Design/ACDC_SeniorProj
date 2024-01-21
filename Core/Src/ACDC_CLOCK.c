@@ -1,3 +1,13 @@
+/**
+ * @file ACDC_CLOCK.c
+ * @author Devin Marx
+ * @brief Implentation of clock configuration functions for STM32F103xB MCU
+ * @version 0.1
+ * @date 2023-11-3
+ * 
+ * @copyright Copyright (c) 2023-2024
+ */
+
 #include "ACDC_CLOCK.h"
 #include "ACDC_TIMER.h"
 #include "ACDC_GPIO.h"

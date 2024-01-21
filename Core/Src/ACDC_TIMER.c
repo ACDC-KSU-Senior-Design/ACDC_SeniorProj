@@ -1,3 +1,13 @@
+/**
+ * @file ACDC_TIMER.c
+ * @author Devin Marx
+ * @brief Implementation of timer functions for system clock speed and delay
+ * @version 0.1
+ * @date 2023-11-7
+ * 
+ * @copyright Copyright (c) 2023-2024
+ */
+
 #include "ACDC_TIMER.h"
 #include "stm32f1xx.h"
 
