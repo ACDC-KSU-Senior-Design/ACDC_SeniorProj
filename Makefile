@@ -42,6 +42,7 @@ Core/Src/main.c \
 Core/Src/ACDC_GPIO.c \
 Core/Src/ACDC_INTERRUPT.c \
 Core/Src/ACDC_string.c \
+Core/Src/ACDC_Assert.c 
 
 # STM Provided C Files
 STM_C_SOURCES = \
