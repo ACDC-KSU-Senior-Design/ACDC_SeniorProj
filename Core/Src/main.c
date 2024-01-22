@@ -20,24 +20,31 @@ static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
 static void ACDC_Init(SystemClockSpeed SCS_x);
 
+char someStr[100] = "Devin Marx\n";
+
 /**
   * @brief  The application entry point.
   * @retval int
   */
 int main(void)
 {
-  //HAL_Init();       //Need to look deeper into this
-  //SystemClock_Config(); //Shoulnt need anymore
+  HAL_Init();       //Need to look deeper into this
+  SystemClock_Config(); //Shoulnt need anymore
 
-  ACDC_Init(SCS_6MHz);
+  //ACDC_Init(SCS_6MHz);
 
   MX_GPIO_Init();
   MX_USART2_UART_Init();
+  //USART_Init(USART2, Serial_115200, true);
+  GPIO_PinDirection(GPIOA, GPIO_PIN_5, GPIO_MODE_OUTPUT_SPEED_50MHz, GPIO_CNF_OUTPUT_PUSH_PULL);
  
   while (1)
   {
     GPIO_Toggle(GPIOA, GPIO_PIN_5);
-    Delay(100);
+    Delay(500);
+    //USART_SendChar(USART2, 'D');
+    USART_SendString(USART2, someStr);
+    //HAL_UART_Transmit(&huart2, someStr, StringLength(someStr), 1000);
   }
 }
 
