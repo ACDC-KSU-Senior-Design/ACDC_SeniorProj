@@ -17,6 +17,9 @@
   * (SHOULD NOT BE CALLED BY USER) TIMER_Init & TIMER_SetSystemClockSpeed
   * Use Millis() to create a non blocking delay
   * Create a timed delay using the Delay function
+* [ACDC_USART.h](USART.md)
+  * Configure the UART/USART perpherial to use a multitude of baud rates.
+  * Send and Recieve a single character or a whole string over UART/USART
 * [ACDC_Assert.h](ASSERT.md)
   * STATIC_ASSERT which is used for compile time asserts
   * ASSERT which is used for runtime asserts

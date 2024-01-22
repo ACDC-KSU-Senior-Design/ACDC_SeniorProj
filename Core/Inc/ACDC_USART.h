@@ -14,7 +14,7 @@
 #include "stm32f1xx.h"
 #include "ACDC_CLOCK.h"
 
-typedef enum{
+typedef enum{ // UART/USART Serial Speed
     Serial_1200   = 1200,   /**< Baud rate: 1200 bps   */
     Serial_2400   = 2400,   /**< Baud rate: 2400 bps   */
     Serial_4800   = 4800,   /**< Baud rate: 4800 bps   */
@@ -28,8 +28,8 @@ typedef enum{
 /// @brief Initilizes the USART peripheral with at the desired serial speed Serial_x
 /// @param USARTx USART Peripheral (Ex. USART1, USART2, ...)
 /// @param Serial_x Tx/Rx speed of the USART peripheral (Ex. Serial_115200, Serial_9600, ...)
-/// @param SystemClockSpeed Clock Speed (Ex. SCS_72Mhz, SCS_36Mhz, ...)
-void USART_Init(USART_TypeDef *USARTx, SerialSpeed Serial_x, SystemClockSpeed SCS_x);
+/// @param SystemClockSpeed true if you want UART, false if you want USART
+void USART_Init(USART_TypeDef *USARTx, SerialSpeed Serial_x, bool useUART);
 
 /// @brief Sends a single character over UART/USART
 /// @param USARTx USART Peripheral (Ex. USART1, USART2, ...)
