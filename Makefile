@@ -45,6 +45,7 @@ Core/Src/ACDC_CLOCK.c \
 Core/Src/ACDC_USART.c \
 Core/Src/ACDC_INTERRUPT.c \
 Core/Src/ACDC_string.c \
+Core/Src/ACDC_Assert.c 
 
 # STM Provided C Files
 STM_C_SOURCES = \

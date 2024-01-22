@@ -1,7 +1,9 @@
 # ACDC_INTERRUPT.h
+
 All functions below assume that you have included **"ACDC_INTERRUPT.h"**
 
 ## Toggle the DevBoards LED using External Interrupts
+
 ```C
 #include "ACDC_GPIO.h"
 
@@ -12,7 +14,7 @@ int main(){
     //Set Green Led to ouput, Blue Button to Input W/ Pullup resistor, and enable External Interrupts
     GPIO_PinDirection(GPIOA, GPIO_PIN_5 , GPIO_MODE_OUTPUT_SPEED_2MHz, GPIO_CNF_OUTPUT_PUSH_PULL);
     GPIO_PinDirection(GPIOC, GPIO_PIN_13, GPIO_MODE_INPUT            , GPIO_CNF_INPUT_PULLUP    );
-    GPIO_INT_SetToInterrupt(GPIOC, GPIO_PIN_13, RISING_EDGE);
+    GPIO_INT_SetToInterrupt(GPIOC, GPIO_PIN_13, TT_RISING_EDGE);
 
     while(1){}
 }
