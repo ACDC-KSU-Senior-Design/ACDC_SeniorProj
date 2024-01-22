@@ -1,3 +1,13 @@
+/**
+ * @file ACDC_USART.c
+ * @author Devin Marx
+ * @brief Implentation of UART/USART Tx/Rx functions.
+ * @version 0.2
+ * @date 2024-01-21
+ * 
+ * @copyright Copyright (c) 2023-2024
+ */
+
 #include "ACDC_USART.h"
 #include "ACDC_GPIO.h"
 #include "ACDC_string.h"
@@ -5,7 +15,7 @@
 static void USART_InitClk(USART_TypeDef *USARTx);
 static void USART_InitPin(USART_TypeDef *USARTx);
 
-USART_TypeDef* USART_Init(USART_TypeDef *USARTx, SerialSpeed Serial_x){
+void USART_Init(USART_TypeDef *USARTx, SerialSpeed Serial_x, SystemClockSpeed SCS_x){
     USART_InitClk(USARTx);
     USART_InitPin(USARTx);
     //0x391 if 115200 and 72Mhz
@@ -21,18 +31,18 @@ USART_TypeDef* USART_Init(USART_TypeDef *USARTx, SerialSpeed Serial_x){
 
     /*1 Stop Bit, */
     USARTx->CR2 &= ~(USART_CR2_STOP);
-    
-    return USARTx;
 }
 
 void USART_SendChar(USART_TypeDef *USARTx, char chr){
-    while(!(USARTx->SR & USART_SR_TXE))
-        USARTx->DR = chr;
+    while(!(USARTx->SR & USART_SR_TXE)){} // Wait until 
+    USARTx->DR = chr & USART_DR_DR_Msk;
 }
 
 void USART_SendString(USART_TypeDef *USARTx, char* str){
-    for(int i = 0; i < StringLength(str); i++)
-        USART_SendChar(USARTx, str[i]);
+    int i = 0;
+    while(str[i] != '\0'){
+        USART_SendChar(USARTx, str[i++]);
+    }
 }
 
 char USART_RecieveChar(USART_TypeDef *USARTx){
@@ -43,11 +53,11 @@ void USART_RecieveString(USART_TypeDef *USARTx, char* buffer){}
 
 static void USART_InitClk(USART_TypeDef *USARTx){
     if(USARTx == USART1)
-        RCC->APB2ENR |= RCC_APB2ENR_USART1EN;   //Enable USART1 Clock
+        SET_BIT(RCC->APB2ENR, RCC_APB2ENR_USART1EN);    //Enable USART1 Clock
     else if(USARTx == USART2)
-        RCC->APB1ENR |= RCC_APB1ENR_USART2EN;   //Enable USART2 Clock
+        SET_BIT(RCC->APB2ENR, RCC_APB1ENR_USART2EN);    //Enable USART2 Clock
     else if(USARTx == USART3)
-        RCC->APB1ENR |= RCC_APB1ENR_USART3EN;   //Enable USART3 Clock
+        SET_BIT(RCC->APB1ENR, RCC_APB1ENR_USART3EN);    //Enable USART3 Clock
 }
 
 /// @brief Check Page 166-167, USART_Tx = Alternate Function Push-Pull, USART_Rx = Input Floating / Input Pullup
