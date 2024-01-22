@@ -1,22 +1,15 @@
-/* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file           : main.h
-  * @brief          : Header for main.c file.
-  *                   This file contains the common defines of the application.
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2023 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
-/* USER CODE END Header */
+ * @file main.h
+ * @author STMicroelectronics
+ * @brief  Header for main.c file. This file contains the common defines of the application.
+ * @copyright 
+ * Copyright (c) 2023 STMicroelectronics.
+ * All rights reserved.
+ * @attention
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __MAIN_H
@@ -27,12 +20,15 @@ extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
+#include "stm32f1xx.h"
 #include "stm32f1xx_hal.h"
 #include "ACDC_stdbool.h"
 #include "ACDC_stdint.h"
 #include "ACDC_string.h"
 #include "ACDC_GPIO.h"
+#include "ACDC_CLOCK.h"
 #include "ACDC_INTERRUPT.h"
+#include "ACDC_TIMER.h"
 #include "ACDC_USART.h"
 
 /* Private includes ----------------------------------------------------------*/
