@@ -1,5 +1,5 @@
 # ACDC_INTERRUPT.h
-All functions below assue that you have included **"ACDC_INTERRUPT.h"**
+All functions below assume that you have included **"ACDC_INTERRUPT.h"**
 
 ## Toggle the DevBoards LED using External Interrupts
 ```C

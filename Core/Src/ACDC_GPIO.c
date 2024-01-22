@@ -1,3 +1,16 @@
+/**
+ * @file ACDC_GPIO.c
+ * @author Devin Marx
+ * @brief Implementation of GPIO configuration and manipulation functions.
+ * 
+ * This file provides functions for initializing and controlling GPIO pins, including
+ * setting pin directions, writing values, and reading pin states.
+ * 
+ * @version 0.1
+ * @date 2023-10-11
+ * @copyright Copyright (c) 2023-2024
+ */
+
 #include "ACDC_GPIO.h"
 
 #define GPIO_CNF_INPUT_PULLUP_PULLDOWN 0b10u
@@ -5,7 +18,7 @@
 #define GPIO_MODE_OFFSET 0
 #define GPIO_CNF_OFFSET 2
 
-void GPIO_InitClk(GPIO_TypeDef *GPIOx){
+void GPIO_InitClk(const GPIO_TypeDef *GPIOx){
     if(GPIOx == GPIOA)
         RCC->APB2ENR |= RCC_APB2ENR_IOPAEN; 
     else if(GPIOx == GPIOB)
@@ -31,7 +44,7 @@ void GPIO_PinDirection(GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN, uint8_t GPIO_MODE
         GPIO_Write(GPIOx, GPIO_PIN, (GPIO_CNF & 0b100) >> 2);   
         //ISet GPIOx->ODR to the desired value (Pullup/PullDown)
 
-    //The magic number 4 is the combined size of the MODE and CNF bits (PAGE 172/1136)
+    //The magic number 4 is the combined size of the MODE and CNF bits {See RM-172}
     *REG &= ~(GPIO_MODE_CNF << (PIN*4));                    //Clear both the MODE and CNF
     *REG |= (GPIO_MODE << ((PIN*4) + GPIO_MODE_OFFSET));    //Sets the GPIO_MODE (Input / Output)
     *REG |= (GPIO_CNF  << ((PIN*4) + GPIO_CNF_OFFSET ));    //Sets the GPIO_CNF (PP, OD, Analog, PU/PD)
@@ -56,7 +69,7 @@ void GPIO_Toggle(GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN){
     GPIOx->ODR ^= GPIO_PIN;
 }
 
-uint8_t GPIO_Read(GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN){
+uint8_t GPIO_Read(const GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN){
     uint8_t PIN = GPIO_GetPinNumber(GPIO_PIN);
     return (GPIOx->IDR & GPIO_PIN) >> PIN;
 }

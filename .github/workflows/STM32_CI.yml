@@ -1,0 +1,23 @@
+name: STM32 CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4        
+      
+    - name: Install CppCheck, Make, & ARM_GCC
+      run: |
+        sudo apt install cppcheck -y
+        sudo apt install make -y
+        sudo apt install gcc-arm-none-eabi -y
+        
+    - run: make
+    - run: make cppcheck
