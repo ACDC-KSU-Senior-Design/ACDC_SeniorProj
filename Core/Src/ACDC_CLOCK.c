@@ -129,6 +129,10 @@ SystemClockSpeed CLOCK_GetAPB2ClockSpeed(void){
     return CLOCK_GetSystemClockSpeed() / APBxPrescalerToDivisor(APB2_Prescaler);
 }
 
+SystemClockSpeed CLOCK_GetAPB1TimerClockSpeed(void){
+    return CLOCK_GetAPB1ClockSpeed() * 2;
+}
+
 
 void CLOCK_SetMcoOutput(MicroClockOutput MCO_x){
 

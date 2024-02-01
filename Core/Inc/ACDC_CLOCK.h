@@ -93,6 +93,10 @@ SystemClockSpeed CLOCK_GetAPB1ClockSpeed(void);
 /// @return System Clock Speed (Ex. SCS_72Mhz, SCS_36Mhz, ...)
 SystemClockSpeed CLOCK_GetAPB2ClockSpeed(void);
 
+/// @brief  Retrieves the clock speed of the APB2 Timer Clock
+/// @return System Clock Speed (Ex. SCS_72Mhz, SCS_36Mhz, ...)
+SystemClockSpeed CLOCK_GetAPB1TimerClockSpeed(void);
+
 /// @brief Enables the MCO output on Pin PA8 using MCO_x as the clock source
 /// @param MCO_x Clock output source (Ex. MCO_NO_CLK, MCO_SYSCLK, ...)
 void CLOCK_SetMcoOutput(MicroClockOutput MCO_x);
