@@ -22,14 +22,20 @@ typedef enum{ // UART/USART Serial Speed
     Serial_19200  = 19200,  /**< Baud rate: 19200 bps  */
     Serial_38400  = 38400,  /**< Baud rate: 38400 bps  */
     Serial_57600  = 57600,  /**< Baud rate: 57600 bps  */
-    Serial_115200 = 115200  /**< Baud rate: 115200 bps */
+    Serial_115200 = 115200, /**< Baud rate: 115200 bps */
+    Serial_230400 = 230400  /**< Baud rate: 230400 bps */
 }SerialSpeed;
 
-/// @brief Initilizes the USART peripheral with at the desired serial speed Serial_x
+/// @brief Initilizes the USARTx peripheral at the serial speed Serial_x, and the default 
 /// @param USARTx USART Peripheral (Ex. USART1, USART2, ...)
 /// @param Serial_x Tx/Rx speed of the USART peripheral (Ex. Serial_115200, Serial_9600, ...)
 /// @param SystemClockSpeed true if you want UART, false if you want USART
 void USART_Init(USART_TypeDef *USARTx, SerialSpeed Serial_x, bool useUART);
+
+/// @brief Changes the Serial speed of the USART 
+/// @param USARTx USART Peripheral (Ex. USART1, USART2, ...)
+/// @param Serial_x Tx/Rx speed of the USART peripheral (Ex. Serial_115200, Serial_9600, ...)
+void USART_ChangeSerialSpeed(USART_TypeDef *USARTx, SerialSpeed Serial_x);
 
 /// @brief Sends a single character over UART/USART
 /// @param USARTx USART Peripheral (Ex. USART1, USART2, ...)
@@ -52,15 +58,3 @@ char USART_RecieveChar(USART_TypeDef *USARTx);
 void USART_RecieveString(USART_TypeDef *USARTx, char* buffer);
 
 #endif
-
- 
-// typedef struct
-// {
-//   __IO uint32_t SR;         /* USART Status register,                   Address offset: 0x00 */
-//   __IO uint32_t DR;         /* USART Data register,                     Address offset: 0x04 */
-//   __IO uint32_t BRR;        /* USART Baud rate register,                Address offset: 0x08 */
-//   __IO uint32_t CR1;        /* USART Control register 1,                Address offset: 0x0C */
-//   __IO uint32_t CR2;        /* USART Control register 2,                Address offset: 0x10 */
-//   __IO uint32_t CR3;        /* USART Control register 3,                Address offset: 0x14 */
-//   __IO uint32_t GTPR;       /* USART Guard time and prescaler register, Address offset: 0x18 */
-// } USART_TypeDef;

@@ -12,6 +12,8 @@
 #include "ACDC_GPIO.h"
 #include "ACDC_string.h"
 
+static uint8_t USART_Initilized = 0;
+
 /// @brief Enables the USARTx peripheral clock (Needed for peripheral to function)
 /// @param USARTx USART Peripheral (Ex. USART1, USART2, ...)
 static void USART_InitClk(USART_TypeDef *USARTx);
@@ -21,26 +23,46 @@ static void USART_InitClk(USART_TypeDef *USARTx);
 /// @param useUART true if you want UART, false if you want USART
 static void USART_InitPin(USART_TypeDef *USARTx, bool useUART);
 
+/// @brief Calculates the USARTDIV for the USARTx-BRR using the SerialSpeed Serial_x and the system clock speed
+/// @param Serial_x Tx/Rx speed of the USART peripheral (Ex. Serial_115200, Serial_9600, ...)
+/// @return USARTDIV to be stored in the USARTx->BRR Register
+static uint16_t USART_CalculateUSARTDIV(SerialSpeed Serial_x);
+
+/// @brief Checks if the current USARTx peripheral has been initilized.
+/// @param USARTx USART Peripheral (Ex. USART1, USART2, ...)
+/// @return True if the current USARTx peripheral has been initilized, false otherwise.
+static bool IsInitilized(USART_TypeDef *USARTx);
+
+/// @brief Sets the initialization status of the current USARTx peripheral.
+/// @param USARTx USART Peripheral (Ex. USART1, USART2, ...)
+static void SetInitilized(USART_TypeDef *USARTx);
+
 void USART_Init(USART_TypeDef *USARTx, SerialSpeed Serial_x, bool useUART){
-    USART_InitClk(USARTx);
-    USART_InitPin(USARTx, useUART);
-   
-    //SystemClockSpeed SCS_x = CLOCK_GetSystemClockSpeed();
-    SystemClockSpeed SCS_x = SCS_64MHz; //CLOCK IS AT 64MHZ
+    SET_BIT(RCC->APB2ENR, RCC_APB2ENR_AFIOEN);  // Enable the Clock for Alternate Functions
+    SET_BIT(RCC->APB1ENR, RCC_APB1ENR_PWREN );  // Enable the Power Interface (Unsure of function)
+    USART_InitClk(USARTx);                      // Enables the USARTx Clock on the APBx Register
+    USART_InitPin(USARTx, useUART);             // Sets up the USARTx pins to be used as Input and Output.
 
-    //0x391 if 115200 and 72Mhz
-    //0x116 if 115200 and 12Mhz
-    USARTx->BRR = 0x116; // Value on Page 799
+    CLEAR_BIT(USARTx->CR1, USART_CR1_UE);                       // Disable the USART peripheral
 
-    //39.0625   USARTDIV = fClk / (16 * Baud)
-    //uint32_t usartDiv = 0x391;
+    USART_ChangeSerialSpeed(USARTx, Serial_x);                              // Calculate and modify the BRR register
+    SET_BIT(USARTx->CR1, USART_CR1_TE | USART_CR1_RE);                      // Enable the Transmitter and Reciever
+    CLEAR_BIT(USARTx->CR1, USART_CR1_M | USART_CR1_PCE | USART_CR1_RWU);    // Word Length = 8, Disable Parity Control, Enable Rx Active Mode
+    CLEAR_BIT(USARTx->CR2, USART_CR2_STOP);                                 // 1 Stop Bit
 
-    /*Enable USART, Tx, Rx*/
-    SET_BIT(USARTx->CR1, USART_CR1_UE | USART_CR1_TE | USART_CR1_RE); //USART_CR1_TXE
-    CLEAR_BIT(USARTx->CR1, USART_CR1_M | USART_CR1_PCE | USART_CR1_RWU);
+    SET_BIT(USARTx->CR1, USART_CR1_UE);                         // Enable the USART peripheral
 
-    /*1 Stop Bit, */
-    CLEAR_BIT(USARTx->CR2, USART_CR2_STOP);
+    SetInitilized(USARTx);
+}
+
+void USART_ChangeSerialSpeed(USART_TypeDef *USARTx, SerialSpeed Serial_x){
+    if(IsInitilized(USARTx))                                    // If the preherphial has already been initilized
+        CLEAR_BIT(USARTx->CR1, USART_CR1_UE);                   // Disable the USART peripheral
+    
+    WRITE_REG(USARTx->BRR, USART_CalculateUSARTDIV(Serial_x));  // Set the Baud Rate 
+
+    if(IsInitilized(USARTx))                                    // If the preherphial has already been initilized
+        SET_BIT(USARTx->CR1, USART_CR1_UE);                     // Enable the USART peripheral
 }
 
 void USART_SendChar(USART_TypeDef *USARTx, char chr){
@@ -65,7 +87,7 @@ static void USART_InitClk(USART_TypeDef *USARTx){
     if(USARTx == USART1)
         SET_BIT(RCC->APB2ENR, RCC_APB2ENR_USART1EN);    //Enable USART1 Clock
     else if(USARTx == USART2)
-        SET_BIT(RCC->APB2ENR, RCC_APB1ENR_USART2EN);    //Enable USART2 Clock
+        SET_BIT(RCC->APB1ENR, RCC_APB1ENR_USART2EN);    //Enable USART2 Clock
     else if(USARTx == USART3)
         SET_BIT(RCC->APB1ENR, RCC_APB1ENR_USART3EN);    //Enable USART3 Clock
 }
@@ -111,13 +133,40 @@ static void USART_InitPin(USART_TypeDef *USARTx, bool useUART){
         CTS_Pin = GPIO_PIN_0;
         RTS_Pin = GPIO_PIN_1;
 
-        if(!useUART){
-            GPIO_PinDirection(GPIO_Port, Ck_Pin , GPIO_MODE_OUTPUT_SPEED_50MHz, GPIO_CNF_OUTPUT_AF_PUSH_PULL);
-            GPIO_PinDirection(GPIO_Port, CTS_Pin, GPIO_MODE_AF_INPUT          , GPIO_CNF_INPUT_FLOATING);
+        if(!useUART){       
+            GPIO_PinDirection(GPIO_Port, Ck_Pin , GPIO_MODE_OUTPUT_SPEED_50MHz, GPIO_CNF_OUTPUT_AF_PUSH_PULL);  
+            GPIO_PinDirection(GPIO_Port, CTS_Pin, GPIO_MODE_AF_INPUT          , GPIO_CNF_INPUT_FLOATING     );
             GPIO_PinDirection(GPIO_Port, RTS_Pin, GPIO_MODE_OUTPUT_SPEED_50MHz, GPIO_CNF_OUTPUT_AF_PUSH_PULL);
         }
     } 
+    //                          GPIO Configuration {See RM-166, RM-167}
+    GPIO_PinDirection(GPIO_Port, Tx_Pin, GPIO_MODE_OUTPUT_SPEED_50MHz, GPIO_CNF_OUTPUT_AF_PUSH_PULL);    
+    GPIO_PinDirection(GPIO_Port, Rx_Pin, GPIO_MODE_INPUT             , GPIO_CNF_INPUT_FLOATING     );
+}
 
-    GPIO_PinDirection(GPIO_Port, Tx_Pin, GPIO_MODE_OUTPUT_SPEED_50MHz, GPIO_CNF_OUTPUT_AF_PUSH_PULL);
-    GPIO_PinDirection(GPIO_Port, Rx_Pin, GPIO_MODE_INPUT             , GPIO_CNF_INPUT_FLOATING);
+static uint16_t USART_CalculateUSARTDIV(SerialSpeed Serial_x){
+    SystemClockSpeed SCS_x = CLOCK_GetSystemClockSpeed();  // Grab the Current System Clock Speed
+    uint16_t Mantissa = SCS_x / (16 * Serial_x);           // Calculate the Mantissa
+    uint8_t Divisor = (SCS_x / Serial_x) % 16;             // Calculate the Divider               {See RM-820}
+    return (Mantissa << 4) & 0xFFF0 | (Divisor & 0xF);     // Calculate and return the USARTDIV   {See RM-789}
+}
+
+static bool IsInitilized(USART_TypeDef *USARTx){
+    if(USARTx == USART1)
+        return READ_BIT(USART_Initilized, 0b001);
+    else if(USARTx == USART2)
+        return READ_BIT(USART_Initilized, 0b010);
+    else if(USARTx == USART3)
+        return READ_BIT(USART_Initilized, 0b100);
+    else
+        return false;
+}       
+
+static void SetInitilized(USART_TypeDef *USARTx){
+    if(USARTx == USART1)
+        SET_BIT(USART_Initilized, 0b001);
+    else if(USARTx == USART2)
+        SET_BIT(USART_Initilized, 0b010);
+    else if(USARTx == USART3)
+        SET_BIT(USART_Initilized, 0b100);
 }
