@@ -85,6 +85,18 @@ void CLOCK_SetSystemClockSpeed(SystemClockSpeed SCS_x);
 /// @return System Clock Speed (Ex. SCS_72Mhz, SCS_36Mhz, ...)
 SystemClockSpeed CLOCK_GetSystemClockSpeed(void);
 
+/// @brief Retrieves the clock speed of the APB1 Clock
+/// @return System Clock Speed (Ex. SCS_72Mhz, SCS_36Mhz, ...)
+SystemClockSpeed CLOCK_GetAPB1ClockSpeed(void);
+
+/// @brief Retrieves the clock speed of the APB2 Clock
+/// @return System Clock Speed (Ex. SCS_72Mhz, SCS_36Mhz, ...)
+SystemClockSpeed CLOCK_GetAPB2ClockSpeed(void);
+
+/// @brief  Retrieves the clock speed of the APB2 Timer Clock
+/// @return System Clock Speed (Ex. SCS_72Mhz, SCS_36Mhz, ...)
+SystemClockSpeed CLOCK_GetAPB1TimerClockSpeed(void);
+
 /// @brief Enables the MCO output on Pin PA8 using MCO_x as the clock source
 /// @param MCO_x Clock output source (Ex. MCO_NO_CLK, MCO_SYSCLK, ...)
 void CLOCK_SetMcoOutput(MicroClockOutput MCO_x);
@@ -94,11 +106,11 @@ void CLOCK_SetMcoOutput(MicroClockOutput MCO_x);
 void CLOCK_SetADCPrescaler(ADC_Prescaler ADC_DIV_x);
 
 /// @brief Sets the Advanced Peripheral Bus 1 Prescaler to either 1, 2, 4, 8, 16
-/// @param PRE_DIV_x Clock Prescaler Divider (Ex. PRE_DIV_1, PRE_DIV_2, ...)
+/// @param APB_DIV_x APB1 Prescaler Divider (Ex. APB_DIV_1, APB_DIV_2, ...)
 void CLOCK_SetAPB1Prescaler(APB_Prescaler APB_DIV_x);
 
 /// @brief Sets the Advanced Peripheral Bus 2 Prescaler to either 1, 2, 4, 8, 16
-/// @param PRE_DIV_x Clock Prescaler Divider (Ex. PRE_DIV_1, PRE_DIV_2, ...)
+/// @param APB_DIV_x APB2 Prescaler Divider (Ex. APB_DIV_1, APB_DIV_2, ...)
 void CLOCK_SetAPB2Prescaler(APB_Prescaler APB_DIV_x);
 
 #endif
