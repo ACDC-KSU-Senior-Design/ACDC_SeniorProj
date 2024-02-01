@@ -14,7 +14,9 @@
 
 #define MAX_MCO_CLK_SPEED 50000000
 
-static SystemClockSpeed currentSCS; /* Current System Clock Speed */
+static SystemClockSpeed currentSCS;     /* Current System Clock Speed */
+static APB_Prescaler APB1_Prescaler;    /* Current APB1 Prescaler     */
+static APB_Prescaler APB2_Prescaler;    /* Current APB2 Prescaler     */
 
 /// @brief Disables the HSI and enables the PLL from the SysClock Mux
 static void DisableHSI_EnablePLL(void);
@@ -26,6 +28,11 @@ static void EnableHSI_DisablePLL(void);
 /// @param SCS_x Desired Clock Speed of the System
 /// @param RCC_CFGR_HPRE_x AHB Prescaler Value
 static void SetFlashMemorySpeed(SystemClockSpeed SCS_x, uint32_t RCC_CFGR_HPRE_x);
+
+/// @brief Converts the APB_Prescaler APB_DIV_x into its divisor value (Ex. APB_DIV_8 -> 8)
+/// @param APB_DIV_x Clock Prescaler Divider (Ex. PRE_DIV_1, PRE_DIV_2, ...)
+/// @return Integer divisor value of the prescaler
+static int APBxPrescalerToDivisor(APB_Prescaler APB_DIV_x);
 
 void CLOCK_SetSystemClockSpeed(SystemClockSpeed SCS_x){
 
@@ -114,6 +121,19 @@ SystemClockSpeed CLOCK_GetSystemClockSpeed(void){
     return currentSCS;
 }
 
+SystemClockSpeed CLOCK_GetAPB1ClockSpeed(void){
+    return CLOCK_GetSystemClockSpeed() / APBxPrescalerToDivisor(APB1_Prescaler);
+}
+
+SystemClockSpeed CLOCK_GetAPB2ClockSpeed(void){
+    return CLOCK_GetSystemClockSpeed() / APBxPrescalerToDivisor(APB2_Prescaler);
+}
+
+SystemClockSpeed CLOCK_GetAPB1TimerClockSpeed(void){
+    return CLOCK_GetAPB1ClockSpeed() * 2;
+}
+
+
 void CLOCK_SetMcoOutput(MicroClockOutput MCO_x){
 
     GPIO_PinDirection(GPIOA, GPIO_PIN_8, GPIO_MODE_OUTPUT_SPEED_50MHz, GPIO_CNF_OUTPUT_AF_PUSH_PULL);
@@ -134,12 +154,13 @@ void CLOCK_SetADCPrescaler(ADC_Prescaler ADC_DIV_x){
 void CLOCK_SetAPB1Prescaler(APB_Prescaler APB_DIV_x){
     uint32_t tempReg = RCC->CFGR & ~RCC_CFGR_PPRE1_Msk;         // Clear the APB1 Bits in RCC->CFGR
     RCC->CFGR = tempReg | (APB_DIV_x << RCC_CFGR_PPRE1_Pos);    // Set the APB_DIV_x bits in RCC->CFGR
-
+    APB1_Prescaler = APB_DIV_x;                                 // Set the Private variable
 }
 
 void CLOCK_SetAPB2Prescaler(APB_Prescaler APB_DIV_x){
     uint32_t tempReg = RCC->CFGR & ~RCC_CFGR_PPRE2_Msk;         // Clear the APB2 Bits in RCC->CFGR
     RCC->CFGR = tempReg | (APB_DIV_x << RCC_CFGR_PPRE2_Pos);    // Set the APB_DIV_x bits in RCC->CFGR
+    APB2_Prescaler = APB_DIV_x;                                 // Set the Private variable
 }
 
 
@@ -184,4 +205,19 @@ static void SetFlashMemorySpeed(SystemClockSpeed SCS_x, uint32_t RCC_CFGR_HPRE_x
         flashLatency = FLASH_ACR_LATENCY_2;
 
     MODIFY_REG(FLASH->ACR, FLASH_ACR_LATENCY_Msk, flashLatency);
+}
+
+static int APBxPrescalerToDivisor(APB_Prescaler APB_DIV_x){
+    switch(APB_DIV_x){
+        case APB_DIV_16:
+            return 16;
+        case APB_DIV_8:
+            return 8;
+        case APB_DIV_4:
+            return 4;
+        case APB_DIV_2:
+            return 2;
+        default:        // APB_DIV_1
+            return 1;
+    }
 }
