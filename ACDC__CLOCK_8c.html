@@ -119,6 +119,15 @@ Functions</h2></td></tr>
 <tr class="memitem:a2b97aa2efc81a4a28c18a45bead37c8e" id="r_a2b97aa2efc81a4a28c18a45bead37c8e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ACDC__CLOCK_8h.html#a9fee4b747c8b3351df21e38fdc3b9b2f">SystemClockSpeed</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b97aa2efc81a4a28c18a45bead37c8e">CLOCK_GetSystemClockSpeed</a> (void)</td></tr>
 <tr class="memdesc:a2b97aa2efc81a4a28c18a45bead37c8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the current SYSCLK.  <br /></td></tr>
 <tr class="separator:a2b97aa2efc81a4a28c18a45bead37c8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a813d378c252540c4b4d828a13c1919b2" id="r_a813d378c252540c4b4d828a13c1919b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ACDC__CLOCK_8h.html#a9fee4b747c8b3351df21e38fdc3b9b2f">SystemClockSpeed</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a813d378c252540c4b4d828a13c1919b2">CLOCK_GetAPB1ClockSpeed</a> (void)</td></tr>
+<tr class="memdesc:a813d378c252540c4b4d828a13c1919b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the clock speed of the APB1 Clock.  <br /></td></tr>
+<tr class="separator:a813d378c252540c4b4d828a13c1919b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8683fd7fb9d8d85c56812a060912a7fd" id="r_a8683fd7fb9d8d85c56812a060912a7fd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ACDC__CLOCK_8h.html#a9fee4b747c8b3351df21e38fdc3b9b2f">SystemClockSpeed</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8683fd7fb9d8d85c56812a060912a7fd">CLOCK_GetAPB2ClockSpeed</a> (void)</td></tr>
+<tr class="memdesc:a8683fd7fb9d8d85c56812a060912a7fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the clock speed of the APB2 Clock.  <br /></td></tr>
+<tr class="separator:a8683fd7fb9d8d85c56812a060912a7fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6351a9e75d2da2aa2955eef64b00ca0" id="r_ac6351a9e75d2da2aa2955eef64b00ca0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ACDC__CLOCK_8h.html#a9fee4b747c8b3351df21e38fdc3b9b2f">SystemClockSpeed</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6351a9e75d2da2aa2955eef64b00ca0">CLOCK_GetAPB1TimerClockSpeed</a> (void)</td></tr>
+<tr class="memdesc:ac6351a9e75d2da2aa2955eef64b00ca0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the clock speed of the APB2 Timer Clock.  <br /></td></tr>
+<tr class="separator:ac6351a9e75d2da2aa2955eef64b00ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adef99aea65da6abcf84d50e5a4ba5f80" id="r_adef99aea65da6abcf84d50e5a4ba5f80"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adef99aea65da6abcf84d50e5a4ba5f80">CLOCK_SetMcoOutput</a> (<a class="el" href="ACDC__CLOCK_8h.html#a183c9c2a94ce920b565182cd2f4e405c">MicroClockOutput</a> MCO_x)</td></tr>
 <tr class="memdesc:adef99aea65da6abcf84d50e5a4ba5f80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the MCO output on Pin PA8 using MCO_x as the clock source.  <br /></td></tr>
 <tr class="separator:adef99aea65da6abcf84d50e5a4ba5f80"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,6 +163,66 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a813d378c252540c4b4d828a13c1919b2" name="a813d378c252540c4b4d828a13c1919b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a813d378c252540c4b4d828a13c1919b2">&#9670;&#160;</a></span>CLOCK_GetAPB1ClockSpeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ACDC__CLOCK_8h.html#a9fee4b747c8b3351df21e38fdc3b9b2f">SystemClockSpeed</a> CLOCK_GetAPB1ClockSpeed </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the clock speed of the APB1 Clock. </p>
+<dl class="section return"><dt>Returns</dt><dd>System Clock Speed (Ex. SCS_72Mhz, SCS_36Mhz, ...) </dd></dl>
+
+</div>
+</div>
+<a id="ac6351a9e75d2da2aa2955eef64b00ca0" name="ac6351a9e75d2da2aa2955eef64b00ca0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6351a9e75d2da2aa2955eef64b00ca0">&#9670;&#160;</a></span>CLOCK_GetAPB1TimerClockSpeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ACDC__CLOCK_8h.html#a9fee4b747c8b3351df21e38fdc3b9b2f">SystemClockSpeed</a> CLOCK_GetAPB1TimerClockSpeed </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the clock speed of the APB2 Timer Clock. </p>
+<dl class="section return"><dt>Returns</dt><dd>System Clock Speed (Ex. SCS_72Mhz, SCS_36Mhz, ...) </dd></dl>
+
+</div>
+</div>
+<a id="a8683fd7fb9d8d85c56812a060912a7fd" name="a8683fd7fb9d8d85c56812a060912a7fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8683fd7fb9d8d85c56812a060912a7fd">&#9670;&#160;</a></span>CLOCK_GetAPB2ClockSpeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ACDC__CLOCK_8h.html#a9fee4b747c8b3351df21e38fdc3b9b2f">SystemClockSpeed</a> CLOCK_GetAPB2ClockSpeed </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the clock speed of the APB2 Clock. </p>
+<dl class="section return"><dt>Returns</dt><dd>System Clock Speed (Ex. SCS_72Mhz, SCS_36Mhz, ...) </dd></dl>
+
+</div>
+</div>
 <a id="a2b97aa2efc81a4a28c18a45bead37c8e" name="a2b97aa2efc81a4a28c18a45bead37c8e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2b97aa2efc81a4a28c18a45bead37c8e">&#9670;&#160;</a></span>CLOCK_GetSystemClockSpeed()</h2>
 
@@ -217,7 +286,7 @@ Functions</h2></td></tr>
 <p>Sets the Advanced Peripheral Bus 1 Prescaler to either 1, 2, 4, 8, 16. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">PRE_DIV_x</td><td>Clock Prescaler Divider (Ex. PRE_DIV_1, PRE_DIV_2, ...) </td></tr>
+    <tr><td class="paramname">APB_DIV_x</td><td>APB1 Prescaler Divider (Ex. APB_DIV_1, APB_DIV_2, ...) </td></tr>
   </table>
   </dd>
 </dl>
@@ -242,7 +311,7 @@ Functions</h2></td></tr>
 <p>Sets the Advanced Peripheral Bus 2 Prescaler to either 1, 2, 4, 8, 16. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">PRE_DIV_x</td><td>Clock Prescaler Divider (Ex. PRE_DIV_1, PRE_DIV_2, ...) </td></tr>
+    <tr><td class="paramname">APB_DIV_x</td><td>APB2 Prescaler Divider (Ex. APB_DIV_1, APB_DIV_2, ...) </td></tr>
   </table>
   </dd>
 </dl>

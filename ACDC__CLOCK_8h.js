@@ -55,6 +55,9 @@ var ACDC__CLOCK_8h =
       [ "SCS_64MHz", "ACDC__CLOCK_8h.html#a9fee4b747c8b3351df21e38fdc3b9b2fa20519a9739d86337ebb49e3a323badc1", null ],
       [ "SCS_72MHz", "ACDC__CLOCK_8h.html#a9fee4b747c8b3351df21e38fdc3b9b2fa76a514dbf858e8958f95c3c4b9615824", null ]
     ] ],
+    [ "CLOCK_GetAPB1ClockSpeed", "ACDC__CLOCK_8h.html#a813d378c252540c4b4d828a13c1919b2", null ],
+    [ "CLOCK_GetAPB1TimerClockSpeed", "ACDC__CLOCK_8h.html#ac6351a9e75d2da2aa2955eef64b00ca0", null ],
+    [ "CLOCK_GetAPB2ClockSpeed", "ACDC__CLOCK_8h.html#a8683fd7fb9d8d85c56812a060912a7fd", null ],
     [ "CLOCK_GetSystemClockSpeed", "ACDC__CLOCK_8h.html#a2b97aa2efc81a4a28c18a45bead37c8e", null ],
     [ "CLOCK_SetADCPrescaler", "ACDC__CLOCK_8h.html#a5475a2a69020908fe6e40e444750a443", null ],
     [ "CLOCK_SetAPB1Prescaler", "ACDC__CLOCK_8h.html#aaaf6ab740429e15bc05a47b6ce65f65f", null ],
