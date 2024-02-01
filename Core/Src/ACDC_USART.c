@@ -81,7 +81,18 @@ char USART_RecieveChar(USART_TypeDef *USARTx){
     return READ_REG(USARTx->DR & 0xFF); //Need to make sure it has data first
 }
 
-void USART_RecieveString(USART_TypeDef *USARTx, char* buffer){}
+void USART_RecieveString(USART_TypeDef *USARTx, char* buffer, uint16_t bufferLen){
+    uint16_t index = 0;
+    while(USART_HasDataToRecieve(USARTx))
+        USART_SendChar(USARTx, USART_RecieveChar(USARTx));
+    //while(USART_HasDataToRecieve(USARTx))
+    //    buffer[index++] = USART_RecieveChar(USARTx);
+}
+
+bool USART_HasDataToRecieve(USART_TypeDef *USARTx){
+    return READ_BIT(USARTx->SR, USART_SR_RXNE) >> USART_SR_RXNE_Pos;
+}
+
 
 static void USART_InitClk(USART_TypeDef *USARTx){
     if(USARTx == USART1)
