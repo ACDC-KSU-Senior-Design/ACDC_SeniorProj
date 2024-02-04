@@ -10,10 +10,10 @@
 
 #include "ACDC_USART.h"
 #include "ACDC_GPIO.h"
-#include "ACDC_string.h"
 
 static uint8_t USART_Initilized = 0;
 
+#pragma region PRIVATE_FUNCTION_PROTOTYPES
 /// @brief Enables the USARTx peripheral clock (Needed for peripheral to function)
 /// @param USARTx USART Peripheral (Ex. USART1, USART2, ...)
 static void USART_InitClk(USART_TypeDef *USARTx);
@@ -36,7 +36,9 @@ static bool IsInitilized(USART_TypeDef *USARTx);
 /// @brief Sets the initialization status of the current USARTx peripheral.
 /// @param USARTx USART Peripheral (Ex. USART1, USART2, ...)
 static void SetInitilized(USART_TypeDef *USARTx);
+#pragma endregion
 
+#pragma region PUBLIC_FUNCTIONS
 void USART_Init(USART_TypeDef *USARTx, SerialSpeed Serial_x, bool useUART){
     SET_BIT(RCC->APB2ENR, RCC_APB2ENR_AFIOEN);  // Enable the Clock for Alternate Functions
     SET_BIT(RCC->APB1ENR, RCC_APB1ENR_PWREN );  // Enable the Power Interface (Unsure of function)
@@ -73,25 +75,36 @@ void USART_SendChar(USART_TypeDef *USARTx, char chr){
 void USART_SendString(USART_TypeDef *USARTx, char* str){
     for(uint32_t i = 0; str[i] != '\0'; i++)
         USART_SendChar(USARTx, str[i]);
+
+    USART_SendChar(USARTx, '\r'); // Terminate the USART Transaction
+    USART_SendChar(USARTx, '\n'); // Carriage return & Line feed
 }
 
 char USART_RecieveChar(USART_TypeDef *USARTx){
-    return READ_REG(USARTx->DR & 0xFF); //Need to make sure it has data first
+    while(!READ_BIT(USARTx->SR, USART_SR_RXNE)){}  // Wait until available in the buffer
+    return READ_REG(USARTx->DR & 0xFF);            // Retrieve the character and return it
 }
 
 void USART_RecieveString(USART_TypeDef *USARTx, char* buffer, uint16_t bufferLen){
-    uint16_t index = 0;
-    while(USART_HasDataToRecieve(USARTx))
-        USART_SendChar(USARTx, USART_RecieveChar(USARTx));
-    //while(USART_HasDataToRecieve(USARTx))
-    //    buffer[index++] = USART_RecieveChar(USARTx);
+    uint16_t i;
+    for(i = 0; i < bufferLen; i++){                    // Iterate over the maximum buffer size
+        buffer[i] = USART_RecieveChar(USARTx);         // Read the next character in the USARTx buffer
+        if(buffer[i] == '\n' && buffer[i-1] == '\r')   // If the null terminating character is detected
+            break;                                     // Break out of the loop
+    }
+
+    if(buffer[i] != '\n')                              // If more characters are sent than the buffer can store
+        while(USART_RecieveChar(USARTx) != '\n'){}     // Read the characters until there are no more to be recieved
+
+    buffer[i-1] = '\0';                                // End the string with a null terminating character
 }
 
 bool USART_HasDataToRecieve(USART_TypeDef *USARTx){
     return READ_BIT(USARTx->SR, USART_SR_RXNE) >> USART_SR_RXNE_Pos;
 }
+#pragma endregion
 
-#pragma region STATIC_FUNCTIONS
+#pragma region PRIVATE_FUNCTIONS
 static void USART_InitClk(USART_TypeDef *USARTx){
     if(USARTx == USART1)
         SET_BIT(RCC->APB2ENR, RCC_APB2ENR_USART1EN);    //Enable USART1 Clock
