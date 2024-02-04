@@ -11,7 +11,7 @@
 #include "ACDC_USART.h"
 #include "ACDC_GPIO.h"
 
-static uint8_t USART_Initilized = 0;
+static uint8_t USART_Initialized = 0;
 
 #pragma region PRIVATE_FUNCTION_PROTOTYPES
 /// @brief Enables the USARTx peripheral clock (Needed for peripheral to function)
@@ -28,14 +28,14 @@ static void USART_InitPin(const USART_TypeDef *USARTx, bool useUART);
 /// @return USARTDIV to be stored in the USARTx->BRR Register
 static uint16_t USART_CalculateUSARTDIV(SerialSpeed Serial_x);
 
-/// @brief Checks if the current USARTx peripheral has been initilized.
+/// @brief Checks if the current USARTx peripheral has been initialized.
 /// @param USARTx USART Peripheral (Ex. USART1, USART2, ...)
-/// @return True if the current USARTx peripheral has been initilized, false otherwise.
-static bool IsInitilized(const USART_TypeDef *USARTx);
+/// @return True if the current USARTx peripheral has been initialized, false otherwise.
+static bool USART_IsInitialized(const USART_TypeDef *USARTx);
 
 /// @brief Sets the initialization status of the current USARTx peripheral.
 /// @param USARTx USART Peripheral (Ex. USART1, USART2, ...)
-static void SetInitilized(const USART_TypeDef *USARTx);
+static void USART_SetInitialized(const USART_TypeDef *USARTx);
 #pragma endregion
 
 #pragma region PUBLIC_FUNCTIONS
@@ -58,12 +58,12 @@ void USART_Init(USART_TypeDef *USARTx, SerialSpeed Serial_x, bool useUART){
 }
 
 void USART_ChangeSerialSpeed(USART_TypeDef *USARTx, SerialSpeed Serial_x){
-    if(IsInitilized(USARTx))                                    // If the preherphial has already been initilized
+    if(USART_IsInitilized(USARTx))                                    // If the preherphial has already been initilized
         CLEAR_BIT(USARTx->CR1, USART_CR1_UE);                   // Disable the USART peripheral
     
     WRITE_REG(USARTx->BRR, USART_CalculateUSARTDIV(Serial_x));  // Set the Baud Rate 
 
-    if(IsInitilized(USARTx))                                    // If the preherphial has already been initilized
+    if(USART_IsInitilized(USARTx))                                    // If the preherphial has already been initilized
         SET_BIT(USARTx->CR1, USART_CR1_UE);                     // Enable the USART peripheral
 }
 
@@ -173,23 +173,23 @@ static uint16_t USART_CalculateUSARTDIV(SerialSpeed Serial_x){
     return (Mantissa << 4) & 0xFFF0 | (Divisor & 0xF);     // Calculate and return the USARTDIV   {See RM-789}
 }
 
-static bool IsInitilized(const USART_TypeDef *USARTx){
+static bool USART_IsInitialized(const USART_TypeDef *USARTx){
     if(USARTx == USART1)
-        return READ_BIT(USART_Initilized, 0b001);
+        return READ_BIT(USART_Initialized, 0b001);
     else if(USARTx == USART2)
-        return READ_BIT(USART_Initilized, 0b010);
+        return READ_BIT(USART_Initialized, 0b010);
     else if(USARTx == USART3)
-        return READ_BIT(USART_Initilized, 0b100);
+        return READ_BIT(USART_Initialized, 0b100);
     else
         return false;
 }       
 
-static void SetInitilized(const USART_TypeDef *USARTx){
+static void USART_SetInitialized(const USART_TypeDef *USARTx){
     if(USARTx == USART1)
-        SET_BIT(USART_Initilized, 0b001);
+        SET_BIT(USART_Initialized, 0b001);
     else if(USARTx == USART2)
-        SET_BIT(USART_Initilized, 0b010);
+        SET_BIT(USART_Initialized, 0b010);
     else if(USARTx == USART3)
-        SET_BIT(USART_Initilized, 0b100);
+        SET_BIT(USART_Initialized, 0b100);
 }
 #pragma endregion
