@@ -26,18 +26,13 @@ static void ACDC_Init(SystemClockSpeed SCS_x);
   */
 int main(void)
 {
-  //HAL_Init();       //Need to look deeper into this
-  //SystemClock_Config(); //Shoulnt need anymore
-
-  ACDC_Init(SCS_6MHz);
-
-  MX_GPIO_Init();
-  MX_USART2_UART_Init();
+  ACDC_Init(SCS_72MHz);
  
   while (1)
   {
     GPIO_Toggle(GPIOA, GPIO_PIN_5);
-    Delay(100);
+    USART_SendString(USART2, "Devin Marx Yay!\n");
+    Delay(500);
   }
 }
 
@@ -45,6 +40,8 @@ static void ACDC_Init(SystemClockSpeed SCS_x){
   CLOCK_SetSystemClockSpeed(SCS_x);   //72Mhz doesnt quite work Rn
   CLOCK_SetAPB1Prescaler(APB_DIV_2);  //Max Speed is 36Mhz
   CLOCK_SetAPB2Prescaler(APB_DIV_1);  //Max Speed is 72Mhz
+
+  USART_Init(USART2, Serial_115200, true);  // Initilize USART2 with a baud of 115200
 
   CLOCK_SetMcoOutput(MCO_SYSCLK);     //Sets PA8 as the output of SysClock
   GPIO_PinDirection(GPIOA, GPIO_PIN_5, GPIO_MODE_OUTPUT_SPEED_50MHz, GPIO_CNF_OUTPUT_PUSH_PULL);
