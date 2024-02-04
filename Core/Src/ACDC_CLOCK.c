@@ -110,7 +110,8 @@ void CLOCK_SetSystemClockSpeed(SystemClockSpeed SCS_x){
             break;
     }
 
-    RCC->CFGR |= SCS_x > SCS_36MHz ? RCC_CFGR_PPRE1_DIV2 : RCC_CFGR_PPRE1_DIV1; // Sets the APB1 Prescaler based on SCS
+    APB_Prescaler prescaler = SCS_x > SCS_36MHz ? APB_DIV_2 : APB_DIV_1;
+    CLOCK_SetAPB1Prescaler(prescaler);   // Sets the APB1 Prescaler based on SCS (Max Speed is 36Mhz)
 
     DisableHSI_EnablePLL(); // Enables the PLL
     TIMER_Init(SCS_x);      // Sets SysTick's Clock Speed to SCS_x (used for Millis and Delay)

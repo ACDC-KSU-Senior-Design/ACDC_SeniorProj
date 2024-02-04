@@ -1,7 +1,9 @@
 # ACDC_TIMER.h
+
 All functions below assume that you have included **"ACDC_TIMER.h"**
 
 ## Use the Delay function to toggle a LED every second
+
 ```C
 #include "ACDC_TIMER.h"
 #include "ACDC_CLOCK.h"
@@ -25,6 +27,7 @@ int main(){
 ```
 
 ## Use the Millis function to toggle a LED every second
+
 ```C
 #include "ACDC_TIMER.h"
 #include "ACDC_CLOCK.h"
