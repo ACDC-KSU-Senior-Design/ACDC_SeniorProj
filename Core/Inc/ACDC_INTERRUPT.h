@@ -4,6 +4,7 @@
  * @brief Contains interrupt functions for hardware peripherals
  * @version 0.1
  * @date 2023-11-02
+ * 
  * @copyright Copyright (c) 2023-2024
  */
 
