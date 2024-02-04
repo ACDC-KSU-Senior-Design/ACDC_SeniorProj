@@ -68,13 +68,13 @@ void USART_ChangeSerialSpeed(USART_TypeDef *USARTx, SerialSpeed Serial_x){
 }
 
 void USART_SendChar(USART_TypeDef *USARTx, char chr){
-    while(!READ_BIT(USARTx->SR, USART_SR_TXE)){} //Wait until buffer is ready to transmit again
-    WRITE_REG(USARTx->DR, chr & USART_DR_DR_Msk);
+    while(!READ_BIT(USARTx->SR, USART_SR_TXE)){}  // Wait until buffer is ready to transmit again
+    WRITE_REG(USARTx->DR, chr & USART_DR_DR_Msk); // Transmit the data
 }
 
 void USART_SendString(USART_TypeDef *USARTx, char* str){
-    for(uint32_t i = 0; str[i] != '\0'; i++)
-        USART_SendChar(USARTx, str[i]);
+    for(uint32_t i = 0; str[i] != '\0'; i++)    // Iterate over the whole string
+        USART_SendChar(USARTx, str[i]);         // Send each character 1 by 1
 
     USART_SendChar(USARTx, '\r'); // Terminate the USART Transaction
     USART_SendChar(USARTx, '\n'); // Carriage return & Line feed

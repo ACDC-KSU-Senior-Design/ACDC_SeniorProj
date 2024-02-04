@@ -37,22 +37,22 @@ void USART_Init(USART_TypeDef *USARTx, SerialSpeed Serial_x, bool useUART);
 /// @param Serial_x Tx/Rx speed of the USART peripheral (Ex. Serial_115200, Serial_9600, ...)
 void USART_ChangeSerialSpeed(USART_TypeDef *USARTx, SerialSpeed Serial_x);
 
-/// @brief Sends a single character over UART/USART
+/// @brief Sends a single character over UART/USART (BLOCKING)
 /// @param USARTx USART Peripheral (Ex. USART1, USART2, ...)
 /// @param chr Signular character to send over UART/USART
 void USART_SendChar(USART_TypeDef *USARTx, char chr);
 
-/// @brief Sends a null-terminaled string over UART/USART
+/// @brief Sends the string str over UART/USART. (Will automatically append "\r\n" to the transmision (BLOCKING))
 /// @param USARTx USART Peripheral (Ex. USART1, USART2, ...)
 /// @param str String to send over UART/USART
 void USART_SendString(USART_TypeDef *USARTx, char* str);
 
-/// @brief Recieves a single character from  UART/USART
+/// @brief Recieves a single character from  UART/USART (BLOCKING)
 /// @param USARTx USART Peripheral (Ex. USART1, USART2, ...)
 /// @return Character recieved over UART/USART
 char USART_RecieveChar(USART_TypeDef *USARTx);
 
-/// @brief Recieves a string from UART/USART and stops when a '\0' is recieved or the buffer is full.
+/// @brief Recieves a string from UART/USART and stops when "\n\r" is recieved or the buffer is full. (BLOCKING)
 /// @param USARTx USART Peripheral (Ex. USART1, USART2, ...)
 /// @param buffer Buffer to store the recieved string
 /// @param bufferLen Maximum length of the buffer

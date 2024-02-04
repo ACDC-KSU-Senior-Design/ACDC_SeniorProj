@@ -20,6 +20,8 @@ static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
 static void ACDC_Init(SystemClockSpeed SCS_x);
 
+char recieveBuffer[50];
+
 /**
   * @brief  The application entry point.
   * @retval int
@@ -28,11 +30,21 @@ int main(void)
 {
   ACDC_Init(SCS_72MHz);
  
+  uint32_t time = Millis();
+  
   while (1)
   {
-    GPIO_Toggle(GPIOA, GPIO_PIN_5);
-    USART_SendString(USART2, "Devin Marx Yay!\n");
-    Delay(500);
+    if(Millis() - time >= 500){
+      GPIO_Toggle(GPIOA, GPIO_PIN_5);
+      USART_SendString(USART2, "Devin Marx Yay!");
+      time = Millis();
+    }
+
+    if(USART_HasDataToRecieve(USART2)){
+      USART_RecieveString(USART2, recieveBuffer, sizeof(recieveBuffer));
+      USART_SendString(USART2, "\n\tIT WORKED\n");
+      USART_SendString(USART2, recieveBuffer);
+    }
   }
 }
 
