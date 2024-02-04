@@ -16,12 +16,12 @@ static uint8_t USART_Initilized = 0;
 #pragma region PRIVATE_FUNCTION_PROTOTYPES
 /// @brief Enables the USARTx peripheral clock (Needed for peripheral to function)
 /// @param USARTx USART Peripheral (Ex. USART1, USART2, ...)
-static void USART_InitClk(USART_TypeDef *USARTx);
+static void USART_InitClk(const USART_TypeDef *USARTx);
 
 /// @brief Initilizes the various pins for UART/USART {See RM-167, RM-168}
 /// @param USARTx USART Peripheral (Ex. USART1, USART2, ...)
 /// @param useUART true if you want UART, false if you want USART
-static void USART_InitPin(USART_TypeDef *USARTx, bool useUART);
+static void USART_InitPin(const USART_TypeDef *USARTx, bool useUART);
 
 /// @brief Calculates the USARTDIV for the USARTx-BRR using the SerialSpeed Serial_x and the system clock speed
 /// @param Serial_x Tx/Rx speed of the USART peripheral (Ex. Serial_115200, Serial_9600, ...)
@@ -31,11 +31,11 @@ static uint16_t USART_CalculateUSARTDIV(SerialSpeed Serial_x);
 /// @brief Checks if the current USARTx peripheral has been initilized.
 /// @param USARTx USART Peripheral (Ex. USART1, USART2, ...)
 /// @return True if the current USARTx peripheral has been initilized, false otherwise.
-static bool IsInitilized(USART_TypeDef *USARTx);
+static bool IsInitilized(const USART_TypeDef *USARTx);
 
 /// @brief Sets the initialization status of the current USARTx peripheral.
 /// @param USARTx USART Peripheral (Ex. USART1, USART2, ...)
-static void SetInitilized(USART_TypeDef *USARTx);
+static void SetInitilized(const USART_TypeDef *USARTx);
 #pragma endregion
 
 #pragma region PUBLIC_FUNCTIONS
@@ -105,7 +105,7 @@ bool USART_HasDataToRecieve(USART_TypeDef *USARTx){
 #pragma endregion
 
 #pragma region PRIVATE_FUNCTIONS
-static void USART_InitClk(USART_TypeDef *USARTx){
+static void USART_InitClk(const USART_TypeDef *USARTx){
     if(USARTx == USART1)
         SET_BIT(RCC->APB2ENR, RCC_APB2ENR_USART1EN);    //Enable USART1 Clock
     else if(USARTx == USART2)
@@ -114,9 +114,9 @@ static void USART_InitClk(USART_TypeDef *USARTx){
         SET_BIT(RCC->APB1ENR, RCC_APB1ENR_USART3EN);    //Enable USART3 Clock
 }
 
-static void USART_InitPin(USART_TypeDef *USARTx, bool useUART){
-    GPIO_TypeDef *GPIO_Port;
-    uint16_t Tx_Pin, Rx_Pin, Ck_Pin, CTS_Pin, RTS_Pin;
+static void USART_InitPin(const USART_TypeDef *USARTx, bool useUART){
+    GPIO_TypeDef *GPIO_Port = GPIOA;
+    uint16_t Tx_Pin=0, Rx_Pin=0, Ck_Pin, CTS_Pin, RTS_Pin;
     
     //Pin Definitions {See RM-181}
     if(USARTx == USART1){
@@ -173,7 +173,7 @@ static uint16_t USART_CalculateUSARTDIV(SerialSpeed Serial_x){
     return (Mantissa << 4) & 0xFFF0 | (Divisor & 0xF);     // Calculate and return the USARTDIV   {See RM-789}
 }
 
-static bool IsInitilized(USART_TypeDef *USARTx){
+static bool IsInitilized(const USART_TypeDef *USARTx){
     if(USARTx == USART1)
         return READ_BIT(USART_Initilized, 0b001);
     else if(USARTx == USART2)
@@ -184,7 +184,7 @@ static bool IsInitilized(USART_TypeDef *USARTx){
         return false;
 }       
 
-static void SetInitilized(USART_TypeDef *USARTx){
+static void SetInitilized(const USART_TypeDef *USARTx){
     if(USARTx == USART1)
         SET_BIT(USART_Initilized, 0b001);
     else if(USARTx == USART2)
