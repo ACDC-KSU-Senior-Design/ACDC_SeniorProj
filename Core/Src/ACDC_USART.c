@@ -54,16 +54,16 @@ void USART_Init(USART_TypeDef *USARTx, SerialSpeed Serial_x, bool useUART){
 
     SET_BIT(USARTx->CR1, USART_CR1_UE);                         // Enable the USART peripheral
 
-    SetInitilized(USARTx);
+    USART_SetInitialized(USARTx);
 }
 
 void USART_ChangeSerialSpeed(USART_TypeDef *USARTx, SerialSpeed Serial_x){
-    if(USART_IsInitilized(USARTx))                                    // If the preherphial has already been initilized
+    if( USART_IsInitialized(USARTx))                                    // If the preherphial has already been initilized
         CLEAR_BIT(USARTx->CR1, USART_CR1_UE);                   // Disable the USART peripheral
     
     WRITE_REG(USARTx->BRR, USART_CalculateUSARTDIV(Serial_x));  // Set the Baud Rate 
 
-    if(USART_IsInitilized(USARTx))                                    // If the preherphial has already been initilized
+    if( USART_IsInitialized(USARTx))                                    // If the preherphial has already been initilized
         SET_BIT(USARTx->CR1, USART_CR1_UE);                     // Enable the USART peripheral
 }
 
