@@ -32,5 +32,14 @@ var searchData=
   ['scs_5f72mhz_29',['SCS_72MHz',['../ACDC__CLOCK_8h.html#a9fee4b747c8b3351df21e38fdc3b9b2fa76a514dbf858e8958f95c3c4b9615824',1,'ACDC_CLOCK.h']]],
   ['scs_5f7mhz_30',['SCS_7MHz',['../ACDC__CLOCK_8h.html#a9fee4b747c8b3351df21e38fdc3b9b2fa55e82023c412496f7374d6b303f21974',1,'ACDC_CLOCK.h']]],
   ['scs_5f8mhz_31',['SCS_8MHz',['../ACDC__CLOCK_8h.html#a9fee4b747c8b3351df21e38fdc3b9b2fa17550da7f2cf3610dae3b9df7ad6c1eb',1,'ACDC_CLOCK.h']]],
-  ['scs_5f9mhz_32',['SCS_9MHz',['../ACDC__CLOCK_8h.html#a9fee4b747c8b3351df21e38fdc3b9b2faf83664fdc79c2fc4a7ac5a198fa37f95',1,'ACDC_CLOCK.h']]]
+  ['scs_5f9mhz_32',['SCS_9MHz',['../ACDC__CLOCK_8h.html#a9fee4b747c8b3351df21e38fdc3b9b2faf83664fdc79c2fc4a7ac5a198fa37f95',1,'ACDC_CLOCK.h']]],
+  ['serial_5f115200_33',['Serial_115200',['../ACDC__USART_8h.html#aad1ca1d37221522b5684bbe2c7391cdda4e20606d9a6fa9e4ded1c3deabed1f84',1,'ACDC_USART.h']]],
+  ['serial_5f1200_34',['Serial_1200',['../ACDC__USART_8h.html#aad1ca1d37221522b5684bbe2c7391cddaa111d100cef422286f562c41559ace6a',1,'ACDC_USART.h']]],
+  ['serial_5f19200_35',['Serial_19200',['../ACDC__USART_8h.html#aad1ca1d37221522b5684bbe2c7391cdda9289113db406efa154165035d159040d',1,'ACDC_USART.h']]],
+  ['serial_5f230400_36',['Serial_230400',['../ACDC__USART_8h.html#aad1ca1d37221522b5684bbe2c7391cdda2f05a8a1daa8560d2706d76e4d1f69dc',1,'ACDC_USART.h']]],
+  ['serial_5f2400_37',['Serial_2400',['../ACDC__USART_8h.html#aad1ca1d37221522b5684bbe2c7391cdda5efab3595709425828c1b00518583322',1,'ACDC_USART.h']]],
+  ['serial_5f38400_38',['Serial_38400',['../ACDC__USART_8h.html#aad1ca1d37221522b5684bbe2c7391cdda6e57dee094d70eed8e279ef204c928a8',1,'ACDC_USART.h']]],
+  ['serial_5f4800_39',['Serial_4800',['../ACDC__USART_8h.html#aad1ca1d37221522b5684bbe2c7391cdda52166ba6cad8bd82a04ab848e0829145',1,'ACDC_USART.h']]],
+  ['serial_5f57600_40',['Serial_57600',['../ACDC__USART_8h.html#aad1ca1d37221522b5684bbe2c7391cddaa2ccccfbecf2863e43c673c87ed5bfbf',1,'ACDC_USART.h']]],
+  ['serial_5f9600_41',['Serial_9600',['../ACDC__USART_8h.html#aad1ca1d37221522b5684bbe2c7391cdda25c75f2d0da7dc601fa0fe345d64f58f',1,'ACDC_USART.h']]]
 ];

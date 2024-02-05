@@ -11,5 +11,7 @@ var searchData=
   ['acdc_5fstring_2ec_8',['ACDC_string.c',['../ACDC__string_8c.html',1,'']]],
   ['acdc_5fstring_2eh_9',['ACDC_string.h',['../ACDC__string_8h.html',1,'']]],
   ['acdc_5ftimer_2ec_10',['ACDC_TIMER.c',['../ACDC__TIMER_8c.html',1,'']]],
-  ['acdc_5ftimer_2eh_11',['ACDC_TIMER.h',['../ACDC__TIMER_8h.html',1,'']]]
+  ['acdc_5ftimer_2eh_11',['ACDC_TIMER.h',['../ACDC__TIMER_8h.html',1,'']]],
+  ['acdc_5fusart_2ec_12',['ACDC_USART.c',['../ACDC__USART_8c.html',1,'']]],
+  ['acdc_5fusart_2eh_13',['ACDC_USART.h',['../ACDC__USART_8h.html',1,'']]]
 ];

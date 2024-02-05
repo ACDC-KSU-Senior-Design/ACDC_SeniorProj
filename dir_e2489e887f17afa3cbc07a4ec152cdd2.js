@@ -7,5 +7,6 @@ var dir_e2489e887f17afa3cbc07a4ec152cdd2 =
     [ "ACDC_stdint.h", "ACDC__stdint_8h.html", "ACDC__stdint_8h" ],
     [ "ACDC_string.h", "ACDC__string_8h.html", "ACDC__string_8h" ],
     [ "ACDC_TIMER.h", "ACDC__TIMER_8h.html", "ACDC__TIMER_8h" ],
+    [ "ACDC_USART.h", "ACDC__USART_8h.html", "ACDC__USART_8h" ],
     [ "main.h", "main_8h.html", "main_8h" ]
 ];
