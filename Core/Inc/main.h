@@ -29,6 +29,7 @@ extern "C" {
 #include "ACDC_CLOCK.h"
 #include "ACDC_INTERRUPT.h"
 #include "ACDC_TIMER.h"
+#include "ACDC_SPI.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */

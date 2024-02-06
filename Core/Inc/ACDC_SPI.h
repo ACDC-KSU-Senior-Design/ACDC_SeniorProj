@@ -13,9 +13,24 @@
 
 #include "stm32f1xx.h"
 
+/// @brief Initializes the SPI given
+/// @param SPI SPI to initialize
 void SPI_Initalize(SPI_TypeDef *SPI);
+
+/// @brief Transmits data over the given SPI
+/// @param data Data to transmit
+/// @param SPI SPI to transmit over
 void SPI_Transmit(uint16_t data, SPI_TypeDef *SPI);
+
+/// @brief Recieves data from a SPI
+/// @param SPI SPI to recieve from
+/// @return Data recieved
 uint16_t SPI_Receive(SPI_TypeDef *SPI);
+
+/// @brief Transmits and recieves data over the SPI
+/// @param data Data to transmit
+/// @param SPI SPI to transmit over
+/// @return Data recieved
 uint16_t SPI_TransmitReceive(uint16_t data, SPI_TypeDef *SPI);
 
 #endif

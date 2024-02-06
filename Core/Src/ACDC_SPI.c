@@ -29,6 +29,8 @@
 
 void SPI_Initalize(SPI_TypeDef *SPI) {
     if(SPI == SPI1){
+        RCC-> APB2ENR |= RCC_APB2ENR_IOPBEN;
+
         // Enable clock for SPI
         RCC->APB2ENR |= RCC_APB2ENR_SPI1EN;
 
@@ -53,6 +55,8 @@ void SPI_Initalize(SPI_TypeDef *SPI) {
         SPI1->CR1 |= SPI_CR1_SPE;
     }
     else if(SPI == SPI2){
+        RCC-> APB1ENR |= RCC_APB1ENR_I2C2EN;
+
         // Enable clock for SPI2
         RCC->APB1ENR |= RCC_APB1ENR_SPI2EN;
 
