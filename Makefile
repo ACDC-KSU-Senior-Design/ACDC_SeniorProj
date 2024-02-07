@@ -39,6 +39,7 @@ BUILD_DIR = build
 # ACDC C Files
 ACDC_C_SOURCES =  \
 Core/Src/main.c \
+Core/Src/ACDC_SPI.c \
 Core/Src/ACDC_GPIO.c \
 Core/Src/ACDC_TIMER.c \
 Core/Src/ACDC_CLOCK.c \
