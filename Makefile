@@ -215,7 +215,7 @@ flash: all
 # CppCheck
 #######################################
 cppcheck:
-	$(CPPCHECK) --quiet --force  -v \
+	@$(CPPCHECK) --quiet --force  -v \
 	--enable=all \
 	--inline-suppr \
 	--error-exitcode=1 \
