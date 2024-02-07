@@ -29,21 +29,29 @@ char recieveBuffer[50];
 int main(void)
 {
   ACDC_Init(SCS_72MHz);
+
+  SPI_Init(SPI1, true); // Initialize SPI1 to master
+  SPI_SetBaudDivider(SPI1, SPI_BAUD_DIV_256);
+  GPIO_PinDirection(GPIOB, GPIO_PIN_6, GPIO_MODE_OUTPUT_SPEED_50MHz, GPIO_CNF_OUTPUT_PUSH_PULL);  // Set the CS pin to an PP output
  
   uint32_t time = Millis();
-  
+
   while (1)
   {
-    if(Millis() - time >= 500){
-      GPIO_Toggle(GPIOA, GPIO_PIN_5);
-      USART_SendString(USART2, "Devin Marx Yay!");
-      time = Millis();
+    if(Millis() - time >= 1000){      // Every 1 Second
+      GPIO_Clear(GPIOB, GPIO_PIN_6);  // Set CS low
+      SPI_Transmit(SPI1, 0b11011010); // Send Random data
+      while(SPI1->SR & SPI_SR_BSY){}  // Wait until data has been transmitted
+      GPIO_Set(GPIOB, GPIO_PIN_6);    // Finish and set CS high
+      time = Millis();                // Update the time variable
     }
 
-    if(USART_HasDataToRecieve(USART2)){
-      USART_RecieveString(USART2, recieveBuffer, sizeof(recieveBuffer));
-      USART_SendString(USART2, "\n\tIT WORKED\n");
-      USART_SendString(USART2, recieveBuffer);
+    if(SPI_HasDataToRecieve(SPI1)){
+      // Need to set CS low first
+      uint8_t recievedData = SPI_Receive(SPI1);
+      SPI_Transmit(SPI1, 0);
+      SPI_Transmit(SPI1, recievedData); // Should send the recieved data with 8 leading and following 0's
+      SPI_Transmit(SPI1, 0);
     }
   }
 }
@@ -53,7 +61,7 @@ static void ACDC_Init(SystemClockSpeed SCS_x){
   CLOCK_SetAPB1Prescaler(APB_DIV_2);  //Max Speed is 36Mhz
   CLOCK_SetAPB2Prescaler(APB_DIV_1);  //Max Speed is 72Mhz
 
-  USART_Init(USART2, Serial_115200, true);  // Initilize USART2 with a baud of 115200
+  //USART_Init(USART2, Serial_115200, true);  // Initilize USART2 with a baud of 115200
 
   CLOCK_SetMcoOutput(MCO_SYSCLK);     //Sets PA8 as the output of SysClock
   GPIO_PinDirection(GPIOA, GPIO_PIN_5, GPIO_MODE_OUTPUT_SPEED_50MHz, GPIO_CNF_OUTPUT_PUSH_PULL);

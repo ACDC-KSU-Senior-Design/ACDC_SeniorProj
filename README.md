@@ -9,7 +9,15 @@
 
 ## Documentation
 
-For examples on how to use the ACDC libraries visit the [documentation](Docs/Readme.md) page.
+Explore detailed documentation for the codebase, including explanations of key components, functions, macros, and enums.
+
+**[Link to Full Code Documentation](https://acdc-ksu-senior-design.github.io/ACDC_SeniorProj/files.html)**
+
+## Code Examples
+
+Explore how to use various functions and macros from the ACDC codebase.
+
+**[Link to Code Examples](Docs/Readme.md)**
 
 ## STM32 Toolchain install with VSCode
 

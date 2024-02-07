@@ -48,7 +48,7 @@ void SPI_Init(SPI_TypeDef *SPIx, bool isMaster) {
     SPI_SetBaudDivider(SPIx, SPI_BAUD_DIV_2);           // Baud Div = Fck / 2
     SPI_SetBitMode(SPIx, SPI_MODE_8Bit);                // 8-bit mode
     SPI_SetLsbFirst(SPIx, false);                       // MsbFirst
-    SPI_SetClockPhaseAndPolarity(SPIx, true, false);    // 2nd Clk trans is when data is captured, and Clk idles at 0
+    SPI_SetClockPhaseAndPolarity(SPIx, true, false);    // 2nd Clk transmission is when data is captured, and Clk idles at 0
     SPI_SetToMaster(SPIx, isMaster);                    // Set to Master or Slave
     SPIx->CR1 |= SPI_CR1_SSM | SPI_CR1_SSI;             // Set software CS, software NSS
 
@@ -112,7 +112,7 @@ void SPI_SetClockPhaseAndPolarity(SPI_TypeDef *SPIx, bool ClkPhase, bool ClkPola
 }
 
 void SPI_SetToMaster(SPI_TypeDef *SPIx, bool isMaster){
-        if(SPI_IsInitialized(SPIx))             // If the peripheral was already initialized
+    if(SPI_IsInitialized(SPIx))             // If the peripheral was already initialized
         CLEAR_BIT(SPIx->CR1, SPI_CR1_SPE);  // Disable SPIx
     
     if(isMaster)
@@ -122,6 +122,19 @@ void SPI_SetToMaster(SPI_TypeDef *SPIx, bool isMaster){
 
     if(SPI_IsInitialized(SPIx))             // If the peripheral was already initialized 
         SET_BIT(SPIx->CR1, SPI_CR1_SPE);    // Enable SPIx
+}
+
+bool SPI_HasDataToRecieve(SPI_TypeDef *SPIx){
+    return READ_BIT(SPIx->SR, SPI_SR_RXNE) ? true : false; // Checks if the SPIx's recieve buffer is not empty
+}
+
+void SPI_EnableSoftwareCS(SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN){
+    UNUSED(SPIx);
+    UNUSED(GPIOx);
+    UNUSED(GPIO_PIN);
+}
+void SPI_EnableHardwareCS(SPI_TypeDef *SPIx){
+    UNUSED(SPIx);
 }
 
 void SPI_Transmit(SPI_TypeDef *SPIx, uint16_t data) {

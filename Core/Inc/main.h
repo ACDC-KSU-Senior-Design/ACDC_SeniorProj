@@ -25,6 +25,7 @@ extern "C" {
 #include "ACDC_stdbool.h"
 #include "ACDC_stdint.h"
 #include "ACDC_string.h"
+#include "ACDC_SPI.h"
 #include "ACDC_GPIO.h"
 #include "ACDC_CLOCK.h"
 #include "ACDC_INTERRUPT.h"
