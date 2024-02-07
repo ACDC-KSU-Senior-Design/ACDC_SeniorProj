@@ -61,6 +61,22 @@ void SPI_SetClockPhaseAndPolarity(SPI_TypeDef *SPIx, bool ClkPhase, bool ClkPola
 /// @param isMaster True to configure SPI as master, False to configure it as slave.
 void SPI_SetToMaster(SPI_TypeDef *SPIx, bool isMaster);
 
+/// @brief Checks if there is data available in the SPIx recieve buffer.
+/// @param SPIx SPI Peripheral (Ex. SPI1 or SPI2)
+/// @return True if there is data available to recieve, false otherwise.
+bool SPI_HasDataToRecieve(SPI_TypeDef *SPIx);
+
+/// @brief Enables the software CS for SPIx. (Disables Hardware CS)
+/// @param SPIx SPI Peripheral (Ex. SPI1 or SPI2)
+/// @param GPIOx Port of the GPIO (Ex. GPIOA, GPIOB, ...)
+/// @param GPIO_PIN Desired pin on port GPIOx (Ex. GPIO_PIN_0, GPIO_PIN_1, ...) 
+void SPI_EnableSoftwareCS(SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN); //TODO: Need SPIx, GPIOx, GPIO Pin, and ???
+
+/// @brief Enables the Hardware CS for SPIx. (Disables Software CS)
+/// @param SPIx SPI Peripheral (Ex. SPI1 or SPI2)
+void SPI_EnableHardwareCS(SPI_TypeDef *SPIx);   //TODO: Just need SPIx?
+
+
 /// @brief Transmits data over SPIx
 /// @param SPIx SPI Peripheral (Ex. SPI1 or SPI2)
 /// @param data Data to transmit, either 8 or 16 bit (Default: 8-bit).

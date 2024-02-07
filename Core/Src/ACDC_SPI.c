@@ -129,11 +129,13 @@ bool SPI_HasDataToRecieve(SPI_TypeDef *SPIx){
 }
 
 void SPI_EnableSoftwareCS(SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN){
+    #warning "SPI_EnableSoftwareCS is not Implemented!"
     UNUSED(SPIx);
     UNUSED(GPIOx);
     UNUSED(GPIO_PIN);
 }
 void SPI_EnableHardwareCS(SPI_TypeDef *SPIx){
+    #warning "SPI_EnableHardwareCS is not Implemented!"
     UNUSED(SPIx);
 }
 

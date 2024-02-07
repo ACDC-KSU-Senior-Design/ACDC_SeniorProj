@@ -31,7 +31,7 @@ int main(void)
   ACDC_Init(SCS_72MHz);
 
   SPI_Init(SPI1, true); // Initialize SPI1 to master
-  SPI_SetBaudDivider(SPI1, SPI_BAUD_DIV_256);
+  SPI_SetBaudDivider(SPI1, SPI_BAUD_DIV_256);   // 
   GPIO_PinDirection(GPIOB, GPIO_PIN_6, GPIO_MODE_OUTPUT_SPEED_50MHz, GPIO_CNF_OUTPUT_PUSH_PULL);  // Set the CS pin to an PP output
  
   uint32_t time = Millis();
@@ -40,7 +40,9 @@ int main(void)
   {
     if(Millis() - time >= 1000){      // Every 1 Second
       GPIO_Clear(GPIOB, GPIO_PIN_6);  // Set CS low
+
       SPI_Transmit(SPI1, 0b11011010); // Send Random data
+      
       while(SPI1->SR & SPI_SR_BSY){}  // Wait until data has been transmitted
       GPIO_Set(GPIOB, GPIO_PIN_6);    // Finish and set CS high
       time = Millis();                // Update the time variable
