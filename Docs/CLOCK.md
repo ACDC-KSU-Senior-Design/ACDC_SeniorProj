@@ -1,7 +1,9 @@
 # ACDC_CLOCK.h
+
 All functions below assume that you have included **"ACDC_CLOCK.h"**
 
-# Set the SysClock to 72Mhz (Max Speed)
+## Set the SysClock to 72Mhz (Max Speed)
+
 ```C
 #include "ACDC_CLOCK.h"
 
@@ -15,7 +17,8 @@ int main(){
 }
 ```
 
-# Set MCO output to 36Mhz (Enables Clock output on PA8)
+## Set MCO output to 36Mhz (Enables Clock output on PA8)
+
 ```C
 #include "ACDC_CLOCK.h"
 

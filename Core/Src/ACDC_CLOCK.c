@@ -14,10 +14,11 @@
 
 #define MAX_MCO_CLK_SPEED 50000000
 
-static SystemClockSpeed currentSCS;     /* Current System Clock Speed */
-static APB_Prescaler APB1_Prescaler;    /* Current APB1 Prescaler     */
-static APB_Prescaler APB2_Prescaler;    /* Current APB2 Prescaler     */
+static SystemClockSpeed currentSCS;     /**< Current System Clock Speed */
+static APB_Prescaler APB1_Prescaler;    /**< Current APB1 Prescaler     */
+static APB_Prescaler APB2_Prescaler;    /**< Current APB2 Prescaler     */
 
+#pragma region PRIVATE_FUNCTION_PROTOTYPES
 /// @brief Disables the HSI and enables the PLL from the SysClock Mux
 static void DisableHSI_EnablePLL(void);
 
@@ -33,7 +34,9 @@ static void SetFlashMemorySpeed(SystemClockSpeed SCS_x, uint32_t RCC_CFGR_HPRE_x
 /// @param APB_DIV_x Clock Prescaler Divider (Ex. PRE_DIV_1, PRE_DIV_2, ...)
 /// @return Integer divisor value of the prescaler
 static int APBxPrescalerToDivisor(APB_Prescaler APB_DIV_x);
+#pragma endregion
 
+#pragma region PUBLIC_FUNCTIONS
 void CLOCK_SetSystemClockSpeed(SystemClockSpeed SCS_x){
 
     RCC->CFGR |= RCC_CFGR_PLLSRC;   // Use HSE as PLL Source,
@@ -110,7 +113,8 @@ void CLOCK_SetSystemClockSpeed(SystemClockSpeed SCS_x){
             break;
     }
 
-    RCC->CFGR |= SCS_x > SCS_36MHz ? RCC_CFGR_PPRE1_DIV2 : RCC_CFGR_PPRE1_DIV1; // Sets the APB1 Prescaler based on SCS
+    APB_Prescaler prescaler = SCS_x > SCS_36MHz ? APB_DIV_2 : APB_DIV_1;
+    CLOCK_SetAPB1Prescaler(prescaler);   // Sets the APB1 Prescaler based on SCS (Max Speed is 36Mhz)
 
     DisableHSI_EnablePLL(); // Enables the PLL
     TIMER_Init(SCS_x);      // Sets SysTick's Clock Speed to SCS_x (used for Millis and Delay)
@@ -162,8 +166,9 @@ void CLOCK_SetAPB2Prescaler(APB_Prescaler APB_DIV_x){
     RCC->CFGR = tempReg | (APB_DIV_x << RCC_CFGR_PPRE2_Pos);    // Set the APB_DIV_x bits in RCC->CFGR
     APB2_Prescaler = APB_DIV_x;                                 // Set the Private variable
 }
+#pragma endregion
 
-
+#pragma region PRIVATE_FUNCTIONS
 static void DisableHSI_EnablePLL(void){
     RCC->CR |= RCC_CR_PLLON;            // Turn on the PLL Clock
     while(!(RCC->CR & RCC_CR_PLLRDY)){} // Wait until the PLL oscillator is ready
@@ -221,3 +226,4 @@ static int APBxPrescalerToDivisor(APB_Prescaler APB_DIV_x){
             return 1;
     }
 }
+#pragma endregion

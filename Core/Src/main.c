@@ -20,6 +20,8 @@ static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
 static void ACDC_Init(SystemClockSpeed SCS_x);
 
+char recieveBuffer[50];
+
 /**
   * @brief  The application entry point.
   * @retval int
@@ -50,6 +52,8 @@ static void ACDC_Init(SystemClockSpeed SCS_x){
   CLOCK_SetSystemClockSpeed(SCS_x);   //72Mhz doesnt quite work Rn
   CLOCK_SetAPB1Prescaler(APB_DIV_2);  //Max Speed is 36Mhz
   CLOCK_SetAPB2Prescaler(APB_DIV_2);  //Max Speed is 36Mhz
+
+  USART_Init(USART2, Serial_115200, true);  // Initilize USART2 with a baud of 115200
 
   CLOCK_SetMcoOutput(MCO_SYSCLK);     //Sets PA8 as the output of SysClock
   GPIO_PinDirection(GPIOA, GPIO_PIN_5, GPIO_MODE_OUTPUT_SPEED_50MHz, GPIO_CNF_OUTPUT_PUSH_PULL);
