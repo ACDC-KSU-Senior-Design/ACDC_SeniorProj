@@ -12,6 +12,7 @@
  */
 
 #include "ACDC_SPI.h"
+#include "ACDC_GPIO.h"
 
 
 /*
