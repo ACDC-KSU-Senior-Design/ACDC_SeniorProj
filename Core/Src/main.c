@@ -26,33 +26,23 @@ static void ACDC_Init(SystemClockSpeed SCS_x);
   */
 int main(void)
 {
-  //HAL_Init();       //Need to look deeper into this
-  //SystemClock_Config(); //Shoulnt need anymore
-
-  ACDC_Init(SCS_10MHz);
-
-  MX_GPIO_Init();
-  MX_USART2_UART_Init();
-
-  SPI_Initalize(SPI1);
-  SPI_Initalize(SPI2);
-
-  uint16_t transmit = 0;
-  uint16_t recieve;
+  ACDC_Init(SCS_72MHz);
  
+  uint32_t time = Millis();
+  
   while (1)
   {
-    SPI_Transmit(transmit, SPI1);
-    transmit++;
-    SPI_Transmit(transmit, SPI2);
+    if(Millis() - time >= 500){
+      GPIO_Toggle(GPIOA, GPIO_PIN_5);
+      USART_SendString(USART2, "Devin Marx Yay!");
+      time = Millis();
+    }
 
-    recieve = SPI_Receive(SPI1);
-    recieve = SPI_Receive(SPI2);
-    transmit++;
-
-    recieve = SPI_TransmitReceive(transmit, SPI1);
-    //transmit++;
-    recieve = SPI_TransmitReceive(transmit, SPI2);
+    if(USART_HasDataToRecieve(USART2)){
+      USART_RecieveString(USART2, recieveBuffer, sizeof(recieveBuffer));
+      USART_SendString(USART2, "\n\tIT WORKED\n");
+      USART_SendString(USART2, recieveBuffer);
+    }
   }
 }
 
