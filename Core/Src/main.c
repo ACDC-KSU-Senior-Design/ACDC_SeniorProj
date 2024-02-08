@@ -29,7 +29,7 @@ int main(void)
   //HAL_Init();       //Need to look deeper into this
   //SystemClock_Config(); //Shoulnt need anymore
 
-  ACDC_Init(SCS_6MHz);
+  ACDC_Init(SCS_10MHz);
 
   MX_GPIO_Init();
   MX_USART2_UART_Init();
@@ -37,18 +37,18 @@ int main(void)
   SPI_Initalize(SPI1);
   SPI_Initalize(SPI2);
 
-  uint16_t transmit = 10;
+  uint16_t transmit = 0;
   uint16_t recieve;
  
   while (1)
   {
     SPI_Transmit(transmit, SPI1);
-    //transmit++;
+    transmit++;
     SPI_Transmit(transmit, SPI2);
 
     recieve = SPI_Receive(SPI1);
     recieve = SPI_Receive(SPI2);
-    //transmit++;
+    transmit++;
 
     recieve = SPI_TransmitReceive(transmit, SPI1);
     //transmit++;
@@ -59,7 +59,7 @@ int main(void)
 static void ACDC_Init(SystemClockSpeed SCS_x){
   CLOCK_SetSystemClockSpeed(SCS_x);   //72Mhz doesnt quite work Rn
   CLOCK_SetAPB1Prescaler(APB_DIV_2);  //Max Speed is 36Mhz
-  CLOCK_SetAPB2Prescaler(APB_DIV_1);  //Max Speed is 72Mhz
+  CLOCK_SetAPB2Prescaler(APB_DIV_2);  //Max Speed is 36Mhz
 
   CLOCK_SetMcoOutput(MCO_SYSCLK);     //Sets PA8 as the output of SysClock
   GPIO_PinDirection(GPIOA, GPIO_PIN_5, GPIO_MODE_OUTPUT_SPEED_50MHz, GPIO_CNF_OUTPUT_PUSH_PULL);

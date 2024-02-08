@@ -12,6 +12,7 @@
 #define ACDC_SPI_H
 
 #include "stm32f1xx.h"
+#include "ACDC_GPIO.h"
 
 /// @brief Initializes the SPI given
 /// @param SPI SPI to initialize
