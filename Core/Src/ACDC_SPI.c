@@ -76,9 +76,6 @@ void SPI_Initalize(SPI_TypeDef *SPI) {
         // Enable SPI2
         SPI2->CR1 |= SPI_CR1_SPE;
     }
-    else{
-        printf("Invalid SPI pointer.");
-    }
 }
 
 void SPI_Transmit(uint16_t data, SPI_TypeDef *SPI) {
@@ -96,9 +93,6 @@ void SPI_Transmit(uint16_t data, SPI_TypeDef *SPI) {
         // Send data
         SPI2->DR = data;
     }
-    else{
-        printf("Invalid SPI pointer.");
-    }
 }
 
 uint16_t SPI_Receive(SPI_TypeDef *SPI) {
@@ -115,9 +109,6 @@ uint16_t SPI_Receive(SPI_TypeDef *SPI) {
 
         // Return received data
         return SPI2->DR;
-    }
-    else{
-        printf("Invalid SPI pointer.");
     }
 }
 
@@ -147,8 +138,5 @@ uint16_t SPI_TransmitReceive(uint16_t data, SPI_TypeDef *SPI) {
 
         // Return received data
         return SPI2->DR;
-    }
-    else{
-        printf("Invalid SPI pointer.");
     }
 }
