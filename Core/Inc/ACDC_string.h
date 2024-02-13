@@ -6,7 +6,6 @@
  * @date 2023-1-16
  * 
  * @copyright Copyright (c) 2023-2024
- * 
  */
 
 #ifndef __ACDC_STRING_H

@@ -13,10 +13,10 @@
 
 #include "ACDC_GPIO.h"
 
-#define GPIO_CNF_INPUT_PULLUP_PULLDOWN 0b10u
-#define GPIO_MODE_CNF 0b1111
-#define GPIO_MODE_OFFSET 0
-#define GPIO_CNF_OFFSET 2
+#define GPIO_CNF_INPUT_PULLUP_PULLDOWN 0b10u    /**< Check if the INPUT CNF bit is a pullup or pulldown */
+#define GPIO_MODE_CNF 0b1111                    /**< Bitmask for the MODE & CNF bits                    */
+#define GPIO_MODE_OFFSET 0                      /**< MODE bit offset                                    */
+#define GPIO_CNF_OFFSET 2                       /**< CNF bit offset                                     */
 
 void GPIO_InitClk(const GPIO_TypeDef *GPIOx){
     if(GPIOx == GPIOA)
@@ -64,7 +64,7 @@ void GPIO_Set(GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN){
 void GPIO_Clear(GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN){
      GPIOx->ODR &= ~(GPIO_PIN);
 }
-
+ 
 void GPIO_Toggle(GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN){
     GPIOx->ODR ^= GPIO_PIN;
 }
