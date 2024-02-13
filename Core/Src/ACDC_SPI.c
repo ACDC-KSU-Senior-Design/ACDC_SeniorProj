@@ -12,7 +12,6 @@
  */
 
 #include "ACDC_SPI.h"
-#include "ACDC_GPIO.h"
 
 
 /*
@@ -36,13 +35,13 @@ void SPI_Initalize(SPI_TypeDef *SPI) {
         RCC->APB2ENR |= RCC_APB2ENR_SPI1EN;
 
         // Configure GPIO pins for SPI1
-        // Set PB3 (SCK) as alternate function push-pull output
+        // Set PA5 (SCK) as alternate function push-pull output
         GPIO_PinDirection(GPIOA, GPIO_PIN_5, GPIO_MODE_OUTPUT_SPEED_50MHz, GPIO_CNF_OUTPUT_AF_PUSH_PULL);
 
-        // Set PB4 (MISO) as input floating
+        // Set PA6 (MISO) as input floating
         GPIO_PinDirection(GPIOA, GPIO_PIN_6, GPIO_MODE_INPUT, GPIO_CNF_INPUT_FLOATING);
 
-        // Set PB5 (MOSI) as alternate function push-pull output
+        // Set PA7 (MOSI) as alternate function push-pull output
         GPIO_PinDirection(GPIOA, GPIO_PIN_7, GPIO_MODE_OUTPUT_SPEED_50MHz, GPIO_CNF_OUTPUT_AF_PUSH_PULL);
 
         // Configure SPI1

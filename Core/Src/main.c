@@ -38,21 +38,12 @@ int main(void)
   SPI_Initalize(SPI2);
 
   uint16_t transmit = 190;
-  uint16_t recieve;
  
   while (1)
   {
     SPI_Transmit(transmit, SPI1);
     //transmit++;
     SPI_Transmit(transmit, SPI2);
-
-    recieve = SPI_Receive(SPI1);
-    recieve = SPI_Receive(SPI2);
-    //transmit++;
-
-    recieve = SPI_TransmitReceive(transmit, SPI1);
-    //transmit++;
-    recieve = SPI_TransmitReceive(transmit, SPI2);
   }
 }
 
