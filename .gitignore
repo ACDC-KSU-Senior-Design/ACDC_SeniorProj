@@ -1,2 +1,7 @@
+#Prevent the Build directory and backup files from being added to git
 build
 *.bak
+
+# Prevent Local Doxygen files from being added to git
+Docs/html/
+Docs/latex/
