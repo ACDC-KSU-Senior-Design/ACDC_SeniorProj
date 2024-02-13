@@ -27,7 +27,7 @@
  SPI_TypeDef;
 */
 
-void SPI_Initalize(SPI_TypeDef *SPI) {
+void SPI_Initalize(const SPI_TypeDef *SPI) {
     if(SPI == SPI1){
         RCC-> APB2ENR |= RCC_APB2ENR_IOPBEN;
 
@@ -78,7 +78,7 @@ void SPI_Initalize(SPI_TypeDef *SPI) {
     }
 }
 
-void SPI_Transmit(uint16_t data, SPI_TypeDef *SPI) {
+void SPI_Transmit(uint16_t data, const SPI_TypeDef *SPI) {
     if(SPI == SPI1){
         // Wait until transmit buffer is empty
         while (!(SPI1->SR & SPI_SR_TXE));
@@ -95,7 +95,7 @@ void SPI_Transmit(uint16_t data, SPI_TypeDef *SPI) {
     }
 }
 
-uint16_t SPI_Receive(SPI_TypeDef *SPI) {
+uint16_t SPI_Receive(const SPI_TypeDef *SPI) {
     if(SPI == SPI1){
         // Wait until receive buffer is full
         while (!(SPI1->SR & SPI_SR_RXNE));
@@ -115,7 +115,7 @@ uint16_t SPI_Receive(SPI_TypeDef *SPI) {
     }
 }
 
-uint16_t SPI_TransmitReceive(uint16_t data, SPI_TypeDef *SPI) {
+uint16_t SPI_TransmitReceive(uint16_t data, const SPI_TypeDef *SPI) {
     if(SPI == SPI1){
         // Wait until transmit buffer is empty
         while (!(SPI1->SR & SPI_SR_TXE));
