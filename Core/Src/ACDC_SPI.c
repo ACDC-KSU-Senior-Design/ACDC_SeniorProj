@@ -110,6 +110,9 @@ uint16_t SPI_Receive(SPI_TypeDef *SPI) {
         // Return received data
         return SPI2->DR;
     }
+    else{
+        return 0;
+    }
 }
 
 uint16_t SPI_TransmitReceive(uint16_t data, SPI_TypeDef *SPI) {
@@ -138,5 +141,8 @@ uint16_t SPI_TransmitReceive(uint16_t data, SPI_TypeDef *SPI) {
 
         // Return received data
         return SPI2->DR;
+    }
+    else{
+        return 0;
     }
 }
