@@ -12,10 +12,10 @@ var ACDC__USART_8h =
       [ "Serial_230400", "ACDC__USART_8h.html#aad1ca1d37221522b5684bbe2c7391cdda2f05a8a1daa8560d2706d76e4d1f69dc", null ]
     ] ],
     [ "USART_ChangeSerialSpeed", "ACDC__USART_8h.html#aa9647314bab237a395146175f6dc74d9", null ],
-    [ "USART_HasDataToRecieve", "ACDC__USART_8h.html#a2664b6bb71cb07a0b7be91a94077b042", null ],
+    [ "USART_HasDataToRecieve", "ACDC__USART_8h.html#aed3f0844382ed49a1c387a3c04208ef0", null ],
     [ "USART_Init", "ACDC__USART_8h.html#ac132d9b438cad5be6cfa18ffd14fdb37", null ],
-    [ "USART_RecieveChar", "ACDC__USART_8h.html#a58fc2a599aa02b07c7ae375577e71bd2", null ],
-    [ "USART_RecieveString", "ACDC__USART_8h.html#a60f5ba53f58e827646887274ddc27f89", null ],
+    [ "USART_RecieveChar", "ACDC__USART_8h.html#adcf9bcdb592e692af7d35b2f5f3ca43e", null ],
+    [ "USART_RecieveString", "ACDC__USART_8h.html#ab422665880f17f20375e3b7a44a1d175", null ],
     [ "USART_SendChar", "ACDC__USART_8h.html#a4ba55a35f8357cc8cb2d24eb3408099a", null ],
-    [ "USART_SendString", "ACDC__USART_8h.html#adf65da305d1db99315dd36fdbc517a6e", null ]
+    [ "USART_SendString", "ACDC__USART_8h.html#af8562714e84cb650b0609b2f3e0e9210", null ]
 ];

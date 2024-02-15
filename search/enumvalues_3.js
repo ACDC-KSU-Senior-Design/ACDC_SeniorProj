@@ -41,5 +41,15 @@ var searchData=
   ['serial_5f38400_38',['Serial_38400',['../ACDC__USART_8h.html#aad1ca1d37221522b5684bbe2c7391cdda6e57dee094d70eed8e279ef204c928a8',1,'ACDC_USART.h']]],
   ['serial_5f4800_39',['Serial_4800',['../ACDC__USART_8h.html#aad1ca1d37221522b5684bbe2c7391cdda52166ba6cad8bd82a04ab848e0829145',1,'ACDC_USART.h']]],
   ['serial_5f57600_40',['Serial_57600',['../ACDC__USART_8h.html#aad1ca1d37221522b5684bbe2c7391cddaa2ccccfbecf2863e43c673c87ed5bfbf',1,'ACDC_USART.h']]],
-  ['serial_5f9600_41',['Serial_9600',['../ACDC__USART_8h.html#aad1ca1d37221522b5684bbe2c7391cdda25c75f2d0da7dc601fa0fe345d64f58f',1,'ACDC_USART.h']]]
+  ['serial_5f9600_41',['Serial_9600',['../ACDC__USART_8h.html#aad1ca1d37221522b5684bbe2c7391cdda25c75f2d0da7dc601fa0fe345d64f58f',1,'ACDC_USART.h']]],
+  ['spi_5fbaud_5fdiv_5f128_42',['SPI_BAUD_DIV_128',['../ACDC__SPI_8h.html#ab288e111a2b894cf6319744add666250a1830aa3d65017e53129b20d81923a399',1,'ACDC_SPI.h']]],
+  ['spi_5fbaud_5fdiv_5f16_43',['SPI_BAUD_DIV_16',['../ACDC__SPI_8h.html#ab288e111a2b894cf6319744add666250a9b2e840a1406b0637ba5df7e1bd656ed',1,'ACDC_SPI.h']]],
+  ['spi_5fbaud_5fdiv_5f2_44',['SPI_BAUD_DIV_2',['../ACDC__SPI_8h.html#ab288e111a2b894cf6319744add666250a4245db8a6eb4873d7cbf840a1ba5b503',1,'ACDC_SPI.h']]],
+  ['spi_5fbaud_5fdiv_5f256_45',['SPI_BAUD_DIV_256',['../ACDC__SPI_8h.html#ab288e111a2b894cf6319744add666250a1d315ce7ce7ba834633e7cf34e010f7e',1,'ACDC_SPI.h']]],
+  ['spi_5fbaud_5fdiv_5f32_46',['SPI_BAUD_DIV_32',['../ACDC__SPI_8h.html#ab288e111a2b894cf6319744add666250a8ac7eeb979f440a8a6b8dbab9115ea2c',1,'ACDC_SPI.h']]],
+  ['spi_5fbaud_5fdiv_5f4_47',['SPI_BAUD_DIV_4',['../ACDC__SPI_8h.html#ab288e111a2b894cf6319744add666250ac7d97a86ad3465cfc0c1802ba8bac550',1,'ACDC_SPI.h']]],
+  ['spi_5fbaud_5fdiv_5f64_48',['SPI_BAUD_DIV_64',['../ACDC__SPI_8h.html#ab288e111a2b894cf6319744add666250a307f4740d7d350ab5d4da0b75b609194',1,'ACDC_SPI.h']]],
+  ['spi_5fbaud_5fdiv_5f8_49',['SPI_BAUD_DIV_8',['../ACDC__SPI_8h.html#ab288e111a2b894cf6319744add666250a67adf2d2e9db7cf835ea1d18ba7a27d9',1,'ACDC_SPI.h']]],
+  ['spi_5fmode_5f16bit_50',['SPI_MODE_16Bit',['../ACDC__SPI_8h.html#a54de5248b99280124bddc78d46bedc4faf38a4a442bd3fc41199676248edaf032',1,'ACDC_SPI.h']]],
+  ['spi_5fmode_5f8bit_51',['SPI_MODE_8Bit',['../ACDC__SPI_8h.html#a54de5248b99280124bddc78d46bedc4fa87027ae2752f1946d0a1b9fb17c643d2',1,'ACDC_SPI.h']]]
 ];

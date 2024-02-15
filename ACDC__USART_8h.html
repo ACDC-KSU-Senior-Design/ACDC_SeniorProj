@@ -136,18 +136,18 @@ Functions</h2></td></tr>
 <tr class="memitem:a4ba55a35f8357cc8cb2d24eb3408099a" id="r_a4ba55a35f8357cc8cb2d24eb3408099a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ba55a35f8357cc8cb2d24eb3408099a">USART_SendChar</a> (USART_TypeDef *USARTx, char chr)</td></tr>
 <tr class="memdesc:a4ba55a35f8357cc8cb2d24eb3408099a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a single character over UART/USART (BLOCKING)  <br /></td></tr>
 <tr class="separator:a4ba55a35f8357cc8cb2d24eb3408099a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf65da305d1db99315dd36fdbc517a6e" id="r_adf65da305d1db99315dd36fdbc517a6e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf65da305d1db99315dd36fdbc517a6e">USART_SendString</a> (USART_TypeDef *USARTx, char *str)</td></tr>
-<tr class="memdesc:adf65da305d1db99315dd36fdbc517a6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the string str over UART/USART. (Will automatically append "\r\n" to the transmision (BLOCKING))  <br /></td></tr>
-<tr class="separator:adf65da305d1db99315dd36fdbc517a6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58fc2a599aa02b07c7ae375577e71bd2" id="r_a58fc2a599aa02b07c7ae375577e71bd2"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a58fc2a599aa02b07c7ae375577e71bd2">USART_RecieveChar</a> (USART_TypeDef *USARTx)</td></tr>
-<tr class="memdesc:a58fc2a599aa02b07c7ae375577e71bd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recieves a single character from UART/USART (BLOCKING)  <br /></td></tr>
-<tr class="separator:a58fc2a599aa02b07c7ae375577e71bd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60f5ba53f58e827646887274ddc27f89" id="r_a60f5ba53f58e827646887274ddc27f89"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a60f5ba53f58e827646887274ddc27f89">USART_RecieveString</a> (USART_TypeDef *USARTx, char *buffer, <a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> bufferLen)</td></tr>
-<tr class="memdesc:a60f5ba53f58e827646887274ddc27f89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recieves a string from UART/USART and stops when "\n\r" is recieved or the buffer is full. (BLOCKING)  <br /></td></tr>
-<tr class="separator:a60f5ba53f58e827646887274ddc27f89"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2664b6bb71cb07a0b7be91a94077b042" id="r_a2664b6bb71cb07a0b7be91a94077b042"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ACDC__stdbool_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2664b6bb71cb07a0b7be91a94077b042">USART_HasDataToRecieve</a> (USART_TypeDef *USARTx)</td></tr>
-<tr class="memdesc:a2664b6bb71cb07a0b7be91a94077b042"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if there is data available in the USART recieve buffer.  <br /></td></tr>
-<tr class="separator:a2664b6bb71cb07a0b7be91a94077b042"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8562714e84cb650b0609b2f3e0e9210" id="r_af8562714e84cb650b0609b2f3e0e9210"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8562714e84cb650b0609b2f3e0e9210">USART_SendString</a> (USART_TypeDef *USARTx, const char *str)</td></tr>
+<tr class="memdesc:af8562714e84cb650b0609b2f3e0e9210"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the string str over UART/USART. (Will automatically append "\r\n" to the transmision (BLOCKING))  <br /></td></tr>
+<tr class="separator:af8562714e84cb650b0609b2f3e0e9210"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcf9bcdb592e692af7d35b2f5f3ca43e" id="r_adcf9bcdb592e692af7d35b2f5f3ca43e"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adcf9bcdb592e692af7d35b2f5f3ca43e">USART_RecieveChar</a> (const USART_TypeDef *USARTx)</td></tr>
+<tr class="memdesc:adcf9bcdb592e692af7d35b2f5f3ca43e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recieves a single character from UART/USART (BLOCKING)  <br /></td></tr>
+<tr class="separator:adcf9bcdb592e692af7d35b2f5f3ca43e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab422665880f17f20375e3b7a44a1d175" id="r_ab422665880f17f20375e3b7a44a1d175"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab422665880f17f20375e3b7a44a1d175">USART_RecieveString</a> (const USART_TypeDef *USARTx, char *buffer, <a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> bufferLen)</td></tr>
+<tr class="memdesc:ab422665880f17f20375e3b7a44a1d175"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recieves a string from UART/USART and stops when "\n\r" is recieved or the buffer is full. (BLOCKING)  <br /></td></tr>
+<tr class="separator:ab422665880f17f20375e3b7a44a1d175"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed3f0844382ed49a1c387a3c04208ef0" id="r_aed3f0844382ed49a1c387a3c04208ef0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ACDC__stdbool_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aed3f0844382ed49a1c387a3c04208ef0">USART_HasDataToRecieve</a> (const USART_TypeDef *USARTx)</td></tr>
+<tr class="memdesc:aed3f0844382ed49a1c387a3c04208ef0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if there is data available in the USART recieve buffer.  <br /></td></tr>
+<tr class="separator:aed3f0844382ed49a1c387a3c04208ef0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Header file containing various functions for sending, receiving, and initilizing the UART/USART prehiperal. </p>
@@ -228,8 +228,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a2664b6bb71cb07a0b7be91a94077b042" name="a2664b6bb71cb07a0b7be91a94077b042"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2664b6bb71cb07a0b7be91a94077b042">&#9670;&#160;</a></span>USART_HasDataToRecieve()</h2>
+<a id="aed3f0844382ed49a1c387a3c04208ef0" name="aed3f0844382ed49a1c387a3c04208ef0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed3f0844382ed49a1c387a3c04208ef0">&#9670;&#160;</a></span>USART_HasDataToRecieve()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -237,7 +237,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="ACDC__stdbool_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a> USART_HasDataToRecieve </td>
           <td>(</td>
-          <td class="paramtype">USART_TypeDef *</td>          <td class="paramname"><span class="paramname"><em>USARTx</em></span></td><td>)</td>
+          <td class="paramtype">const USART_TypeDef *</td>          <td class="paramname"><span class="paramname"><em>USARTx</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -290,8 +290,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a58fc2a599aa02b07c7ae375577e71bd2" name="a58fc2a599aa02b07c7ae375577e71bd2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58fc2a599aa02b07c7ae375577e71bd2">&#9670;&#160;</a></span>USART_RecieveChar()</h2>
+<a id="adcf9bcdb592e692af7d35b2f5f3ca43e" name="adcf9bcdb592e692af7d35b2f5f3ca43e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcf9bcdb592e692af7d35b2f5f3ca43e">&#9670;&#160;</a></span>USART_RecieveChar()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -299,7 +299,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">char USART_RecieveChar </td>
           <td>(</td>
-          <td class="paramtype">USART_TypeDef *</td>          <td class="paramname"><span class="paramname"><em>USARTx</em></span></td><td>)</td>
+          <td class="paramtype">const USART_TypeDef *</td>          <td class="paramname"><span class="paramname"><em>USARTx</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -316,8 +316,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a60f5ba53f58e827646887274ddc27f89" name="a60f5ba53f58e827646887274ddc27f89"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a60f5ba53f58e827646887274ddc27f89">&#9670;&#160;</a></span>USART_RecieveString()</h2>
+<a id="ab422665880f17f20375e3b7a44a1d175" name="ab422665880f17f20375e3b7a44a1d175"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab422665880f17f20375e3b7a44a1d175">&#9670;&#160;</a></span>USART_RecieveString()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -325,7 +325,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void USART_RecieveString </td>
           <td>(</td>
-          <td class="paramtype">USART_TypeDef *</td>          <td class="paramname"><span class="paramname"><em>USARTx</em>, </span></td>
+          <td class="paramtype">const USART_TypeDef *</td>          <td class="paramname"><span class="paramname"><em>USARTx</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -382,8 +382,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="adf65da305d1db99315dd36fdbc517a6e" name="adf65da305d1db99315dd36fdbc517a6e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adf65da305d1db99315dd36fdbc517a6e">&#9670;&#160;</a></span>USART_SendString()</h2>
+<a id="af8562714e84cb650b0609b2f3e0e9210" name="af8562714e84cb650b0609b2f3e0e9210"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8562714e84cb650b0609b2f3e0e9210">&#9670;&#160;</a></span>USART_SendString()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -396,7 +396,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>str</em></span>&#160;)</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>str</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
