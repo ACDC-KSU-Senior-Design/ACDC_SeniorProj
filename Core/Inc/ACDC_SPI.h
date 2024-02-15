@@ -21,7 +21,7 @@ void SPI_Initalize(const SPI_TypeDef *SPI);
 /// @brief Transmits data over the given SPI
 /// @param data Data to transmit
 /// @param SPI SPI to transmit over
-void SPI_Transmit(uint16_t data, const SPI_TypeDef *SPI);
+void SPI_Transmit(SPI_TypeDef *SPI, uint16_t data);
 
 /// @brief Recieves data from a SPI
 /// @param SPI SPI to recieve from
@@ -32,6 +32,6 @@ uint16_t SPI_Receive(const SPI_TypeDef *SPI);
 /// @param data Data to transmit
 /// @param SPI SPI to transmit over
 /// @return Data recieved
-uint16_t SPI_TransmitReceive(uint16_t data, const SPI_TypeDef *SPI);
+uint16_t SPI_TransmitReceive(const SPI_TypeDef *SPI, uint16_t data);
 
 #endif

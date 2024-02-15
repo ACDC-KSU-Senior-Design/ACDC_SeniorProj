@@ -29,8 +29,6 @@
 
 void SPI_Initalize(const SPI_TypeDef *SPI) {
     if(SPI == SPI1){
-        RCC-> APB2ENR |= RCC_APB2ENR_IOPBEN;
-
         // Enable clock for SPI
         RCC->APB2ENR |= RCC_APB2ENR_SPI1EN;
 
@@ -53,8 +51,6 @@ void SPI_Initalize(const SPI_TypeDef *SPI) {
         SPI1->CR1 |= SPI_CR1_SPE;
     }
     else if(SPI == SPI2){
-        RCC-> APB1ENR |= RCC_APB1ENR_I2C2EN;
-
         // Enable clock for SPI2
         RCC->APB1ENR |= RCC_APB1ENR_SPI2EN;
 
@@ -78,71 +74,23 @@ void SPI_Initalize(const SPI_TypeDef *SPI) {
     }
 }
 
-void SPI_Transmit(uint16_t data, const SPI_TypeDef *SPI) {
-    if(SPI == SPI1){
-        // Wait until transmit buffer is empty
-        while (!(SPI1->SR & SPI_SR_TXE));
+void SPI_Transmit(SPI_TypeDef *SPI, uint16_t data) {
+    // Wait until transmit buffer is empty
+    while (!(SPI->SR & SPI_SR_TXE));
 
-        // Send data
-        SPI1->DR = data;
-    }
-    else if(SPI == SPI2){
-        // Wait until transmit buffer is empty
-        while (!(SPI2->SR & SPI_SR_TXE));
-
-        // Send data
-        SPI2->DR = data;
-    }
+    // Send data
+    SPI->DR = data;
 }
 
 uint16_t SPI_Receive(const SPI_TypeDef *SPI) {
-    if(SPI == SPI1){
-        // Wait until receive buffer is full
-        while (!(SPI1->SR & SPI_SR_RXNE));
+    // Wait until receive buffer is full
+    while (!(SPI->SR & SPI_SR_RXNE));
 
-        // Return received data
-        return SPI1->DR;
-    }
-    else if(SPI == SPI2){
-        // Wait until receive buffer is full
-        while (!(SPI2->SR & SPI_SR_RXNE));
-
-        // Return received data
-        return SPI2->DR;
-    }
-    else{
-        return 0;
-    }
+    // Return received data
+    return SPI->DR;
 }
 
-uint16_t SPI_TransmitReceive(uint16_t data, const SPI_TypeDef *SPI) {
-    if(SPI == SPI1){
-        // Wait until transmit buffer is empty
-        while (!(SPI1->SR & SPI_SR_TXE));
-
-        // Send data
-        SPI1->DR = data;
-
-        // Wait until receive buffer is full
-        while (!(SPI1->SR & SPI_SR_RXNE));
-
-        // Return received data
-        return SPI1->DR;
-    }
-    else if(SPI == SPI2){
-        // Wait until transmit buffer is empty
-        while (!(SPI2->SR & SPI_SR_TXE));
-
-        // Send data
-        SPI2->DR = data;
-
-        // Wait until receive buffer is full
-        while (!(SPI2->SR & SPI_SR_RXNE));
-
-        // Return received data
-        return SPI2->DR;
-    }
-    else{
-        return 0;
-    }
+uint16_t SPI_TransmitReceive(const SPI_TypeDef *SPI, uint16_t data) {
+    SPI_Transmit(data, SPI);
+    SPI_Receive(SPI);
 }
