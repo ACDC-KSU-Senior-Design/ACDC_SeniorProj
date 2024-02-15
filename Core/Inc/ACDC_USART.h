@@ -45,22 +45,22 @@ void USART_SendChar(USART_TypeDef *USARTx, char chr);
 /// @brief Sends the string str over UART/USART. (Will automatically append "\r\n" to the transmision (BLOCKING))
 /// @param USARTx USART Peripheral (Ex. USART1, USART2, ...)
 /// @param str String to send over UART/USART
-void USART_SendString(USART_TypeDef *USARTx, char* str);
+void USART_SendString(USART_TypeDef *USARTx, const char* str);
 
 /// @brief Recieves a single character from  UART/USART (BLOCKING)
 /// @param USARTx USART Peripheral (Ex. USART1, USART2, ...)
 /// @return Character recieved over UART/USART
-char USART_RecieveChar(USART_TypeDef *USARTx);
+char USART_RecieveChar(const USART_TypeDef *USARTx);
 
 /// @brief Recieves a string from UART/USART and stops when "\n\r" is recieved or the buffer is full. (BLOCKING)
 /// @param USARTx USART Peripheral (Ex. USART1, USART2, ...)
 /// @param buffer Buffer to store the recieved string
 /// @param bufferLen Maximum length of the buffer
-void USART_RecieveString(USART_TypeDef *USARTx, char* buffer, uint16_t bufferLen);
+void USART_RecieveString(const USART_TypeDef *USARTx, char* buffer, uint16_t bufferLen);
 
 /// @brief Checks if there is data available in the USART recieve buffer.
 /// @param USARTx USART Peripheral (Ex. USART1, USART2, ...)
 /// @return True if there is data available to recieve, false otherwise.
-bool USART_HasDataToRecieve(USART_TypeDef *USARTx);
+bool USART_HasDataToRecieve(const USART_TypeDef *USARTx);
 
 #endif
