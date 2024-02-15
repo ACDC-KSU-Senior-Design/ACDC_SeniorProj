@@ -27,21 +27,19 @@
  SPI_TypeDef;
 */
 
-void SPI_Initalize(SPI_TypeDef *SPI) {
+void SPI_Initalize(const SPI_TypeDef *SPI) {
     if(SPI == SPI1){
-        RCC-> APB2ENR |= RCC_APB2ENR_IOPBEN;
-
         // Enable clock for SPI
         RCC->APB2ENR |= RCC_APB2ENR_SPI1EN;
 
         // Configure GPIO pins for SPI1
-        // Set PB3 (SCK) as alternate function push-pull output
+        // Set PA5 (SCK) as alternate function push-pull output
         GPIO_PinDirection(GPIOA, GPIO_PIN_5, GPIO_MODE_OUTPUT_SPEED_50MHz, GPIO_CNF_OUTPUT_AF_PUSH_PULL);
 
-        // Set PB4 (MISO) as input floating
+        // Set PA6 (MISO) as input floating
         GPIO_PinDirection(GPIOA, GPIO_PIN_6, GPIO_MODE_INPUT, GPIO_CNF_INPUT_FLOATING);
 
-        // Set PB5 (MOSI) as alternate function push-pull output
+        // Set PA7 (MOSI) as alternate function push-pull output
         GPIO_PinDirection(GPIOA, GPIO_PIN_7, GPIO_MODE_OUTPUT_SPEED_50MHz, GPIO_CNF_OUTPUT_AF_PUSH_PULL);
 
         // Configure SPI1
@@ -53,8 +51,6 @@ void SPI_Initalize(SPI_TypeDef *SPI) {
         SPI1->CR1 |= SPI_CR1_SPE;
     }
     else if(SPI == SPI2){
-        RCC-> APB1ENR |= RCC_APB1ENR_I2C2EN;
-
         // Enable clock for SPI2
         RCC->APB1ENR |= RCC_APB1ENR_SPI2EN;
 
@@ -76,79 +72,25 @@ void SPI_Initalize(SPI_TypeDef *SPI) {
         // Enable SPI2
         SPI2->CR1 |= SPI_CR1_SPE;
     }
-    else{
-        printf("Invalid SPI pointer.");
-    }
 }
 
-void SPI_Transmit(uint16_t data, SPI_TypeDef *SPI) {
-    if(SPI == SPI1){
-        // Wait until transmit buffer is empty
-        while (!(SPI1->SR & SPI_SR_TXE));
+void SPI_Transmit(SPI_TypeDef *SPI, uint16_t data) {
+    // Wait until transmit buffer is empty
+    while (!(SPI->SR & SPI_SR_TXE));
 
-        // Send data
-        SPI1->DR = data;
-    }
-    else if(SPI == SPI2){
-        // Wait until transmit buffer is empty
-        while (!(SPI2->SR & SPI_SR_TXE));
-
-        // Send data
-        SPI2->DR = data;
-    }
-    else{
-        printf("Invalid SPI pointer.");
-    }
+    // Send data
+    SPI->DR = data;
 }
 
-uint16_t SPI_Receive(SPI_TypeDef *SPI) {
-    if(SPI == SPI1){
-        // Wait until receive buffer is full
-        while (!(SPI1->SR & SPI_SR_RXNE));
+uint16_t SPI_Receive(const SPI_TypeDef *SPI) {
+    // Wait until receive buffer is full
+    while (!(SPI->SR & SPI_SR_RXNE));
 
-        // Return received data
-        return SPI1->DR;
-    }
-    else if(SPI == SPI2){
-        // Wait until receive buffer is full
-        while (!(SPI2->SR & SPI_SR_RXNE));
-
-        // Return received data
-        return SPI2->DR;
-    }
-    else{
-        printf("Invalid SPI pointer.");
-    }
+    // Return received data
+    return SPI->DR;
 }
 
-uint16_t SPI_TransmitReceive(uint16_t data, SPI_TypeDef *SPI) {
-    if(SPI == SPI1){
-        // Wait until transmit buffer is empty
-        while (!(SPI1->SR & SPI_SR_TXE));
-
-        // Send data
-        SPI1->DR = data;
-
-        // Wait until receive buffer is full
-        while (!(SPI1->SR & SPI_SR_RXNE));
-
-        // Return received data
-        return SPI1->DR;
-    }
-    else if(SPI == SPI2){
-        // Wait until transmit buffer is empty
-        while (!(SPI2->SR & SPI_SR_TXE));
-
-        // Send data
-        SPI2->DR = data;
-
-        // Wait until receive buffer is full
-        while (!(SPI2->SR & SPI_SR_RXNE));
-
-        // Return received data
-        return SPI2->DR;
-    }
-    else{
-        printf("Invalid SPI pointer.");
-    }
+uint16_t SPI_TransmitReceive(const SPI_TypeDef *SPI, uint16_t data) {
+    SPI_Transmit(data, SPI);
+    SPI_Receive(SPI);
 }

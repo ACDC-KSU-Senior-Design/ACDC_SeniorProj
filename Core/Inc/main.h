@@ -30,6 +30,7 @@ extern "C" {
 #include "ACDC_INTERRUPT.h"
 #include "ACDC_TIMER.h"
 #include "ACDC_USART.h"
+#include "ACDC_SPI.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
