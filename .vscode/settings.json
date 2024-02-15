@@ -10,6 +10,10 @@
         "acdc_stdint.h": "c",
         "acdc_string.h": "c",
         "acdc_clock.h": "c",
+        "acdc_usart.h": "c",
+        "acdc_timer.h": "c",
         "acdc_gpio.h": "c",
+        "stm32f1xx.h": "c",
+        "acdc_spi.h": "c",
     }
 }
