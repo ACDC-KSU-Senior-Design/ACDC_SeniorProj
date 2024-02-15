@@ -31,13 +31,13 @@ typedef enum{   // SPI Data Frame Format
     SPI_MODE_16Bit = 1          /**< 16-bit data frame format for Tx/Rx */
 }SPI_BitMode;
 
-/// @brief Initializes the SPI given
+/// @brief Initializes the SPI given (Default Values: SPI_MODE_16Bit, SPI_BAUD_DIV_2, MSB First)
 /// @param SPIx SPI to initialize
 void SPI_Init(SPI_TypeDef *SPIx);
 
 /// @brief Transmits data over the given SPI
-/// @param data Data to transmit
 /// @param SPIx SPI to transmit over
+/// @param data Data to transmit
 void SPI_Transmit(SPI_TypeDef *SPIx, uint16_t data);
 
 /// @brief Recieves data from a SPI
@@ -46,8 +46,8 @@ void SPI_Transmit(SPI_TypeDef *SPIx, uint16_t data);
 uint16_t SPI_Receive(const SPI_TypeDef *SPIx);
 
 /// @brief Transmits and recieves data over the SPI
-/// @param data Data to transmit
 /// @param SPIx SPI to transmit over
+/// @param data Data to transmit
 /// @return Data recieved
 uint16_t SPI_TransmitReceive(SPI_TypeDef *SPIx, uint16_t data);
 
