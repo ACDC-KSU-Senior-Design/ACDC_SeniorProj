@@ -34,8 +34,8 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
 
-  SPI_Initalize(SPI1);
-  SPI_Initalize(SPI2);
+  SPI_Init(SPI1);
+  SPI_Init(SPI2);
 
   uint16_t transmit = 190;
  

@@ -13,7 +13,7 @@
                 "STM32F103xB"
             ],
             "intelliSenseMode": "gcc-arm",
-            "compilerPath": "${env:ARMGCC_DIR}/arm-none-eabi-gcc.exe",
+            "compilerPath": "${env:ARMGCC_DIR}/arm-none-eabi-gcc",
             "compilerArgs": [
                 "-mcpu=cortex-m3",
                 "-mthumb"
