@@ -24,9 +24,9 @@ static void SPI_InitClk(const SPI_TypeDef *SPIx);
 static void SPI_InitPin(const SPI_TypeDef *SPIx, bool isMaster);
 #pragma endregion
 
-void SPI_Init(SPI_TypeDef *SPIx) {
+void SPI_Init(SPI_TypeDef *SPIx, bool isMaster) {
     SPI_InitClk(SPIx);
-    SPI_InitPin(SPIx, true);
+    SPI_InitPin(SPIx, isMaster);
 
     // Configure SPIx
     SPIx->CR1 &= ~(SPI_CR1_SPE);            // Disable SPIx
