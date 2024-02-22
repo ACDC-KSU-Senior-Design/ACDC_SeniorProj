@@ -31,9 +31,10 @@ typedef enum{   // SPI Data Frame Format
     SPI_MODE_16Bit = 1          /**< 16-bit data frame format for Tx/Rx */
 }SPI_BitMode;
 
-/// @brief Initializes the SPI given (Default Values: SPI_MODE_16Bit, SPI_BAUD_DIV_2, MSB First)
-/// @param SPIx SPI to initialize
-void SPI_Init(SPI_TypeDef *SPIx);
+/// @brief Initializes the SPIx peripheral to either the master or slave. (Default Values: SPI_MODE_16Bit, SPI_BAUD_DIV_2, MSB First)
+/// @param SPIx SPI Peripheral (Ex. SPI1 or SPI2)
+/// @param isMaster True if SPIx should act as the master, false if it should act as the slave
+void SPI_Init(SPI_TypeDef *SPIx, bool isMaster);
 
 /// @brief Transmits data over the given SPI
 /// @param SPIx SPI to transmit over
