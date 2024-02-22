@@ -13,6 +13,12 @@
 
 #include "ACDC_stdbool.h"
 
+/// @brief Copies the string pointed by source (including the null character) to the destination dest
+/// @param destination Destination buffer to copy the source string to
+/// @param source String to be copied
+/// @return Pointer to the copied string.
+char* StringCopy(char* dest, const char* source);
+
 /// @brief Compares two strings character by character. 
 ///        Returns 0 if the strings are equal, >0 if the first non-matching character in str1 is greater than str2,
 ///        and <0 if the first non-matching character in str1 is less than str2.
