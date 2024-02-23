@@ -40,6 +40,18 @@ void SPI_Init(SPI_TypeDef *SPIx, bool isMaster) {
     SPIx->CR1 |= SPI_CR1_SPE;
 }
 
+void SPI_EnableRemap(SPI_TypeDef *SPIx, bool enable){
+    if(SPIx == SPI1){
+        if(enable){
+            SET_BIT(RCC->APB2ENR, RCC_APB2ENR_AFIOEN);  // Enable the Alternate Function Clk
+            SET_BIT(AFIO->MAPR, AFIO_MAPR_SPI1_REMAP);  // Enable Remapping SPI1
+        }
+        else
+            CLEAR_BIT(AFIO->MAPR, AFIO_MAPR_SPI1_REMAP); // Disable SPI1 Remapping
+    }
+    //No remap available for SPI2
+}
+
 void SPI_Transmit(SPI_TypeDef *SPIx, uint16_t data) {
     // Wait until transmit buffer is empty
     while (!(SPIx->SR & SPI_SR_TXE));

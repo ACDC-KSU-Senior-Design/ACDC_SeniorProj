@@ -36,6 +36,11 @@ typedef enum{   // SPI Data Frame Format
 /// @param isMaster True if SPIx should act as the master, false if it should act as the slave
 void SPI_Init(SPI_TypeDef *SPIx, bool isMaster);
 
+/// @brief Enables pin remapping on SPIx depending on the value of enable (Only SPI1 can be remapped)
+/// @param SPIx SPI Peripheral (Ex. SPI1 or SPI2)
+/// @param enable True if the system should enable remapping for SPIx, false if it should not remap SPIx
+void SPI_EnableRemap(SPI_TypeDef *SPIx, bool enable);
+
 /// @brief Transmits data over the given SPI
 /// @param SPIx SPI to transmit over
 /// @param data Data to transmit
