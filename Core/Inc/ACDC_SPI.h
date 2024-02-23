@@ -62,6 +62,11 @@ uint16_t SPI_TransmitReceive(SPI_TypeDef *SPIx, uint16_t data);
 /// @param SPI_BAUD_DIV_x SPI Tx Baud rate divider (Ex. SPI_BAUD_DIV_2, SPI_BAUD_DIV_4, ...)
 void SPI_SetBaudDivider(SPI_TypeDef *SPIx, SPI_BaudDivider SPI_BAUD_DIV_x);
 
+/// @brief Calculates and sets the SPI baud divider to accompany the current peripherals maximum clock speed
+/// @param SPIx SPI Peripheral (Ex. SPI1 or SPI2)
+/// @param maxPeripheralClockSpeed Maximum clock speed the SPI peripheral can run at
+void SPI_CalculateAndSetBaudDivider(SPI_TypeDef *SPIx, uint32_t maxPeripheralClockSpeed);
+
 /// @brief Changes the SPIx peripheral between 8-bit and 16-bit mode
 /// @param SPIx SPI Peripheral (Ex. SPI1 or SPI2)
 /// @param SPI_MODE_x Bit mode selection for SPIx (Ex. SPI_MODE_8bit or SPI_MODE_16bit)

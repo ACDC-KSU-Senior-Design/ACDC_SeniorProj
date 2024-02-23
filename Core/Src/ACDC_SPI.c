@@ -79,6 +79,31 @@ void SPI_SetBaudDivider(SPI_TypeDef *SPIx, SPI_BaudDivider SPI_BAUD_DIV_x){
     SET_BIT(SPIx->CR1, SPI_BAUD_DIV_x << SPI_CR1_BR_Pos);   // Set the SPIx Baud Divisor bits
 }
 
+void SPI_CalculateAndSetBaudDivider(SPI_TypeDef *SPIx, uint32_t maxPeripheralClockSpeed){
+    uint32_t SpiClockSpeed;
+    if(SPIx == SPI1)
+        SpiClockSpeed = CLOCK_GetAPB1ClockSpeed(); // SPI1 is on the APB2 Clock {See RM-113}
+    else // SPI2
+        SpiClockSpeed = CLOCK_GetAPB2ClockSpeed(); // SPI2 is on the APB1 Clock {See RM-116}
+
+    if(SpiClockSpeed / 2 <= maxPeripheralClockSpeed)
+        SPI_SetBaudDivider(SPIx, SPI_BAUD_DIV_2);
+    else if(SpiClockSpeed / 4 <= maxPeripheralClockSpeed)
+        SPI_SetBaudDivider(SPIx, SPI_BAUD_DIV_4);
+    else if(SpiClockSpeed / 8 <= maxPeripheralClockSpeed)
+        SPI_SetBaudDivider(SPIx, SPI_BAUD_DIV_8);
+    else if(SpiClockSpeed / 16 <= maxPeripheralClockSpeed)
+        SPI_SetBaudDivider(SPIx, SPI_BAUD_DIV_16);
+    else if(SpiClockSpeed / 32 <= maxPeripheralClockSpeed)
+        SPI_SetBaudDivider(SPIx, SPI_BAUD_DIV_32);
+    else if(SpiClockSpeed / 64 <= maxPeripheralClockSpeed)
+        SPI_SetBaudDivider(SPIx, SPI_BAUD_DIV_64);
+    else if(SpiClockSpeed / 128 <= maxPeripheralClockSpeed)
+        SPI_SetBaudDivider(SPIx, SPI_BAUD_DIV_128);
+    else if(SpiClockSpeed / 256 <= maxPeripheralClockSpeed)
+        SPI_SetBaudDivider(SPIx, SPI_BAUD_DIV_256);
+}
+
 void SPI_SetBitMode(SPI_TypeDef *SPIx, SPI_BitMode SPI_MODE_x){
     //Note: This bit should be written only when SPI is disabled (SPE = ‘0’) for correct operation {See RM-742}
     bool wasInitialized = READ_BIT(SPIx->CR1, SPI_CR1_SPE) ? true : false;
