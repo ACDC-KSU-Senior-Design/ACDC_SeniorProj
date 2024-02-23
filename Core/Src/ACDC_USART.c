@@ -167,10 +167,10 @@ static void USART_InitPin(const USART_TypeDef *USARTx, bool useUART){
 }
 
 static uint16_t USART_CalculateUSARTDIV(SerialSpeed Serial_x){
-    SystemClockSpeed SCS_x = CLOCK_GetSystemClockSpeed();  // Grab the Current System Clock Speed
+    SystemClockSpeed SCS_x = CLOCK_GetAPB1ClockSpeed();    // Grab the Current System Clock Speed
     uint16_t Mantissa = SCS_x / (16 * Serial_x);           // Calculate the Mantissa
     uint8_t Divisor = (SCS_x / Serial_x) % 16;             // Calculate the Divider               {See RM-820}
-    return (Mantissa << 4) & 0xFFF0 | (Divisor & 0xF);     // Calculate and return the USARTDIV   {See RM-789}
+    return ((Mantissa << 4) & 0xFFF0) | (Divisor & 0xF);   // Calculate and return the USARTDIV   {See RM-789}
 }
 
 static bool USART_IsInitialized(const USART_TypeDef *USARTx){
