@@ -17,6 +17,17 @@
 #define UPPER_TO_LOWER 32   //Number of characters to move to reach a lowercase character from a uppercase character
 #define LOWER_TO_UPPER 32
 
+char* StringCopy(char* dest, const char* source){
+    int i = 0;
+    while(source[i] != '\0'){
+        dest[i] = source[i];
+        i++;
+    }
+    dest[i] = '\0';
+    
+    return dest;
+}
+
 int StringCompare(const char *str1, const char *str2){
     int i = 0;
     for(i = 0; i < StringLength(str1); i++) //Iterate over Length of string
@@ -38,15 +49,14 @@ int StringLength(const char *str){
 }
 
 char* StringConcat(char *dest, const char *source){
-    int srcLen = StringLength(source);  //Length of the Source
-    int dstLen = StringLength(dest);    //Length of the Destination
-
-    for(int i = 0; i < srcLen + dstLen; i++)
-        dest[i] = source[i-dstLen];     //Concat the source to the dest
-
-    dest[srcLen + dstLen] = '\0';       //Add null terminating char
-
-    return dest;                        //Return the Destination
+    int dstLen = StringLength(dest);    // Length of the Source
+    int i = dstLen;                     // Create iterator for the concatenation 
+    while(source[i - dstLen] != '\0'){
+        dest[i] = source[i - dstLen];   // Concat the source to the dest
+        i++;
+    }
+    dest[i] = '\0';                     // Add null terminating char
+    return dest;                        // Return the Destination pointer
 }
 
 int StringIndexOf(const char *str, char c){
