@@ -41,9 +41,7 @@ int main(void)
  
   while (1)
   {
-    SPI_Transmit(transmit, SPI1);
-    //transmit++;
-    SPI_Transmit(transmit, SPI2);
+    SPI_Transmit(SPI1, transmit);
   }
 }
 
