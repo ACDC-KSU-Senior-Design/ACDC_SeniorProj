@@ -14,8 +14,8 @@
 #include "ACDC_TIMER.h"
 
 void ADC_Recieve(uint16_t *data){
-    delay(1);
-    data = SPI_Receive(SPI2);
+    Delay(1);
+    data = (uint16_t *)SPI_Receive(SPI2);
     GPIO_Set(GPIOC, GPIO_PIN_7);
 }
 
