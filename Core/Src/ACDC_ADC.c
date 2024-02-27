@@ -11,6 +11,7 @@
 #include "ACDC_ADC.h"
 #include "ACDC_SPI.h"
 #include "ACDC_GPIO.h"
+#include "ACDC_TIMER.h"
 
 void ADC_Recieve(uint16_t *data){
     delay(1);
