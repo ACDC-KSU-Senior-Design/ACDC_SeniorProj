@@ -13,10 +13,11 @@
 #include "ACDC_GPIO.h"
 #include "ACDC_TIMER.h"
 
-void ADC_Recieve(uint16_t *data){
+uint16_t ADC_Recieve(){
     Delay(1);
-    data = (uint16_t *)SPI_Receive(SPI2);
+    uint16_t data = SPI_Receive(SPI2);
     GPIO_Set(GPIOC, GPIO_PIN_7);
+    return data;
 }
 
 void ADC_Send(){
