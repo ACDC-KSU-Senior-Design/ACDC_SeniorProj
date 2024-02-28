@@ -1,5 +1,6 @@
-#include "ACDC_LTC1298IS8_ADC.h"
+#include "ACDC_LTC1298_ADC.h"
 #include "ACDC_SPI.h"
+#include "ACDC_GPIO.h"
 #include "ACDC_CLOCK.h"
 
 // LTC1298 ADC Config {See LTC1298-12}
@@ -20,26 +21,35 @@ void LTCADC_Init(SPI_TypeDef *SPIx){
     SPI_CalculateAndSetBaudDivider(SPIx, MAX_CLOCK_SPEED); //TODO: Need to make a way to ASSERT if the CLOCK Speed is set low enough (BREAK IF NOT)
 }
 
+void LTCADC_InitCS(SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN){
+    LTCADC_Init(SPIx);
+    GPIO_PinDirection(GPIOx, GPIO_PIN, GPIO_MODE_OUTPUT_SPEED_2MHz, GPIO_CNF_OUTPUT_PUSH_PULL);
+}
+
 uint16_t LTCADC_ReadCH0(SPI_TypeDef *SPIx){
     uint16_t dataToTransmit = ADC_TRANSMISSON_START | ADC_MUX_MODE_SINGLE_ENDED | ADC_MUX_CHANNEL_0 | ADC_MUX_MSBFIRST;
-    return SPI_TransmitReceive(SPIx, dataToTransmit) >> 4;
+    SPI_Transmit(SPIx, dataToTransmit);         // Send the data to star the transmission
+    return SPI_TransmitReceive(SPIx, 0) >> 3;   // Data to send does not matter {See LTC1298-11}
 }
 
 uint16_t LTCADC_ReadCH1(SPI_TypeDef *SPIx){
     uint16_t dataToTransmit = ADC_TRANSMISSON_START | ADC_MUX_MODE_SINGLE_ENDED | ADC_MUX_CHANNEL_1 | ADC_MUX_MSBFIRST;
-    return SPI_TransmitReceive(SPIx, dataToTransmit) >> 4;
+    SPI_Transmit(SPIx, dataToTransmit);         // Send the data to start the tranmission
+    return SPI_TransmitReceive(SPIx, 0) >> 3;   // Data to send does not matter {See LTC1298-11}
 }
 
 uint16_t LTCADC_ReadCH0CS(SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN_x){
     GPIO_Clear(GPIOx, GPIO_PIN_x);              // Set the Chip Select Low
-    uint16_t adcData = LTCADC_READCH0(SPIx);    // Read the value from the ADC
+    uint16_t adcData = LTCADC_ReadCH0(SPIx);    // Read the value from the ADC
+    while(SPIx->SR & SPI_SR_BSY){}              // Wait until SPIx is done
     GPIO_Set(GPIOx, GPIO_PIN_x);                // Set the Chip Select High
     return adcData;
 }
 
 uint16_t LTCADC_ReadCH1CS(SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN_x){
     GPIO_Clear(GPIOx, GPIO_PIN_x);              // Set the Chip Select Low
-    uint16_t adcData = LTCADC_READCH1(SPIx);    // Read the value from the ADC
+    uint16_t adcData = LTCADC_ReadCH1(SPIx);    // Read the value from the ADC
+    while(READ_BIT(SPIx->SR, SPI_SR_BSY)){}     // Wait until SPIx is done
     GPIO_Set(GPIOx, GPIO_PIN_x);                // Set the Chip Select High
     return adcData;
 }

@@ -7,8 +7,8 @@
  * 
  * @copyright Copyright (c) 2023-2024
  */
-#ifndef __ACDC_LTC1298IS8_ADC_H
-#define __ACDC_LTC1298IS8_ADC_H
+#ifndef __ACDC_LTC1298_ADC_H
+#define __ACDC_LTC1298_ADC_H
 
 #include "stm32f1xx.h"
 #include "ACDC_stdint.h"
@@ -16,6 +16,12 @@
 /// @brief Initiliazes the external LTC1298IS8 ADC to work with SPIx
 /// @param SPIx SPI Peripheral (Ex. SPI1 or SPI2)
 void LTCADC_Init(SPI_TypeDef *SPIx);
+
+/// @brief Initiliazes the external LTC1298IS8 ADC to work with SPIx. Also sets up the software CS pin for SPIx
+/// @param SPIx SPI Peripheral (Ex. SPI1 or SPI2)
+/// @param GPIOx GPIO Port for the chip select pin (Ex. GPIOA, GPIOB, ...)
+/// @param GPIO_PIN Desired chip select pin on port GPIOx (Ex. GPIO_PIN_0, GPIO_PIN_1, ...)
+void LTCADC_InitCS(SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN);
 
 /// @brief Reads the current ADC value on channel 0 (Hardware CS)
 /// @param SPIx SPI Peripheral (Ex. SPI1 or SPI2)
