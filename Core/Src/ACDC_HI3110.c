@@ -9,4 +9,5 @@
  */
 
 #include "ACDC_HI3110.h"
+#include "ACDC_HI311x_REG.h"
 #include "ACDC_SPI.h"
