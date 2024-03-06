@@ -130,9 +130,9 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a9f3e01542a7d0c240cec0e0c10e98fde" id="r_a9f3e01542a7d0c240cec0e0c10e98fde"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f3e01542a7d0c240cec0e0c10e98fde">SPI_Init</a> (SPI_TypeDef *SPIx)</td></tr>
-<tr class="memdesc:a9f3e01542a7d0c240cec0e0c10e98fde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the SPI given (Default Values: SPI_MODE_16Bit, SPI_BAUD_DIV_2, MSB First)  <br /></td></tr>
-<tr class="separator:a9f3e01542a7d0c240cec0e0c10e98fde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e0b2757491c0a19c201ab4f537406a0" id="r_a2e0b2757491c0a19c201ab4f537406a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2e0b2757491c0a19c201ab4f537406a0">SPI_Init</a> (SPI_TypeDef *SPIx, <a class="el" href="ACDC__stdbool_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a> isMaster)</td></tr>
+<tr class="memdesc:a2e0b2757491c0a19c201ab4f537406a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the SPIx peripheral to either the master or slave. (Default Values: SPI_MODE_16Bit, SPI_BAUD_DIV_2, MSB First)  <br /></td></tr>
+<tr class="separator:a2e0b2757491c0a19c201ab4f537406a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b37ff77b5e665642503a6b1e4d53d76" id="r_a3b37ff77b5e665642503a6b1e4d53d76"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b37ff77b5e665642503a6b1e4d53d76">SPI_Transmit</a> (SPI_TypeDef *SPIx, <a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> data)</td></tr>
 <tr class="memdesc:a3b37ff77b5e665642503a6b1e4d53d76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmits data over the given SPI.  <br /></td></tr>
 <tr class="separator:a3b37ff77b5e665642503a6b1e4d53d76"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -225,8 +225,8 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a9f3e01542a7d0c240cec0e0c10e98fde" name="a9f3e01542a7d0c240cec0e0c10e98fde"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9f3e01542a7d0c240cec0e0c10e98fde">&#9670;&#160;</a></span>SPI_Init()</h2>
+<a id="a2e0b2757491c0a19c201ab4f537406a0" name="a2e0b2757491c0a19c201ab4f537406a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e0b2757491c0a19c201ab4f537406a0">&#9670;&#160;</a></span>SPI_Init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -234,16 +234,21 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void SPI_Init </td>
           <td>(</td>
-          <td class="paramtype">SPI_TypeDef *</td>          <td class="paramname"><span class="paramname"><em>SPIx</em></span></td><td>)</td>
+          <td class="paramtype">SPI_TypeDef *</td>          <td class="paramname"><span class="paramname"><em>SPIx</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="ACDC__stdbool_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a></td>          <td class="paramname"><span class="paramname"><em>isMaster</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Initializes the SPI given (Default Values: SPI_MODE_16Bit, SPI_BAUD_DIV_2, MSB First) </p>
+<p>Initializes the SPIx peripheral to either the master or slave. (Default Values: SPI_MODE_16Bit, SPI_BAUD_DIV_2, MSB First) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">SPIx</td><td>SPI to initialize </td></tr>
+    <tr><td class="paramname">SPIx</td><td>SPI Peripheral (Ex. SPI1 or SPI2) </td></tr>
+    <tr><td class="paramname">isMaster</td><td>True if SPIx should act as the master, false if it should act as the slave </td></tr>
   </table>
   </dd>
 </dl>

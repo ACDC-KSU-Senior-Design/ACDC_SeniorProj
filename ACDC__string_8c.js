@@ -4,6 +4,7 @@ var ACDC__string_8c =
     [ "UPPER_TO_LOWER", "ACDC__string_8c.html#a9f91cb7839c2c02f1a4dd7444941241b", null ],
     [ "StringCompare", "ACDC__string_8c.html#a6c7fa9b330b08e7d0d8259df8915b795", null ],
     [ "StringConcat", "ACDC__string_8c.html#a4751d5aa1941ca761fb4d656744d82c3", null ],
+    [ "StringCopy", "ACDC__string_8c.html#a3539d9cba5f3855737c22249ed29ec03", null ],
     [ "StringEndsWith", "ACDC__string_8c.html#af0d8f508f9c6b87608946dd1b0a5ddb6", null ],
     [ "StringIndexOf", "ACDC__string_8c.html#addf439076a938dfff99f9a522a37f846", null ],
     [ "StringIsAlphabetic", "ACDC__string_8c.html#a2120964fc170b171f139da671435dba6", null ],

@@ -1,5 +1,7 @@
 var NAVTREEINDEX1 =
 {
+"ACDC__string_8h.html#af0d8f508f9c6b87608946dd1b0a5ddb6":[1,0,0,0,6,3],
+"ACDC__string_8h.html#afbd68f59184006ad6ad668327ccdf2bc":[1,0,0,0,6,11],
 "ACDC__string_8h_source.html":[1,0,0,0,6],
 "dir_b596f468b52957496e4f78b80e029268.html":[1,0,0,1],
 "dir_c6310732a22f63c0c2fc5595561e68f1.html":[1,0,0],

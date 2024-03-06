@@ -14,7 +14,7 @@ var ACDC__SPI_8h =
       [ "SPI_MODE_8Bit", "ACDC__SPI_8h.html#a54de5248b99280124bddc78d46bedc4fa87027ae2752f1946d0a1b9fb17c643d2", null ],
       [ "SPI_MODE_16Bit", "ACDC__SPI_8h.html#a54de5248b99280124bddc78d46bedc4faf38a4a442bd3fc41199676248edaf032", null ]
     ] ],
-    [ "SPI_Init", "ACDC__SPI_8h.html#a9f3e01542a7d0c240cec0e0c10e98fde", null ],
+    [ "SPI_Init", "ACDC__SPI_8h.html#a2e0b2757491c0a19c201ab4f537406a0", null ],
     [ "SPI_Receive", "ACDC__SPI_8h.html#a94eb1de2a9699471e9e46f3bd6bd8fec", null ],
     [ "SPI_SetBaudDivider", "ACDC__SPI_8h.html#ab8fabe7c2249e0290047b09a0d636cd4", null ],
     [ "SPI_SetBitMode", "ACDC__SPI_8h.html#a61052865780566374e3dc096bf0c484b", null ],

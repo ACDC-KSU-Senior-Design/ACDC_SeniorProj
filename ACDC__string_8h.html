@@ -107,6 +107,9 @@ $(function(){initNavTree('ACDC__string_8h.html',''); initResizable(); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a3539d9cba5f3855737c22249ed29ec03" id="r_a3539d9cba5f3855737c22249ed29ec03"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3539d9cba5f3855737c22249ed29ec03">StringCopy</a> (char *dest, const char *source)</td></tr>
+<tr class="memdesc:a3539d9cba5f3855737c22249ed29ec03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the string pointed by source (including the null character) to the destination dest.  <br /></td></tr>
+<tr class="separator:a3539d9cba5f3855737c22249ed29ec03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6c7fa9b330b08e7d0d8259df8915b795" id="r_a6c7fa9b330b08e7d0d8259df8915b795"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c7fa9b330b08e7d0d8259df8915b795">StringCompare</a> (const char *str1, const char *str2)</td></tr>
 <tr class="memdesc:a6c7fa9b330b08e7d0d8259df8915b795"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares two strings character by character. Returns 0 if the strings are equal, &gt;0 if the first non-matching character in str1 is greater than str2, and &lt;0 if the first non-matching character in str1 is less than str2.  <br /></td></tr>
 <tr class="separator:a6c7fa9b330b08e7d0d8259df8915b795"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -216,6 +219,37 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the concatenated string (dest + source). The original string is modified </dd></dl>
+
+</div>
+</div>
+<a id="a3539d9cba5f3855737c22249ed29ec03" name="a3539d9cba5f3855737c22249ed29ec03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3539d9cba5f3855737c22249ed29ec03">&#9670;&#160;</a></span>StringCopy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char * StringCopy </td>
+          <td>(</td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>dest</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>source</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copies the string pointed by source (including the null character) to the destination dest. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">destination</td><td>Destination buffer to copy the source string to </td></tr>
+    <tr><td class="paramname">source</td><td>String to be copied </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the copied string. </dd></dl>
 
 </div>
 </div>
