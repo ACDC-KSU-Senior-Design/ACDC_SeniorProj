@@ -150,21 +150,20 @@ void CLOCK_SetMcoOutput(MicroClockOutput MCO_x){
         RCC->CFGR = regVal | MCO_x;                     // Sets the Desired MCO Bits
 }
 
-void CLOCK_SetADCPrescaler(ADC_Prescaler ADC_DIV_x){
-    uint32_t tempReg = RCC->CFGR & ~RCC_CFGR_ADCPRE_Msk;        // Clear the ADC Prescaler bits in RCC->CFGR
-    RCC->CFGR = tempReg | (ADC_DIV_x << RCC_CFGR_ADCPRE_Pos);   // Set the ADC_DIV_x bits in RCC->CFGR
+void CLOCK_SetADCPrescaler(ADC_Prescaler ADC_DIV_x){   
+    MODIFY_REG(RCC->CFGR, RCC_CFGR_ADCPRE_Msk, ADC_DIV_x);  // Modify the register to place the new ADC Divider
 }
 
 void CLOCK_SetAPB1Prescaler(APB_Prescaler APB_DIV_x){
-    uint32_t tempReg = RCC->CFGR & ~RCC_CFGR_PPRE1_Msk;         // Clear the APB1 Bits in RCC->CFGR
-    RCC->CFGR = tempReg | (APB_DIV_x << RCC_CFGR_PPRE1_Pos);    // Set the APB_DIV_x bits in RCC->CFGR
-    APB1_Prescaler = APB_DIV_x;                                 // Set the Private variable
+    uint32_t setMask = (APB_DIV_x & 0b111) << RCC_CFGR_PPRE1_Pos; // Create the mask to set the APB Divider
+    MODIFY_REG(RCC->CFGR, RCC_CFGR_PPRE1_Msk, setMask);           // Modify the Register to to place the new APB Divider
+    APB1_Prescaler = APB_DIV_x;                                   // Set the Private variable
 }
 
-void CLOCK_SetAPB2Prescaler(APB_Prescaler APB_DIV_x){
-    uint32_t tempReg = RCC->CFGR & ~RCC_CFGR_PPRE2_Msk;         // Clear the APB2 Bits in RCC->CFGR
-    RCC->CFGR = tempReg | (APB_DIV_x << RCC_CFGR_PPRE2_Pos);    // Set the APB_DIV_x bits in RCC->CFGR
-    APB2_Prescaler = APB_DIV_x;                                 // Set the Private variable
+void CLOCK_SetAPB2Prescaler(APB_Prescaler APB_DIV_x){   
+    uint32_t setMask = (APB_DIV_x & 0b111) << RCC_CFGR_PPRE2_Pos; // Create the mask to set the APB Divider
+    MODIFY_REG(RCC->CFGR, RCC_CFGR_PPRE2_Msk, setMask);           // Modify the Register to to place the new APB Divider
+    APB2_Prescaler = APB_DIV_x;                                   // Set the Private variable
 }
 #pragma endregion
 
@@ -192,19 +191,19 @@ static void EnableHSI_DisablePLL(void){
 }
 
 static void SetFlashMemorySpeed(SystemClockSpeed SCS_x, uint32_t RCC_CFGR_HPRE_x){
-    if(RCC_CFGR_HPRE_x == RCC_CFGR_HPRE_1){                 // AHB Prescaler is 1
+    if(RCC_CFGR_HPRE_x == RCC_CFGR_HPRE_DIV1){              // AHB Prescaler is 1
         CLEAR_BIT(FLASH->ACR, FLASH_ACR_PRFTBE);            // Disable the prefetch buffer
         while((READ_BIT(FLASH->ACR, FLASH_ACR_PRFTBS))){}   // Wait until the buffer is disabled
     }  
     else{                                                   // AHB Prescaler is 2 or 3
         SET_BIT(FLASH->ACR, FLASH_ACR_PRFTBE);              // Enable the prefetch buffer
-        while(!(READ_BIT(FLASH->ACR, FLASH_ACR_PRFTBS))){}  // Wait until the buffer is enabled
+        while((READ_BIT(FLASH->ACR, FLASH_ACR_PRFTBS))){}   // Wait until the buffer is enabled
     }
 
     uint32_t flashLatency;  //Desired flash latency {See RM-58}
     if(SCS_x <= SCS_24MHz)
         flashLatency = FLASH_ACR_LATENCY_0;
-    else if(SCS_x <= FLASH_ACR_LATENCY_1)
+    else if(SCS_x <= SCS_48MHz)
         flashLatency = FLASH_ACR_LATENCY_1;
     else
         flashLatency = FLASH_ACR_LATENCY_2;

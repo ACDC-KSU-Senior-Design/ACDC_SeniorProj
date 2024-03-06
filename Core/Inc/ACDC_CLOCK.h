@@ -70,11 +70,11 @@ typedef enum{   /* ADC Clock Prescaler */
 }ADC_Prescaler;
 
 typedef enum{   /* APBx Clock Prescaler */
-    APB_DIV_1   = RCC_CFGR_PPRE1_DIV1,  /**< CLK not divided   */
-    APB_DIV_2   = RCC_CFGR_PPRE1_DIV2,  /**< CLK divided by 2  */
-    APB_DIV_4   = RCC_CFGR_PPRE1_DIV4,  /**< CLK divided by 4  */
-    APB_DIV_8   = RCC_CFGR_PPRE1_DIV8,  /**< CLK divided by 8  */ 
-    APB_DIV_16  = RCC_CFGR_PPRE1_DIV16, /**< CLK divided by 16 */
+    APB_DIV_1   = 0b000,  /**< CLK not divided   */
+    APB_DIV_2   = 0b100,  /**< CLK divided by 2  */
+    APB_DIV_4   = 0b101,  /**< CLK divided by 4  */
+    APB_DIV_8   = 0b110,  /**< CLK divided by 8  */ 
+    APB_DIV_16  = 0b111,  /**< CLK divided by 16 */
 }APB_Prescaler;    
 
 /// @brief Sets the SYSCLK speed, and sets the perepherals to their fastest speed available
