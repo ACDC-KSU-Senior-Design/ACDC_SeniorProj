@@ -20,6 +20,20 @@ typedef enum{
     TT_RISING_AND_FALLING_EDGE = 0b11  /**< Interrupt Occurs on both the Rising and Falling Edges */
 } GPIO_TriggerType;
 
+/// @brief Enables Interrupts for the specific vector IRQn
+/// @param IRQn Interrupt vector to enable
+void INTERRUPT_Enable(IRQn_Type IRQn);
+
+/// @brief Disables Interrupts for the specific vector IRQn
+/// @param IRQn Interrupt vector to disable
+void INTERRUPT_Disable(IRQn_Type IRQn);
+
+/// @brief Sets the priority of the Interrupt vector IRQn. (0-15, A lower value means higher priority)
+/// @param IRQn Interrupt vector
+/// @param PreemptPriority Preempt Priority of the IRQn vector (Value: 0-15 Lower value means higher priority)
+/// @param SubPriority SubPriority of the IRQn vector (Value 0-15 Lower value means higher priority)
+void INTERRUPT_SetPriority(IRQn_Type IRQn, uint8_t Priority);
+
 /// @brief Enables Interrupts for GPIO_PIN on GPIOx. (Make sure to set GPIO_PIN as an Input)
 /// @param GPIOx Port of the GPIO (Ex. GPIOA, GPIOB, ...) 
 /// @param GPIO_PIN Desired pin on port GPIOx (Ex. GPIO_PIN_0, GPIO_PIN_1, ...)
