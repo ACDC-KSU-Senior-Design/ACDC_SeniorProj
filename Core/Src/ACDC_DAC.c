@@ -14,9 +14,9 @@
 #include "ACDC_TIMER.h"
 
 uint16_t DAC_Recieve(){
+    GPIO_Set(GPIOA, GPIO_PIN_8);
     Delay(1);
     uint16_t data = SPI_Receive(SPI2);
-    GPIO_Set(GPIOA, GPIO_PIN_8);
     return data;
 }
 
