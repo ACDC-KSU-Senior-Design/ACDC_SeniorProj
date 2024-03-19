@@ -26,29 +26,17 @@ static void ACDC_Init(SystemClockSpeed SCS_x);
   */
 int main(void)
 {
-  //HAL_Init();       //Need to look deeper into this
-  //SystemClock_Config(); //Shoulnt need anymore
-
-  ACDC_Init(SCS_10MHz);
-
-  MX_GPIO_Init();
-  MX_USART2_UART_Init();
-
-  SPI_Init(SPI1);
-  SPI_Init(SPI2);
-
-  uint16_t transmit = 190;
+  ACDC_Init(SCS_72MHz);
  
   while (1)
   {
     SPI_Transmit(SPI1, transmit);
+   Delay(100);
   }
 }
 
 static void ACDC_Init(SystemClockSpeed SCS_x){
-  CLOCK_SetSystemClockSpeed(SCS_x);   //72Mhz doesnt quite work Rn
-  CLOCK_SetAPB1Prescaler(APB_DIV_2);  //Max Speed is 36Mhz
-  CLOCK_SetAPB2Prescaler(APB_DIV_2);  //Max Speed is 36Mhz
+  CLOCK_SetSystemClockSpeed(SCS_x);
 
   CLOCK_SetMcoOutput(MCO_SYSCLK);     //Sets PA8 as the output of SysClock
   GPIO_PinDirection(GPIOA, GPIO_PIN_5, GPIO_MODE_OUTPUT_SPEED_50MHz, GPIO_CNF_OUTPUT_PUSH_PULL);
