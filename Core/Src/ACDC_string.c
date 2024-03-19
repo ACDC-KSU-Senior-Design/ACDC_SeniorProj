@@ -171,3 +171,42 @@ bool StringIsAlphanumeric(const char* str){
 
     return true;
 }
+
+void StringConvert(int num, char* buffer){
+    bool isNeg;
+    int i = 0;
+
+    if(num < 0){
+        isNeg = true;
+        num = -num;
+    }
+    else{
+        isNeg = false;
+    }
+
+    if(num == 0){
+        buffer[i++] = '0';
+    }
+
+    // put int into the string in reversed order
+    while(num != 0){
+        int digit = num % 10;
+        buffer[i++] = '0' + digit;
+        num /= 10;
+    }
+
+    if(isNeg){
+        buffer[i++] = '-';
+    }
+
+    //reverse buffer so string is in correct order
+    int start = 0;
+    int end = i - 1;
+    while (start < end) {
+        char temp = buffer[start];
+        buffer[start] = buffer[end];
+        buffer[end] = temp;
+        start++;
+        end--;
+    }
+}

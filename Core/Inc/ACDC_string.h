@@ -92,4 +92,9 @@ bool StringIsAlphabetic(const char* str);
 /// @return True if all characters are alphanumeric, otherwise false.
 bool StringIsAlphanumeric(const char* str);
 
+/// @brief Converts an int into a string
+/// @param num intiger to convert into a string
+/// @return A pointer to a char that is the begining of the string
+void StringConvert(int num, char* buffer);
+
 #endif
