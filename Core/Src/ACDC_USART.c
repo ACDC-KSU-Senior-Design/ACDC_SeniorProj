@@ -24,9 +24,10 @@ static void USART_InitClk(const USART_TypeDef *USARTx);
 static void USART_InitPin(const USART_TypeDef *USARTx, bool useUART);
 
 /// @brief Calculates the USARTDIV for the USARTx-BRR using the SerialSpeed Serial_x and the system clock speed
+/// @param USARTx USART Peripheral (Ex. USART1, USART2, ...)
 /// @param Serial_x Tx/Rx speed of the USART peripheral (Ex. Serial_115200, Serial_9600, ...)
 /// @return USARTDIV to be stored in the USARTx->BRR Register
-static uint16_t USART_CalculateUSARTDIV(SerialSpeed Serial_x);
+static uint16_t USART_CalculateUSARTDIV(const USART_TypeDef *USARTx, SerialSpeed Serial_x);
 
 /// @brief Checks if the current USARTx peripheral has been initialized.
 /// @param USARTx USART Peripheral (Ex. USART1, USART2, ...)
@@ -59,12 +60,12 @@ void USART_Init(USART_TypeDef *USARTx, SerialSpeed Serial_x, bool useUART){
 
 void USART_ChangeSerialSpeed(USART_TypeDef *USARTx, SerialSpeed Serial_x){
     if( USART_IsInitialized(USARTx))                                    // If the preherphial has already been initilized
-        CLEAR_BIT(USARTx->CR1, USART_CR1_UE);                   // Disable the USART peripheral
+        CLEAR_BIT(USARTx->CR1, USART_CR1_UE);                           // Disable the USART peripheral
     
-    WRITE_REG(USARTx->BRR, USART_CalculateUSARTDIV(Serial_x));  // Set the Baud Rate 
+    WRITE_REG(USARTx->BRR, USART_CalculateUSARTDIV(USARTx, Serial_x));  // Set the Baud Rate 
 
     if( USART_IsInitialized(USARTx))                                    // If the preherphial has already been initilized
-        SET_BIT(USARTx->CR1, USART_CR1_UE);                     // Enable the USART peripheral
+        SET_BIT(USARTx->CR1, USART_CR1_UE);                             // Enable the USART peripheral
 }
 
 void USART_SendChar(USART_TypeDef *USARTx, char chr){
@@ -72,7 +73,7 @@ void USART_SendChar(USART_TypeDef *USARTx, char chr){
     WRITE_REG(USARTx->DR, chr & USART_DR_DR_Msk); // Transmit the data
 }
 
-void USART_SendString(USART_TypeDef *USARTx, char* str){
+void USART_SendString(USART_TypeDef *USARTx, const char* str){
     for(uint32_t i = 0; str[i] != '\0'; i++)    // Iterate over the whole string
         USART_SendChar(USARTx, str[i]);         // Send each character 1 by 1
 
@@ -80,12 +81,12 @@ void USART_SendString(USART_TypeDef *USARTx, char* str){
     USART_SendChar(USARTx, '\n'); // Carriage return & Line feed
 }
 
-char USART_RecieveChar(USART_TypeDef *USARTx){
+char USART_RecieveChar(const USART_TypeDef *USARTx){
     while(!READ_BIT(USARTx->SR, USART_SR_RXNE)){}  // Wait until available in the buffer
     return READ_REG(USARTx->DR & 0xFF);            // Retrieve the character and return it
 }
 
-void USART_RecieveString(USART_TypeDef *USARTx, char* buffer, uint16_t bufferLen){
+void USART_RecieveString(const USART_TypeDef *USARTx, char* buffer, uint16_t bufferLen){
     uint16_t i;
     for(i = 0; i < bufferLen; i++){                    // Iterate over the maximum buffer size
         buffer[i] = USART_RecieveChar(USARTx);         // Read the next character in the USARTx buffer
@@ -99,7 +100,7 @@ void USART_RecieveString(USART_TypeDef *USARTx, char* buffer, uint16_t bufferLen
     buffer[i-1] = '\0';                                // End the string with a null terminating character
 }
 
-bool USART_HasDataToRecieve(USART_TypeDef *USARTx){
+bool USART_HasDataToRecieve(const USART_TypeDef *USARTx){
     return READ_BIT(USARTx->SR, USART_SR_RXNE) >> USART_SR_RXNE_Pos;
 }
 #pragma endregion
@@ -166,11 +167,16 @@ static void USART_InitPin(const USART_TypeDef *USARTx, bool useUART){
     GPIO_PinDirection(GPIO_Port, Rx_Pin, GPIO_MODE_INPUT             , GPIO_CNF_INPUT_FLOATING     );
 }
 
-static uint16_t USART_CalculateUSARTDIV(SerialSpeed Serial_x){
-    SystemClockSpeed SCS_x = CLOCK_GetSystemClockSpeed();  // Grab the Current System Clock Speed
+static uint16_t USART_CalculateUSARTDIV(const USART_TypeDef *USARTx, SerialSpeed Serial_x){
+    SystemClockSpeed SCS_x;                 // Grab the Current System Clock Speed
+    if(USARTx == USART1)        
+        SCS_x = CLOCK_GetAPB2ClockSpeed();  // See {RM-113}
+    else // USART2 or USART3
+        SCS_x = CLOCK_GetAPB1ClockSpeed();  // See {RM-116}
+
     uint16_t Mantissa = SCS_x / (16 * Serial_x);           // Calculate the Mantissa
     uint8_t Divisor = (SCS_x / Serial_x) % 16;             // Calculate the Divider               {See RM-820}
-    return (Mantissa << 4) & 0xFFF0 | (Divisor & 0xF);     // Calculate and return the USARTDIV   {See RM-789}
+    return ((Mantissa << 4) & 0xFFF0) | (Divisor & 0xF);   // Calculate and return the USARTDIV   {See RM-789}
 }
 
 static bool USART_IsInitialized(const USART_TypeDef *USARTx){
