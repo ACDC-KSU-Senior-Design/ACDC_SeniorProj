@@ -30,7 +30,6 @@ int main(void)
  
   while (1)
   {
-    SPI_Transmit(SPI1, transmit);
    Delay(100);
   }
 }

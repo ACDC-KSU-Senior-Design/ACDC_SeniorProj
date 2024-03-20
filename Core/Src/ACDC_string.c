@@ -28,7 +28,7 @@ char* StringCopy(char* dest, const char* source){
     return dest;
 }
 
-int StringCompare(const char *str1, const char *str2){
+int32_t StringCompare(const char *str1, const char *str2){
     int i = 0;
     for(i = 0; i < StringLength(str1); i++) //Iterate over Length of string
         if(str1[i] != str2[i])               //If strings are not equal
@@ -42,7 +42,7 @@ int StringCompare(const char *str1, const char *str2){
         return 0;
 }
 
-int StringLength(const char *str){
+int32_t StringLength(const char *str){
     int i = 0;                  //Initilize a counter
     while(str[++i] != '\0'){}   //Increment i when not at the end of the string
     return i;                   //Return counter
@@ -59,7 +59,7 @@ char* StringConcat(char *dest, const char *source){
     return dest;                        // Return the Destination pointer
 }
 
-int StringIndexOf(const char *str, char c){
+int32_t StringIndexOf(const char *str, char c){
     for(int i = 0; i < StringLength(str); i++)
         if(str[i] == c)
             return i;
@@ -182,41 +182,31 @@ bool StringIsAlphanumeric(const char* str){
     return true;
 }
 
-void StringConvert(int num, char* buffer){
-    bool isNeg;
-    int i = 0;
+void StringConvert(int32_t num, char* dest){
+    // maximum number of characters in a int32_t (-2,147,483,647 -> 2,147,483,647 or 11 chars)
+    bool isNeg = false;
+    int strLen = 0;
 
-    if(num < 0){
-        isNeg = true;
-        num = -num;
-    }
-    else{
-        isNeg = false;
-    }
-
-    if(num == 0){
-        buffer[i++] = '0';
+    if(num == 0){                   // If the number is 0
+        StringCopy(dest, "0");      // Set dest to 0 and return
+        return;
+    }else if(num < 0){              // If the number is negative
+        isNeg = true;               // Set the isNegative variable true
+        num = -num;                 // Temporarily convert it to positive
     }
 
-    // put int into the string in reversed order
-    while(num != 0){
-        int digit = num % 10;
-        buffer[i++] = '0' + digit;
-        num /= 10;
+    while(num != 0){                             // If the remaining number to convert is 0 (no more characters to convert)
+        dest[strLen++] = "0123456789"[num % 10]; // Grab the next digit in the 1's place
+        num /= 10;                               // Shift the entire number down 1 place (Ex. 1234 -> 123 -> 12 -> 1)
     }
 
-    if(isNeg){
-        buffer[i++] = '-';
+    if(isNeg)                           // If the number was negative
+        dest[strLen++] = '-';           // Append the negative sign onto the string
+    
+    for(int i = 0; i < strLen/2; i++){  // Reverse the string
+        char temp = dest[i];
+        dest[i] = dest[strLen-i-1];
+        dest[strLen-i-1] = temp;
     }
-
-    //reverse buffer so string is in correct order
-    int start = 0;
-    int end = i - 1;
-    while (start < end) {
-        char temp = buffer[start];
-        buffer[start] = buffer[end];
-        buffer[end] = temp;
-        start++;
-        end--;
-    }
+    dest[strLen] = '\0';                // Append the null terminating character
 }
