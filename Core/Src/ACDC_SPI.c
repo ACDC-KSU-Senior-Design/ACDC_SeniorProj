@@ -12,7 +12,10 @@
  */
 
 #include "ACDC_SPI.h"
+#include "ACDC_GPIO.h"
 #include "ACDC_CLOCK.h"
+
+//TODO: need a function to see if there is data waiting in the recieve buffer
 
 #pragma region PRIVATE_FUNCTION_PROTOTYPES
 /// @brief Enables the SPIx peripheral clock (Needed for peripheral to function)
@@ -41,6 +44,11 @@ void SPI_Init(SPI_TypeDef *SPIx, bool isMaster) {
     SPIx->CR1 |= SPI_CR1_SPE;
 }
 
+void SPI_InitCS(SPI_TypeDef *SPIx, bool isMaster, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN){
+    SPI_Init(SPIx, isMaster);
+    GPIO_PinDirection(GPIOx, GPIO_PIN, GPIO_MODE_OUTPUT_SPEED_50MHz, GPIO_CNF_OUTPUT_PUSH_PULL);
+}
+
 void SPI_EnableRemap(SPI_TypeDef *SPIx, bool enable){
     if(SPIx == SPI1){
         if(enable){
@@ -59,6 +67,8 @@ void SPI_Transmit(SPI_TypeDef *SPIx, uint16_t data) {
 
     // Send data
     SPIx->DR = data;
+
+    while(!READ_BIT(SPIx->SR, SPI_SR_TXE)){}    // Wait to return until the transmission has completed (Needed for CS pin)
 }
 
 uint16_t SPI_Receive(const SPI_TypeDef *SPIx) {
@@ -74,6 +84,14 @@ uint16_t SPI_TransmitReceive(SPI_TypeDef *SPIx, uint16_t data) {
     return SPI_Receive(SPIx);
 }
 
+uint16_t SPI_TransmitReceiveCS(SPI_TypeDef *SPIx, uint16_t data, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN){
+    GPIO_Clear(GPIOx, GPIO_PIN);                                // Set CS Low
+    uint16_t returnedData = SPI_TransmitReceive(SPIx, data);    // Transmit and Recieve the data
+    while(READ_BIT(SPIx->SR, SPI_SR_BSY)){}                     // Wait until the data has finished sending
+    GPIO_Set(GPIOx, GPIO_PIN);                                  // Set CS High
+    return returnedData;                                        // Return the SPI data
+}
+
 void SPI_SetBaudDivider(SPI_TypeDef *SPIx, SPI_BaudDivider SPI_BAUD_DIV_x){
     while(READ_BIT(SPIx->SR, SPI_SR_BSY)){}                 // While SPIx is busy in communication or Tx buffer is not empty
     CLEAR_BIT(SPIx->CR1, SPI_CR1_BR_Msk);                   // Clear the SPIx Baud Divisor bits
@@ -83,9 +101,9 @@ void SPI_SetBaudDivider(SPI_TypeDef *SPIx, SPI_BaudDivider SPI_BAUD_DIV_x){
 void SPI_CalculateAndSetBaudDivider(SPI_TypeDef *SPIx, uint32_t maxPeripheralClockSpeed){
     uint32_t SpiClockSpeed;
     if(SPIx == SPI1)
-        SpiClockSpeed = CLOCK_GetAPB1ClockSpeed(); // SPI1 is on the APB2 Clock {See RM-113}
+        SpiClockSpeed = CLOCK_GetAPB2ClockSpeed(); // SPI1 is on the APB2 Clock {See RM-113} (MAX = 72MHz)
     else // SPI2
-        SpiClockSpeed = CLOCK_GetAPB2ClockSpeed(); // SPI2 is on the APB1 Clock {See RM-116}
+        SpiClockSpeed = CLOCK_GetAPB1ClockSpeed(); // SPI2 is on the APB1 Clock {See RM-116} (MAX = 36MHz)
 
     if(SpiClockSpeed / 2 <= maxPeripheralClockSpeed)
         SPI_SetBaudDivider(SPIx, SPI_BAUD_DIV_2);
