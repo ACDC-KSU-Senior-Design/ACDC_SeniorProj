@@ -147,6 +147,29 @@ void SPI_SetLsbFirst(SPI_TypeDef *SPIx, bool LsbFirst){
         CLEAR_BIT(SPIx->CR1, SPI_CR1_LSBFIRST); // Set MSB first
 }
 
+void SPI_SetClockPhaseAndPolarity(SPI_TypeDef *SPIx, bool ClkPhase, bool ClkPolarity){
+    if(ClkPhase)                                
+        SET_BIT(SPIx->CR1  , SPI_CR1_CPHA);     // The second clock transition is the first data capture edge
+    else
+        CLEAR_BIT(SPIx->CR1, SPI_CR1_CPHA);     // The first clock transition is the first data capture edge
+
+    if(ClkPolarity)
+        SET_BIT(SPIx->CR1  , SPI_CR1_CPOL);     // Set Clock to 1 or High when idle
+    else
+        CLEAR_BIT(SPIx->CR1, SPI_CR1_CPOL);     // Set Clock to 0 or Low when idle
+}
+
+void SPI_SetToMaster(SPI_TypeDef *SPIx, bool isMaster){
+    if(isMaster)
+        SET_BIT(SPIx->CR1, SPI_CR1_MSTR); // Set as master, (Default: Slave)
+    else
+        CLEAR_BIT(SPIx->CR1, SPI_CR1_MSTR);
+}
+
+bool SPI_HasDataToRecieve(SPI_TypeDef *SPIx){
+    return READ_BIT(SPIx->SR, SPI_SR_RXNE) ? true : false; // Checks if the SPIx's recieve buffer is not empty
+}
+
 #pragma region PRIVATE_FUNCTIONS
 static void SPI_InitClk(const SPI_TypeDef *SPIx){
     if(SPIx == SPI1)
