@@ -182,31 +182,32 @@ bool StringIsAlphanumeric(const char* str){
     return true;
 }
 
-void StringConvert(int32_t num, char* dest){
+char *StringConvert(int32_t num){
     // maximum number of characters in a int32_t (-2,147,483,647 -> 2,147,483,647 or 11 chars)
+    static char buffer[12];         // 11 numbers + 1 null terminating bit
     bool isNeg = false;
     int strLen = 0;
 
-    if(num == 0){                   // If the number is 0
-        StringCopy(dest, "0");      // Set dest to 0 and return
-        return;
-    }else if(num < 0){              // If the number is negative
-        isNeg = true;               // Set the isNegative variable true
-        num = -num;                 // Temporarily convert it to positive
+    if(num == 0)                        // If the number is 0
+        return StringCopy(buffer, "0"); // Set dest to 0 and return
+    else if(num < 0){                   // If the number is negative
+        isNeg = true;                   // Set the isNegative variable true
+        num = -num;                     // Temporarily convert it to positive
     }
 
     while(num != 0){                             // If the remaining number to convert is 0 (no more characters to convert)
-        dest[strLen++] = "0123456789"[num % 10]; // Grab the next digit in the 1's place
+        buffer[strLen++] = "0123456789"[num % 10]; // Grab the next digit in the 1's place
         num /= 10;                               // Shift the entire number down 1 place (Ex. 1234 -> 123 -> 12 -> 1)
     }
 
     if(isNeg)                           // If the number was negative
-        dest[strLen++] = '-';           // Append the negative sign onto the string
+        buffer[strLen++] = '-';         // Append the negative sign onto the string
 
     for(int i = 0; i < strLen/2; i++){  // Reverse the string
-        char temp = dest[i];
-        dest[i] = dest[strLen-i-1];
-        dest[strLen-i-1] = temp;
+        char temp = buffer[i];
+        buffer[i] = buffer[strLen-i-1];
+        buffer[strLen-i-1] = temp;
     }
-    dest[strLen] = '\0';                // Append the null terminating character
+    buffer[strLen] = '\0';              // Append the null terminating character
+    return buffer;
 }

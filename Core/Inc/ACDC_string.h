@@ -99,9 +99,9 @@ bool StringIsAlphabetic(const char* str);
 /// @return True if all characters are alphanumeric, otherwise false.
 bool StringIsAlphanumeric(const char* str);
 
-/// @brief Converts an int32_t into a string (the length of dest needs to be >= 11)
+/// @brief Converts an int32_t into a string
 /// @param num Integer to convert into a string
-/// @param dest Destination buffer to store the converted number in
-void StringConvert(int32_t num, char* dest);
+/// @return Pointer to a buffer that contains the converted string
+char *StringConvert(int32_t num);
 
 #endif
