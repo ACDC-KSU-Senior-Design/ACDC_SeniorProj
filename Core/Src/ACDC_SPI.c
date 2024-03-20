@@ -15,8 +15,6 @@
 #include "ACDC_GPIO.h"
 #include "ACDC_CLOCK.h"
 
-//TODO: need a function to see if there is data waiting in the recieve buffer
-
 #pragma region PRIVATE_FUNCTION_PROTOTYPES
 /// @brief Enables the SPIx peripheral clock (Needed for peripheral to function)
 /// @param SPIx SPI Peripheral (Ex. SPI1 or SPI2)
@@ -28,25 +26,24 @@ static void SPI_InitClk(const SPI_TypeDef *SPIx);
 static void SPI_InitPin(const SPI_TypeDef *SPIx, bool isMaster);
 #pragma endregion
 
-void SPI_Init(SPI_TypeDef *SPIx, bool isMaster) {
-    SPI_InitClk(SPIx);
-    SPI_InitPin(SPIx, isMaster);
+void SPI_InitCS(SPI_TypeDef *SPIx, bool isMaster, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN){
+     SPI_InitClk(SPIx);
+     SPI_InitPin(SPIx, isMaster);
 
     // Configure SPIx
-    SPIx->CR1 &= ~(SPI_CR1_SPE);            // Disable SPIx
-    SPIx->CR1 |= SPI_CR1_SSM | SPI_CR1_SSI; // Set master mode, software NSS
-    SPI_SetBaudDivider(SPIx, SPI_BAUD_DIV_2);
-    SPI_SetBitMode(SPIx, SPI_MODE_16Bit);
-    SPI_SetLsbFirst(SPIx, false);
-    SPIx->CR1 |= SPI_CR1_MSTR; // Set as master
-
-    // Enable SPI1
-    SPIx->CR1 |= SPI_CR1_SPE;
+    CLEAR_BIT(SPIx->CR1, SPI_CR1_SPE);              // Disable SPIx (so it can be configured)
+    SPI_EnableSoftwareCS(SPIx, GPIOx, GPIO_PIN);    // Enable the software CS pin
+    SPI_SetClockPhaseAndPolarity(SPIx, 0, 0);       // 1st Clk transmission is when data is captured, and Clk idles at 0
+    SPI_SetBaudDivider(SPIx, SPI_BAUD_DIV_2);       // Set SPIx to the fastest speed
+    SPI_SetBitMode(SPIx, SPI_MODE_16Bit);           // Set SPIx to 16 bit mode
+    SPI_SetToMaster(SPIx, isMaster);                // Set to Master or Slave
+    SPI_SetLsbFirst(SPIx, false);                   // Set it to MsbFirst
+    SET_BIT(SPIx->CR1, SPI_CR1_SPE);                // Enable SPIx
 }
 
-void SPI_InitCS(SPI_TypeDef *SPIx, bool isMaster, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN){
-    SPI_Init(SPIx, isMaster);
-    GPIO_PinDirection(GPIOx, GPIO_PIN, GPIO_MODE_OUTPUT_SPEED_50MHz, GPIO_CNF_OUTPUT_PUSH_PULL);
+void SPI_EnableSoftwareCS(SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN){
+    GPIO_PinDirection(GPIOx, GPIO_PIN, GPIO_MODE_OUTPUT_SPEED_50MHz, GPIO_CNF_OUTPUT_PUSH_PULL);    // Setup Software CS
+    SET_BIT(SPIx->CR1, SPI_CR1_SSM | SPI_CR1_SSI);    // Enable Software Slave & set NSS low
 }
 
 void SPI_EnableRemap(SPI_TypeDef *SPIx, bool enable){

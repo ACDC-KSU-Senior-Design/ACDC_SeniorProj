@@ -30,17 +30,18 @@ typedef enum{   // SPI Data Frame Format
     SPI_MODE_16Bit = 1          /**< 16-bit data frame format for Tx/Rx */
 }SPI_BitMode;
 
-/// @brief Initializes the SPIx peripheral to master or slave using the hardware NSS pin. (Default Values: SPI_MODE_16Bit, SPI_BAUD_DIV_2, MSB First)
-/// @param SPIx SPI Peripheral (Ex. SPI1 or SPI2)
-/// @param isMaster True if SPIx should act as the master, false if it should act as the slave
-void SPI_Init(SPI_TypeDef *SPIx, bool isMaster);
-
 /// @brief Initializes the SPIx peripheral to master or slave, using the chip select pin of your choosing. (Default Values: SPI_MODE_16Bit, SPI_BAUD_DIV_2, MSB First)
 /// @param SPIx SPI Peripheral (Ex. SPI1 or SPI2)
 /// @param isMaster True if SPIx should act as the master, false if it should act as the slave
 /// @param GPIOx GPIO Port for the chip select pin (Ex. GPIOA, GPIOB, ...)
 /// @param GPIO_PIN Desired chip select pin on port GPIOx (Ex. GPIO_PIN_0, GPIO_PIN_1, ...)
 void SPI_InitCS(SPI_TypeDef *SPIx, bool isMaster, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN);
+
+/// @brief Enables the software CS for SPIx. (Disables Hardware CS)
+/// @param SPIx SPI Peripheral (Ex. SPI1 or SPI2)
+/// @param GPIOx Port of the GPIO (Ex. GPIOA, GPIOB, ...)
+/// @param GPIO_PIN Desired pin on port GPIOx (Ex. GPIO_PIN_0, GPIO_PIN_1, ...) 
+void SPI_EnableSoftwareCS(SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN);
 
 /// @brief Enables pin remapping on SPIx depending on the value of enable (Only SPI1 can be remapped)
 /// @param SPIx SPI Peripheral (Ex. SPI1 or SPI2)
@@ -106,4 +107,5 @@ void SPI_SetToMaster(SPI_TypeDef *SPIx, bool isMaster);
 /// @param SPIx SPI Peripheral (Ex. SPI1 or SPI2)
 /// @return True if there is data available to recieve, false otherwise.
 bool SPI_HasDataToRecieve(SPI_TypeDef *SPIx);
+
 #endif
