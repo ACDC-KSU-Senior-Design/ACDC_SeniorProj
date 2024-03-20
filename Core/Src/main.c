@@ -29,7 +29,6 @@ int main(void)
   ACDC_Init(SCS_72MHz);
   LTCADC_InitCS(SPI2, GPIOB, GPIO_PIN_1);
 
-  uint16_t newData = 10;
   uint16_t oldData = 0;
 
   while (1)

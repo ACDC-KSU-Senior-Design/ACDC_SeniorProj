@@ -46,7 +46,7 @@ void SPI_EnableSoftwareCS(SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, uint16_t GPIO_
     SET_BIT(SPIx->CR1, SPI_CR1_SSM | SPI_CR1_SSI);    // Enable Software Slave & set NSS low
 }
 
-void SPI_EnableRemap(SPI_TypeDef *SPIx, bool enable){
+void SPI_EnableRemap(const SPI_TypeDef *SPIx, bool enable){
     if(SPIx == SPI1){
         if(enable){
             SET_BIT(RCC->APB2ENR, RCC_APB2ENR_AFIOEN);  // Enable the Alternate Function Clk
