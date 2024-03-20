@@ -12,6 +12,7 @@
 #define __ACDC_STRING_H
 
 #include "ACDC_stdbool.h"
+#include "ACDC_stdint.h"
 
 /// @brief Copies the string pointed by source (including the null character) to the destination dest
 /// @param destination Destination buffer to copy the source string to
@@ -26,12 +27,12 @@ char* StringCopy(char* dest, const char* source);
 /// @param str2 Second string to compare with
 /// @return 0 if str1 == str2, >0 if the first non-matching character in str1 > str2,
 ///         and <0 if the first non-matching character in str1 < str2.
-int StringCompare(const char *str1, const char *str2);
+int32_t StringCompare(const char *str1, const char *str2);
 
 /// @brief Calculates the length of the string str.
 /// @param str String to find the length of
 /// @return Length of the string.
-int StringLength(const char *str);
+int32_t StringLength(const char *str);
 
 /// @brief Appends the content of the string source to the end of the string dest
 /// @param dest Destination string to which the source string will be appended
@@ -43,13 +44,13 @@ char* StringConcat(char *dest, const char *source);
 /// @param str String to search
 /// @param c Character to search for
 /// @return Index of the char c in the string str. Returns -1 if the character is not found.
-int StringIndexOf(const char *str, char c);
+int32_t StringIndexOf(const char *str, char c);
 
 /// @brief Returns a substring of the input string str starting from the specified index
 /// @param str Input string
 /// @param index Starting index of the substring
 /// @return Pointer to the substring starting from the given index.
-char* StringSubstring(char *str, int index);
+char* StringSubstring(char *str, int32_t index);
 
 /// @brief Checks if the given string str starts with the specified substring compareWith
 /// @param str Input string
@@ -97,5 +98,10 @@ bool StringIsAlphabetic(const char* str);
 /// @param str Input string to check
 /// @return True if all characters are alphanumeric, otherwise false.
 bool StringIsAlphanumeric(const char* str);
+
+/// @brief Converts an int32_t into a string (the length of dest needs to be >= 11)
+/// @param num Integer to convert into a string
+/// @param dest Destination buffer to store the converted number in
+void StringConvert(int32_t num, char* dest);
 
 #endif
