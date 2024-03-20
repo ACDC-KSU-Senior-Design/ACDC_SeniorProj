@@ -58,6 +58,11 @@ void GPIO_InitClk(const GPIO_TypeDef *GPIOx);
 /// @param GPIO_CNF Desired configuration, if output then Push-Pull or Open-Drain, else if input then Analog, Floating, or Pullup/Pulldown
 void GPIO_PinDirection(GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN, uint8_t GPIO_MODE, uint8_t GPIO_CNF);
 
+/// @brief Deinitializes GPIO_PIN on GPIOx back to its reset value.
+/// @param GPIOx Port of the GPIO (Ex. GPIOA, GPIOB, ...)
+/// @param GPIO_PIN Desired pin on port GPIOx (Ex. GPIO_PIN_0, GPIO_PIN_1, ...)
+void GPIO_Deinit(GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN);
+
 /// @brief Sets the pins output to the value passed into GPIO_VALUE.
 /// @param GPIOx Port of the GPIO (Ex. GPIOA, GPIOB, ...)
 /// @param GPIO_PIN Desired pin on port GPIOx (Ex. GPIO_PIN_0, GPIO_PIN_1, ...) 
