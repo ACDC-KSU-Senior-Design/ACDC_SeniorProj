@@ -27,20 +27,31 @@ static void ACDC_Init(SystemClockSpeed SCS_x);
 int main(void)
 {
   ACDC_Init(SCS_72MHz);
- 
+  LTCADC_InitCS(SPI2, GPIOB, GPIO_PIN_1);
+
+  uint16_t newData = 10;
+  uint16_t oldData = 0;
+
   while (1)
   {
-   Delay(100);
+    uint32_t newData = LTCADC_ReadCH0CS(SPI2, GPIOB, GPIO_PIN_1);
+    if(newData != oldData){
+      USART_SendString(USART2, StringConvert(newData)); 
+      oldData = newData;
+    }
   }
 }
 
 static void ACDC_Init(SystemClockSpeed SCS_x){
-  CLOCK_SetSystemClockSpeed(SCS_x);
+  CLOCK_SetSystemClockSpeed(SCS_x);   //72Mhz doesnt quite work Rn
+  //APB1 & APB2 Prescalers are set the highest speed in CLOCK_SetSystemClockSpeed
+
+  USART_Init(USART2, Serial_115200, true);  // Initilize USART2 with a baud of 115200
 
   CLOCK_SetMcoOutput(MCO_SYSCLK);     //Sets PA8 as the output of SysClock
   GPIO_PinDirection(GPIOA, GPIO_PIN_5, GPIO_MODE_OUTPUT_SPEED_50MHz, GPIO_CNF_OUTPUT_PUSH_PULL);
   GPIO_PinDirection(GPIOC, GPIO_PIN_13, GPIO_MODE_INPUT, GPIO_CNF_INPUT_FLOATING);  //External Pullup/down resistor
-  GPIO_INT_SetToInterrupt(GPIOC, GPIO_PIN_13, TT_RISING_EDGE);  
+  GPIO_INT_SetToInterrupt(GPIOC, GPIO_PIN_13, TT_RISING_EDGE); 
 }
 
 /**
