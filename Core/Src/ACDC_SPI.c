@@ -12,6 +12,7 @@
  */
 
 #include "ACDC_SPI.h"
+#include "ACDC_CLOCK.h"
 
 #pragma region PRIVATE_FUNCTION_PROTOTYPES
 /// @brief Enables the SPIx peripheral clock (Needed for peripheral to function)
