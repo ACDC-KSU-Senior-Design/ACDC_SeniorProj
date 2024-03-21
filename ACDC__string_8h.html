@@ -153,9 +153,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a7df23c0026351d6f7cfabab4f3e7f158" id="r_a7df23c0026351d6f7cfabab4f3e7f158"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ACDC__stdbool_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7df23c0026351d6f7cfabab4f3e7f158">StringIsAlphanumeric</a> (const char *str)</td></tr>
 <tr class="memdesc:a7df23c0026351d6f7cfabab4f3e7f158"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if all characters in the input string are alphanumeric.  <br /></td></tr>
 <tr class="separator:a7df23c0026351d6f7cfabab4f3e7f158"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7acda0edac1b05cdec534d7cf8b6e511" id="r_a7acda0edac1b05cdec534d7cf8b6e511"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7acda0edac1b05cdec534d7cf8b6e511">StringConvert</a> (<a class="el" href="ACDC__stdint_8h.html#adb828ef50c2dbb783109824e94cf6c47">int32_t</a> num, char *dest)</td></tr>
-<tr class="memdesc:a7acda0edac1b05cdec534d7cf8b6e511"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an int32_t into a string (the length of dest needs to be &gt;= 11)  <br /></td></tr>
-<tr class="separator:a7acda0edac1b05cdec534d7cf8b6e511"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a4f40f0738a3a57c39ebbcbc3877668" id="r_a0a4f40f0738a3a57c39ebbcbc3877668"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a4f40f0738a3a57c39ebbcbc3877668">StringConvert</a> (<a class="el" href="ACDC__stdint_8h.html#adb828ef50c2dbb783109824e94cf6c47">int32_t</a> num)</td></tr>
+<tr class="memdesc:a0a4f40f0738a3a57c39ebbcbc3877668"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an int32_t into a string.  <br /></td></tr>
+<tr class="separator:a0a4f40f0738a3a57c39ebbcbc3877668"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Header file containing String functions. </p>
@@ -226,33 +226,29 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a7acda0edac1b05cdec534d7cf8b6e511" name="a7acda0edac1b05cdec534d7cf8b6e511"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7acda0edac1b05cdec534d7cf8b6e511">&#9670;&#160;</a></span>StringConvert()</h2>
+<a id="a0a4f40f0738a3a57c39ebbcbc3877668" name="a0a4f40f0738a3a57c39ebbcbc3877668"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a4f40f0738a3a57c39ebbcbc3877668">&#9670;&#160;</a></span>StringConvert()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void StringConvert </td>
+          <td class="memname">char * StringConvert </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="ACDC__stdint_8h.html#adb828ef50c2dbb783109824e94cf6c47">int32_t</a></td>          <td class="paramname"><span class="paramname"><em>num</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype"><a class="el" href="ACDC__stdint_8h.html#adb828ef50c2dbb783109824e94cf6c47">int32_t</a></td>          <td class="paramname"><span class="paramname"><em>num</em></span></td><td>)</td>
           <td></td>
-          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>dest</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Converts an int32_t into a string (the length of dest needs to be &gt;= 11) </p>
+<p>Converts an int32_t into a string. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">num</td><td>Integer to convert into a string </td></tr>
-    <tr><td class="paramname">dest</td><td>Destination buffer to store the converted number in </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to a buffer that contains the converted string </dd></dl>
 
 </div>
 </div>

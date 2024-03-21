@@ -5,6 +5,7 @@ var ACDC__GPIO_8c =
     [ "GPIO_MODE_CNF", "ACDC__GPIO_8c.html#a974660dd46681b78400d4e5f04287dee", null ],
     [ "GPIO_MODE_OFFSET", "ACDC__GPIO_8c.html#aa2a5bbbcb74757aecf837db663892f63", null ],
     [ "GPIO_Clear", "ACDC__GPIO_8c.html#ac997846bbc48929095825d34abcfa7f6", null ],
+    [ "GPIO_Deinit", "ACDC__GPIO_8c.html#ad91c568859c9d09b6ff3ced7f1333f42", null ],
     [ "GPIO_GetPinNumber", "ACDC__GPIO_8c.html#abc3111d8f9658bc97ac9998005444839", null ],
     [ "GPIO_InitClk", "ACDC__GPIO_8c.html#a30b7d281944ad620e9f933b7a3f42ddf", null ],
     [ "GPIO_PinDirection", "ACDC__GPIO_8c.html#a713c73334af5bf15c7a9dbce1850d47f", null ],

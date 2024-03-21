@@ -103,7 +103,6 @@ $(function(){initNavTree('ACDC__SPI_8h.html',''); initResizable(); });
 <p>Header file for SPI driver.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;stm32f1xx.h&quot;</code><br />
-<code>#include &quot;<a class="el" href="ACDC__GPIO_8h_source.html">ACDC_GPIO.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ACDC__stdbool_8h_source.html">ACDC_stdbool.h</a>&quot;</code><br />
 </div>
 <p><a href="ACDC__SPI_8h_source.html">Go to the source code of this file.</a></p>
@@ -130,9 +129,15 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a2e0b2757491c0a19c201ab4f537406a0" id="r_a2e0b2757491c0a19c201ab4f537406a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2e0b2757491c0a19c201ab4f537406a0">SPI_Init</a> (SPI_TypeDef *SPIx, <a class="el" href="ACDC__stdbool_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a> isMaster)</td></tr>
-<tr class="memdesc:a2e0b2757491c0a19c201ab4f537406a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the SPIx peripheral to either the master or slave. (Default Values: SPI_MODE_16Bit, SPI_BAUD_DIV_2, MSB First)  <br /></td></tr>
-<tr class="separator:a2e0b2757491c0a19c201ab4f537406a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8f9adad70cac2f92cb42f17ac520c0c" id="r_ae8f9adad70cac2f92cb42f17ac520c0c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae8f9adad70cac2f92cb42f17ac520c0c">SPI_InitCS</a> (SPI_TypeDef *SPIx, <a class="el" href="ACDC__stdbool_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a> isMaster, GPIO_TypeDef *GPIOx, <a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> GPIO_PIN)</td></tr>
+<tr class="memdesc:ae8f9adad70cac2f92cb42f17ac520c0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the SPIx peripheral to master or slave, using the chip select pin of your choosing. (Default Values: SPI_MODE_16Bit, SPI_BAUD_DIV_2, MSB First)  <br /></td></tr>
+<tr class="separator:ae8f9adad70cac2f92cb42f17ac520c0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af254f4009c1fe2d58d2e861c6987acd6" id="r_af254f4009c1fe2d58d2e861c6987acd6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af254f4009c1fe2d58d2e861c6987acd6">SPI_EnableSoftwareCS</a> (SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, <a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> GPIO_PIN)</td></tr>
+<tr class="memdesc:af254f4009c1fe2d58d2e861c6987acd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the software CS for SPIx. (Disables Hardware CS)  <br /></td></tr>
+<tr class="separator:af254f4009c1fe2d58d2e861c6987acd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e9a2888f7f478effdb1071b61dd5c2b" id="r_a2e9a2888f7f478effdb1071b61dd5c2b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2e9a2888f7f478effdb1071b61dd5c2b">SPI_EnableRemap</a> (const SPI_TypeDef *SPIx, <a class="el" href="ACDC__stdbool_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a> enable)</td></tr>
+<tr class="memdesc:a2e9a2888f7f478effdb1071b61dd5c2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables pin remapping on SPIx depending on the value of enable (Only SPI1 can be remapped)  <br /></td></tr>
+<tr class="separator:a2e9a2888f7f478effdb1071b61dd5c2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b37ff77b5e665642503a6b1e4d53d76" id="r_a3b37ff77b5e665642503a6b1e4d53d76"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b37ff77b5e665642503a6b1e4d53d76">SPI_Transmit</a> (SPI_TypeDef *SPIx, <a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> data)</td></tr>
 <tr class="memdesc:a3b37ff77b5e665642503a6b1e4d53d76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmits data over the given SPI.  <br /></td></tr>
 <tr class="separator:a3b37ff77b5e665642503a6b1e4d53d76"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,15 +147,30 @@ Functions</h2></td></tr>
 <tr class="memitem:a02c7edd37a18dfe0d58624564dddeb28" id="r_a02c7edd37a18dfe0d58624564dddeb28"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a02c7edd37a18dfe0d58624564dddeb28">SPI_TransmitReceive</a> (SPI_TypeDef *SPIx, <a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> data)</td></tr>
 <tr class="memdesc:a02c7edd37a18dfe0d58624564dddeb28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmits and recieves data over the SPI.  <br /></td></tr>
 <tr class="separator:a02c7edd37a18dfe0d58624564dddeb28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d7ccec4bfae512afc758bec0730e492" id="r_a3d7ccec4bfae512afc758bec0730e492"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d7ccec4bfae512afc758bec0730e492">SPI_TransmitReceiveCS</a> (SPI_TypeDef *SPIx, <a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> data, GPIO_TypeDef *GPIOx, <a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> GPIO_PIN)</td></tr>
+<tr class="memdesc:a3d7ccec4bfae512afc758bec0730e492"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmits and recieves data over the SPI, also takes care of the software chip select.  <br /></td></tr>
+<tr class="separator:a3d7ccec4bfae512afc758bec0730e492"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8fabe7c2249e0290047b09a0d636cd4" id="r_ab8fabe7c2249e0290047b09a0d636cd4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab8fabe7c2249e0290047b09a0d636cd4">SPI_SetBaudDivider</a> (SPI_TypeDef *SPIx, <a class="el" href="#ab288e111a2b894cf6319744add666250">SPI_BaudDivider</a> SPI_BAUD_DIV_x)</td></tr>
 <tr class="memdesc:ab8fabe7c2249e0290047b09a0d636cd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the Baud rate divider of the SPIx peripheral.  <br /></td></tr>
 <tr class="separator:ab8fabe7c2249e0290047b09a0d636cd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2e58a2729348d398f8e126533f43f61" id="r_af2e58a2729348d398f8e126533f43f61"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af2e58a2729348d398f8e126533f43f61">SPI_CalculateAndSetBaudDivider</a> (SPI_TypeDef *SPIx, <a class="el" href="ACDC__stdint_8h.html#a33594304e786b158f3fb30289278f5af">uint32_t</a> maxPeripheralClockSpeed)</td></tr>
+<tr class="memdesc:af2e58a2729348d398f8e126533f43f61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates and sets the SPI baud divider to accompany the current peripherals maximum clock speed.  <br /></td></tr>
+<tr class="separator:af2e58a2729348d398f8e126533f43f61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61052865780566374e3dc096bf0c484b" id="r_a61052865780566374e3dc096bf0c484b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a61052865780566374e3dc096bf0c484b">SPI_SetBitMode</a> (SPI_TypeDef *SPIx, <a class="el" href="#a54de5248b99280124bddc78d46bedc4f">SPI_BitMode</a> SPI_MODE_x)</td></tr>
 <tr class="memdesc:a61052865780566374e3dc096bf0c484b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the SPIx peripheral between 8-bit and 16-bit mode.  <br /></td></tr>
 <tr class="separator:a61052865780566374e3dc096bf0c484b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af560ce4cc52f2cb213a52157c8bbb7ea" id="r_af560ce4cc52f2cb213a52157c8bbb7ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af560ce4cc52f2cb213a52157c8bbb7ea">SPI_SetLsbFirst</a> (SPI_TypeDef *SPIx, <a class="el" href="ACDC__stdbool_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a> LsbFirst)</td></tr>
 <tr class="memdesc:af560ce4cc52f2cb213a52157c8bbb7ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets SPIx into either MsbFirst or LsbFirst mode.  <br /></td></tr>
 <tr class="separator:af560ce4cc52f2cb213a52157c8bbb7ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6917fab5fb53d1aa9c5e5ac697b90c68" id="r_a6917fab5fb53d1aa9c5e5ac697b90c68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6917fab5fb53d1aa9c5e5ac697b90c68">SPI_SetClockPhaseAndPolarity</a> (SPI_TypeDef *SPIx, <a class="el" href="ACDC__stdbool_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a> ClkPhase, <a class="el" href="ACDC__stdbool_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a> ClkPolarity)</td></tr>
+<tr class="memdesc:a6917fab5fb53d1aa9c5e5ac697b90c68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the clock phase and polarity for SPIx.  <br /></td></tr>
+<tr class="separator:a6917fab5fb53d1aa9c5e5ac697b90c68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace33b3cbcebdc19b2499d4a34c2b7132" id="r_ace33b3cbcebdc19b2499d4a34c2b7132"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ace33b3cbcebdc19b2499d4a34c2b7132">SPI_SetToMaster</a> (SPI_TypeDef *SPIx, <a class="el" href="ACDC__stdbool_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a> isMaster)</td></tr>
+<tr class="memdesc:ace33b3cbcebdc19b2499d4a34c2b7132"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures SPIx peripheral as master or slave mode.  <br /></td></tr>
+<tr class="separator:ace33b3cbcebdc19b2499d4a34c2b7132"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4a18b045a15c31174df01af9e04772f" id="r_aa4a18b045a15c31174df01af9e04772f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ACDC__stdbool_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4a18b045a15c31174df01af9e04772f">SPI_HasDataToRecieve</a> (SPI_TypeDef *SPIx)</td></tr>
+<tr class="memdesc:aa4a18b045a15c31174df01af9e04772f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if there is data available in the SPIx recieve buffer.  <br /></td></tr>
+<tr class="separator:aa4a18b045a15c31174df01af9e04772f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Header file for SPI driver. </p>
@@ -225,30 +245,165 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a2e0b2757491c0a19c201ab4f537406a0" name="a2e0b2757491c0a19c201ab4f537406a0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2e0b2757491c0a19c201ab4f537406a0">&#9670;&#160;</a></span>SPI_Init()</h2>
+<a id="af2e58a2729348d398f8e126533f43f61" name="af2e58a2729348d398f8e126533f43f61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2e58a2729348d398f8e126533f43f61">&#9670;&#160;</a></span>SPI_CalculateAndSetBaudDivider()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SPI_Init </td>
+          <td class="memname">void SPI_CalculateAndSetBaudDivider </td>
           <td>(</td>
           <td class="paramtype">SPI_TypeDef *</td>          <td class="paramname"><span class="paramname"><em>SPIx</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="ACDC__stdbool_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a></td>          <td class="paramname"><span class="paramname"><em>isMaster</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="ACDC__stdint_8h.html#a33594304e786b158f3fb30289278f5af">uint32_t</a></td>          <td class="paramname"><span class="paramname"><em>maxPeripheralClockSpeed</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Initializes the SPIx peripheral to either the master or slave. (Default Values: SPI_MODE_16Bit, SPI_BAUD_DIV_2, MSB First) </p>
+<p>Calculates and sets the SPI baud divider to accompany the current peripherals maximum clock speed. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">SPIx</td><td>SPI Peripheral (Ex. SPI1 or SPI2) </td></tr>
+    <tr><td class="paramname">maxPeripheralClockSpeed</td><td>Maximum clock speed the SPI peripheral can run at </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2e9a2888f7f478effdb1071b61dd5c2b" name="a2e9a2888f7f478effdb1071b61dd5c2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e9a2888f7f478effdb1071b61dd5c2b">&#9670;&#160;</a></span>SPI_EnableRemap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SPI_EnableRemap </td>
+          <td>(</td>
+          <td class="paramtype">const SPI_TypeDef *</td>          <td class="paramname"><span class="paramname"><em>SPIx</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ACDC__stdbool_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a></td>          <td class="paramname"><span class="paramname"><em>enable</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enables pin remapping on SPIx depending on the value of enable (Only SPI1 can be remapped) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">SPIx</td><td>SPI Peripheral (Ex. SPI1 or SPI2) </td></tr>
+    <tr><td class="paramname">enable</td><td>True if the system should enable remapping for SPIx, false if it should not remap SPIx </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af254f4009c1fe2d58d2e861c6987acd6" name="af254f4009c1fe2d58d2e861c6987acd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af254f4009c1fe2d58d2e861c6987acd6">&#9670;&#160;</a></span>SPI_EnableSoftwareCS()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SPI_EnableSoftwareCS </td>
+          <td>(</td>
+          <td class="paramtype">SPI_TypeDef *</td>          <td class="paramname"><span class="paramname"><em>SPIx</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GPIO_TypeDef *</td>          <td class="paramname"><span class="paramname"><em>GPIOx</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a></td>          <td class="paramname"><span class="paramname"><em>GPIO_PIN</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enables the software CS for SPIx. (Disables Hardware CS) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">SPIx</td><td>SPI Peripheral (Ex. SPI1 or SPI2) </td></tr>
+    <tr><td class="paramname">GPIOx</td><td>Port of the GPIO (Ex. GPIOA, GPIOB, ...) </td></tr>
+    <tr><td class="paramname">GPIO_PIN</td><td>Desired pin on port GPIOx (Ex. GPIO_PIN_0, GPIO_PIN_1, ...) <br  />
+ </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa4a18b045a15c31174df01af9e04772f" name="aa4a18b045a15c31174df01af9e04772f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4a18b045a15c31174df01af9e04772f">&#9670;&#160;</a></span>SPI_HasDataToRecieve()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ACDC__stdbool_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a> SPI_HasDataToRecieve </td>
+          <td>(</td>
+          <td class="paramtype">SPI_TypeDef *</td>          <td class="paramname"><span class="paramname"><em>SPIx</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if there is data available in the SPIx recieve buffer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">SPIx</td><td>SPI Peripheral (Ex. SPI1 or SPI2) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if there is data available to recieve, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="ae8f9adad70cac2f92cb42f17ac520c0c" name="ae8f9adad70cac2f92cb42f17ac520c0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8f9adad70cac2f92cb42f17ac520c0c">&#9670;&#160;</a></span>SPI_InitCS()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SPI_InitCS </td>
+          <td>(</td>
+          <td class="paramtype">SPI_TypeDef *</td>          <td class="paramname"><span class="paramname"><em>SPIx</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ACDC__stdbool_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a></td>          <td class="paramname"><span class="paramname"><em>isMaster</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GPIO_TypeDef *</td>          <td class="paramname"><span class="paramname"><em>GPIOx</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a></td>          <td class="paramname"><span class="paramname"><em>GPIO_PIN</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes the SPIx peripheral to master or slave, using the chip select pin of your choosing. (Default Values: SPI_MODE_16Bit, SPI_BAUD_DIV_2, MSB First) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">SPIx</td><td>SPI Peripheral (Ex. SPI1 or SPI2) </td></tr>
     <tr><td class="paramname">isMaster</td><td>True if SPIx should act as the master, false if it should act as the slave </td></tr>
+    <tr><td class="paramname">GPIOx</td><td>GPIO Port for the chip select pin (Ex. GPIOA, GPIOB, ...) </td></tr>
+    <tr><td class="paramname">GPIO_PIN</td><td>Desired chip select pin on port GPIOx (Ex. GPIO_PIN_0, GPIO_PIN_1, ...) </td></tr>
   </table>
   </dd>
 </dl>
@@ -341,6 +496,42 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a6917fab5fb53d1aa9c5e5ac697b90c68" name="a6917fab5fb53d1aa9c5e5ac697b90c68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6917fab5fb53d1aa9c5e5ac697b90c68">&#9670;&#160;</a></span>SPI_SetClockPhaseAndPolarity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SPI_SetClockPhaseAndPolarity </td>
+          <td>(</td>
+          <td class="paramtype">SPI_TypeDef *</td>          <td class="paramname"><span class="paramname"><em>SPIx</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ACDC__stdbool_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a></td>          <td class="paramname"><span class="paramname"><em>ClkPhase</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ACDC__stdbool_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a></td>          <td class="paramname"><span class="paramname"><em>ClkPolarity</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the clock phase and polarity for SPIx. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">SPIx</td><td>SPI Peripheral (Ex. SPI1 or SPI2) </td></tr>
+    <tr><td class="paramname">ClkPhase</td><td>True for second clock transition as first data capture edge, False for first clock transition. {See RM-744} </td></tr>
+    <tr><td class="paramname">ClkPolarity</td><td>True to set clock to 1 when idle, else false to set low while idle. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="af560ce4cc52f2cb213a52157c8bbb7ea" name="af560ce4cc52f2cb213a52157c8bbb7ea"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af560ce4cc52f2cb213a52157c8bbb7ea">&#9670;&#160;</a></span>SPI_SetLsbFirst()</h2>
 
@@ -365,6 +556,36 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">SPIx</td><td>SPI Peripheral (Ex. SPI1 or SPI2) </td></tr>
     <tr><td class="paramname">LsbFirst</td><td>True if the data format should be LsbFirst, else false for MsbFirst. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ace33b3cbcebdc19b2499d4a34c2b7132" name="ace33b3cbcebdc19b2499d4a34c2b7132"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace33b3cbcebdc19b2499d4a34c2b7132">&#9670;&#160;</a></span>SPI_SetToMaster()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SPI_SetToMaster </td>
+          <td>(</td>
+          <td class="paramtype">SPI_TypeDef *</td>          <td class="paramname"><span class="paramname"><em>SPIx</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ACDC__stdbool_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a></td>          <td class="paramname"><span class="paramname"><em>isMaster</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Configures SPIx peripheral as master or slave mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">SPIx</td><td>SPI Peripheral (Ex. SPI1 or SPI2) </td></tr>
+    <tr><td class="paramname">isMaster</td><td>True to configure SPI as master, False to configure it as slave. </td></tr>
   </table>
   </dd>
 </dl>
@@ -425,6 +646,49 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">SPIx</td><td>SPI to transmit over </td></tr>
     <tr><td class="paramname">data</td><td>Data to transmit </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Data recieved </dd></dl>
+
+</div>
+</div>
+<a id="a3d7ccec4bfae512afc758bec0730e492" name="a3d7ccec4bfae512afc758bec0730e492"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d7ccec4bfae512afc758bec0730e492">&#9670;&#160;</a></span>SPI_TransmitReceiveCS()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> SPI_TransmitReceiveCS </td>
+          <td>(</td>
+          <td class="paramtype">SPI_TypeDef *</td>          <td class="paramname"><span class="paramname"><em>SPIx</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a></td>          <td class="paramname"><span class="paramname"><em>data</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GPIO_TypeDef *</td>          <td class="paramname"><span class="paramname"><em>GPIOx</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a></td>          <td class="paramname"><span class="paramname"><em>GPIO_PIN</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Transmits and recieves data over the SPI, also takes care of the software chip select. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">SPIx</td><td>SPI to transmit over </td></tr>
+    <tr><td class="paramname">data</td><td>Data to transmit </td></tr>
+    <tr><td class="paramname">GPIOx</td><td>GPIO Port for the chip select pin (Ex. GPIOA, GPIOB, ...) </td></tr>
+    <tr><td class="paramname">GPIO_PIN</td><td>Desired chip select pin on port GPIOx (Ex. GPIO_PIN_0, GPIO_PIN_1, ...) </td></tr>
   </table>
   </dd>
 </dl>

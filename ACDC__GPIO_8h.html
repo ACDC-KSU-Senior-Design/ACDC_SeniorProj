@@ -176,6 +176,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a713c73334af5bf15c7a9dbce1850d47f" id="r_a713c73334af5bf15c7a9dbce1850d47f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a713c73334af5bf15c7a9dbce1850d47f">GPIO_PinDirection</a> (GPIO_TypeDef *GPIOx, <a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> GPIO_PIN, <a class="el" href="ACDC__stdint_8h.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> GPIO_MODE, <a class="el" href="ACDC__stdint_8h.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> GPIO_CNF)</td></tr>
 <tr class="memdesc:a713c73334af5bf15c7a9dbce1850d47f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Direction of the Pin to Input/Output (MODE) and the sets its Configuration (CNF) [CAN ONLY SET ONE PIN AT A TIME].  <br /></td></tr>
 <tr class="separator:a713c73334af5bf15c7a9dbce1850d47f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad91c568859c9d09b6ff3ced7f1333f42" id="r_ad91c568859c9d09b6ff3ced7f1333f42"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad91c568859c9d09b6ff3ced7f1333f42">GPIO_Deinit</a> (GPIO_TypeDef *GPIOx, <a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> GPIO_PIN)</td></tr>
+<tr class="memdesc:ad91c568859c9d09b6ff3ced7f1333f42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deinitializes GPIO_PIN on GPIOx back to its reset value.  <br /></td></tr>
+<tr class="separator:ad91c568859c9d09b6ff3ced7f1333f42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03b95f274953c63542988c0d28536148" id="r_a03b95f274953c63542988c0d28536148"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a03b95f274953c63542988c0d28536148">GPIO_Write</a> (GPIO_TypeDef *GPIOx, <a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> GPIO_PIN, <a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> GPIO_VALUE)</td></tr>
 <tr class="memdesc:a03b95f274953c63542988c0d28536148"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the pins output to the value passed into GPIO_VALUE.  <br /></td></tr>
 <tr class="separator:a03b95f274953c63542988c0d28536148"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -686,6 +689,36 @@ Functions</h2></td></tr>
     <tr><td class="paramname">GPIOx</td><td>Port of the GPIO (Ex. GPIOA, GPIOB, ...) </td></tr>
     <tr><td class="paramname">GPIO_PIN</td><td>Desired pin on port GPIOx (Ex. GPIO_PIN_0, GPIO_PIN_1, ...) <br  />
  </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad91c568859c9d09b6ff3ced7f1333f42" name="ad91c568859c9d09b6ff3ced7f1333f42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad91c568859c9d09b6ff3ced7f1333f42">&#9670;&#160;</a></span>GPIO_Deinit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GPIO_Deinit </td>
+          <td>(</td>
+          <td class="paramtype">GPIO_TypeDef *</td>          <td class="paramname"><span class="paramname"><em>GPIOx</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a></td>          <td class="paramname"><span class="paramname"><em>GPIO_PIN</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Deinitializes GPIO_PIN on GPIOx back to its reset value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">GPIOx</td><td>Port of the GPIO (Ex. GPIOA, GPIOB, ...) </td></tr>
+    <tr><td class="paramname">GPIO_PIN</td><td>Desired pin on port GPIOx (Ex. GPIO_PIN_0, GPIO_PIN_1, ...) </td></tr>
   </table>
   </dd>
 </dl>

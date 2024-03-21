@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['swo_5fgpio_5fport_0',['SWO_GPIO_Port',['../main_8h.html#a1540b1bd5614d42feb933c5b943263c0',1,'main.h']]],
-  ['swo_5fpin_1',['SWO_Pin',['../main_8h.html#a92aba89301afeefb00b6dfbc6e874027',1,'main.h']]]
+  ['max_5fclock_5fspeed_0',['MAX_CLOCK_SPEED',['../ACDC__LTC1298__ADC_8c.html#a99765da39d58d3a0ff733a3b1604af82',1,'ACDC_LTC1298_ADC.c']]],
+  ['max_5fmco_5fclk_5fspeed_1',['MAX_MCO_CLK_SPEED',['../ACDC__CLOCK_8c.html#a007956a365bfb2b5a9d099d8eda46cf3',1,'ACDC_CLOCK.c']]],
+  ['ms_5fper_5fsecond_2',['MS_PER_SECOND',['../ACDC__TIMER_8c.html#a52b8ea09cf8de6316116b383b83b951c',1,'ACDC_TIMER.c']]]
 ];

@@ -2,7 +2,7 @@ var ACDC__string_8h =
 [
     [ "StringCompare", "ACDC__string_8h.html#af55c1016f387e0eb2abefc35e391689e", null ],
     [ "StringConcat", "ACDC__string_8h.html#a4751d5aa1941ca761fb4d656744d82c3", null ],
-    [ "StringConvert", "ACDC__string_8h.html#a7acda0edac1b05cdec534d7cf8b6e511", null ],
+    [ "StringConvert", "ACDC__string_8h.html#a0a4f40f0738a3a57c39ebbcbc3877668", null ],
     [ "StringCopy", "ACDC__string_8h.html#a3539d9cba5f3855737c22249ed29ec03", null ],
     [ "StringEndsWith", "ACDC__string_8h.html#af0d8f508f9c6b87608946dd1b0a5ddb6", null ],
     [ "StringIndexOf", "ACDC__string_8h.html#a0a25945492e1245d41e2876e1125a928", null ],
