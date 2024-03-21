@@ -1,3 +1,13 @@
+/**
+ * @file ACDC_LTC1298_ADC.c
+ * @author Devin Marx
+ * @brief Implementation of the external 12-bit LTC1298 Analog to Digital Converter (ADC)
+ * @version 0.1
+ * @date 2024-03-21
+ * 
+ * @copyright Copyright (c) 2023-2024
+ */
+
 #include "ACDC_LTC1298_ADC.h"
 #include "ACDC_SPI.h"
 #include "ACDC_GPIO.h"

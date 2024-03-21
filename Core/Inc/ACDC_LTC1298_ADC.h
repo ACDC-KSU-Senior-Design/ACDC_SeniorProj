@@ -1,7 +1,7 @@
 /**
  * @file ACDC_LTC1298IS8_ADC.h
  * @author Devin Marx
- * @brief 
+ * @brief Header file for the LTC1298 12-bit ADC
  * @version 0.1
  * @date 2024-02-21
  * 
