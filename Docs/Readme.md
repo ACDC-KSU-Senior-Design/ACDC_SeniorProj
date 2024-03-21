@@ -13,6 +13,8 @@
   * Read Pins State
 * [ACDC_INTERRUPT.h](INTERRUPT.md)
   * Set GPIO Pin to a Interrupt (Rising Edge, Falling Edge, Both Edges)
+* [ACDC_LTC1298_ADC.h](LTC1298_ADC.md)
+  * Read an analog voltage applied to either channel 0 or 1 on the ADC.
 * [ACDC_SPI.h](SPI.md)
   * Setup SPI as Master and transmit data in 8-bit or 16-bit modes
 * [ACDC_TIMER.h](TIMER.md)
