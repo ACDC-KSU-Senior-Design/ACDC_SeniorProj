@@ -39,10 +39,13 @@ BUILD_DIR = build
 # ACDC C Files
 ACDC_C_SOURCES =  \
 Core/Src/main.c \
+Core/Src/ACDC_SPI.c \
 Core/Src/ACDC_GPIO.c \
 Core/Src/ACDC_TIMER.c \
 Core/Src/ACDC_CLOCK.c \
+Core/Src/ACDC_USART.c \
 Core/Src/ACDC_INTERRUPT.c \
+Core/Src/ACDC_LTC1298_ADC.c \
 Core/Src/ACDC_string.c \
 
 # STM Provided C Files
@@ -142,7 +145,7 @@ $(STM_C_INCLUDES)
 # compile gcc flags
 ASFLAGS = $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
 
-CFLAGS += $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
+CFLAGS += $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections -Werror=return-type -Werror=implicit-function-declaration -Werror=int-conversion
 
 ifeq ($(DEBUG), 1)
 CFLAGS += -g -gdwarf-2
@@ -213,7 +216,8 @@ flash: all
 # CppCheck
 #######################################
 cppcheck:
-	$(CPPCHECK) --quiet --force  -v \
+	@$(CPPCHECK) --quiet --force  -v \
+	-DSTM32F103xB \
 	--enable=all \
 	--inline-suppr \
 	--error-exitcode=1 \

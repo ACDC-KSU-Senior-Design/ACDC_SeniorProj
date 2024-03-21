@@ -26,30 +26,31 @@ static void ACDC_Init(SystemClockSpeed SCS_x);
   */
 int main(void)
 {
-  //HAL_Init();       //Need to look deeper into this
-  //SystemClock_Config(); //Shoulnt need anymore
+  ACDC_Init(SCS_72MHz);
+  LTCADC_InitCS(SPI2, GPIOB, GPIO_PIN_1);
 
-  ACDC_Init(SCS_6MHz);
+  uint16_t oldData = 0;
 
-  MX_GPIO_Init();
-  MX_USART2_UART_Init();
- 
   while (1)
   {
-    GPIO_Toggle(GPIOA, GPIO_PIN_5);
-    Delay(100);
+    uint32_t newData = LTCADC_ReadCH0CS(SPI2, GPIOB, GPIO_PIN_1);
+    if(newData != oldData){
+      USART_SendString(USART2, StringConvert(newData)); 
+      oldData = newData;
+    }
   }
 }
 
 static void ACDC_Init(SystemClockSpeed SCS_x){
   CLOCK_SetSystemClockSpeed(SCS_x);   //72Mhz doesnt quite work Rn
-  CLOCK_SetAPB1Prescaler(APB_DIV_2);  //Max Speed is 36Mhz
-  CLOCK_SetAPB2Prescaler(APB_DIV_1);  //Max Speed is 72Mhz
+  //APB1 & APB2 Prescalers are set the highest speed in CLOCK_SetSystemClockSpeed
+
+  USART_Init(USART2, Serial_115200, true);  // Initilize USART2 with a baud of 115200
 
   CLOCK_SetMcoOutput(MCO_SYSCLK);     //Sets PA8 as the output of SysClock
   GPIO_PinDirection(GPIOA, GPIO_PIN_5, GPIO_MODE_OUTPUT_SPEED_50MHz, GPIO_CNF_OUTPUT_PUSH_PULL);
   GPIO_PinDirection(GPIOC, GPIO_PIN_13, GPIO_MODE_INPUT, GPIO_CNF_INPUT_FLOATING);  //External Pullup/down resistor
-  GPIO_INT_SetToInterrupt(GPIOC, GPIO_PIN_13, TT_RISING_EDGE);  
+  GPIO_INT_SetToInterrupt(GPIOC, GPIO_PIN_13, TT_RISING_EDGE); 
 }
 
 /**
