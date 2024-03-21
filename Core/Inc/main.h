@@ -32,6 +32,7 @@ extern "C" {
 #include "ACDC_USART.h"
 #include "ACDC_SPI.h"
 #include "ACDC_LTC1298_ADC.h"
+#include "ACDC_LTC1451_DAC.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
