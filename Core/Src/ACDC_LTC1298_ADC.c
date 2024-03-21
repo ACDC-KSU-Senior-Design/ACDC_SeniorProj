@@ -34,9 +34,7 @@ void LTCADC_InitCS(SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN){
 
 uint16_t LTCADC_ReadCH0CS(SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN_x){
     GPIO_Clear(GPIOx, GPIO_PIN_x);              // Set the Chip Select Low
-
     uint16_t adcData = LTCADC_ReadCH0(SPIx);    // Read the value from the ADC
-    
     while(SPIx->SR & SPI_SR_BSY){}              // Wait until SPIx is done
     GPIO_Set(GPIOx, GPIO_PIN_x);                // Set the Chip Select High
     return adcData;
