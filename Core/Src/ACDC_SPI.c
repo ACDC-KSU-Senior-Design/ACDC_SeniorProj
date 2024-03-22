@@ -184,7 +184,7 @@ static void SPI_InitClk(const SPI_TypeDef *SPIx){
 }
 
 static void SPI_InitPin(const SPI_TypeDef *SPIx, bool isMaster){
-    GPIO_TypeDef *GPIO_PORT = NULL;
+    GPIO_TypeDef *GPIO_PORT = 0;
     uint16_t SPI_SCK = 0, SPI_MISO = 0, SPI_MOSI = 0;
 
     if(SPIx == SPI1){   //SPI1 Remapping {See RM-181}
