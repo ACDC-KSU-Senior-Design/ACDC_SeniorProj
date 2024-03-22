@@ -51,6 +51,7 @@ void SPI_EnableRemap(const SPI_TypeDef *SPIx, bool enable){
         if(enable){
             SET_BIT(RCC->APB2ENR, RCC_APB2ENR_AFIOEN);  // Enable the Alternate Function Clk
             SET_BIT(AFIO->MAPR, AFIO_MAPR_SPI1_REMAP);  // Enable Remapping SPI1
+            SET_BIT(AFIO->MAPR, AFIO_MAPR_SWJ_CFG_1);   // Disable JTAG (somehow it conflicts and has to be disabled) {https://github.com/zephyrproject-rtos/zephyr/issues/43452}
         }
         else
             CLEAR_BIT(AFIO->MAPR, AFIO_MAPR_SPI1_REMAP); // Disable SPI1 Remapping
