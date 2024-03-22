@@ -68,6 +68,13 @@ void SPI_Transmit(SPI_TypeDef *SPIx, uint16_t data) {
     while(!READ_BIT(SPIx->SR, SPI_SR_TXE)){}    // Wait to return until the transmission has completed (Needed for CS pin)
 }
 
+void SPI_TransmitCS(SPI_TypeDef *SPIx, uint16_t data, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN){
+    GPIO_Clear(GPIOx, GPIO_PIN);
+    SPI_Transmit(SPIx, data);
+    while(READ_BIT(SPIx->SR, SPI_SR_BSY));
+    GPIO_Set(GPIOx, GPIO_PIN);
+}
+
 uint16_t SPI_Receive(const SPI_TypeDef *SPIx) {
     // Wait until receive buffer is full
     while (!(SPIx->SR & SPI_SR_RXNE));

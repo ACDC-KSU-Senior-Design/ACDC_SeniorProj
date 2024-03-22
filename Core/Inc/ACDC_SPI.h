@@ -53,6 +53,13 @@ void SPI_EnableRemap(const SPI_TypeDef *SPIx, bool enable);
 /// @param data Data to transmit
 void SPI_Transmit(SPI_TypeDef *SPIx, uint16_t data);
 
+/// @brief Transmits data over the given SPI, and toggles the CS pins accordingly
+/// @param SPIx SPI to transmit over
+/// @param data Data to transmit
+/// @param GPIOx GPIO Port for the chip select pin (Ex. GPIOA, GPIOB, ...)
+/// @param GPIO_PIN Desired chip select pin on port GPIOx (Ex. GPIO_PIN_0, GPIO_PIN_1, ...)
+void SPI_TransmitCS(SPI_TypeDef *SPIx, uint16_t data, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN);
+
 /// @brief Recieves data from a SPI
 /// @param SPIx SPI to recieve from
 /// @return Data recieved
