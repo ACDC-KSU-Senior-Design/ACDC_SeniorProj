@@ -27,17 +27,34 @@ static void ACDC_Init(SystemClockSpeed SCS_x);
 int main(void)
 {
   ACDC_Init(SCS_72MHz);
-  LTCADC_InitCS(SPI2, GPIOB, GPIO_PIN_1);
+  LTCDAC_InitCS(SPI2, GPIOC, GPIO_PIN_4);
 
   uint16_t oldData = 0;
 
   while (1)
   {
-    uint32_t newData = LTCADC_ReadCH0CS(SPI2, GPIOB, GPIO_PIN_1);
-    if(newData != oldData){
-      USART_SendString(USART2, StringConvert(newData)); 
-      oldData = newData;
-    }
+    //LTCADC_ReadCH0CS(SPI2, GPIOC, GPIO_PIN_4);
+    //1v
+    USART_SendString(USART2, "Voltage: 1v");
+    LTCDAC_SetOutputCS(SPI2, GPIOC, GPIO_PIN_4, 1000);
+    Delay(2500);
+
+    //2v
+    USART_SendString(USART2, "Voltage: 2v");
+    LTCDAC_SetOutputCS(SPI2, GPIOC, GPIO_PIN_4, 2000);
+    Delay(2500);
+
+    //3v
+    USART_SendString(USART2, "Voltage: 3v");
+    LTCDAC_SetOutputCS(SPI2, GPIOC, GPIO_PIN_4, 3000);
+    Delay(2500);
+
+    //3,276
+    USART_SendString(USART2, "Voltage: 4v");
+    LTCDAC_SetOutputCS(SPI2, GPIOC, GPIO_PIN_4, 4000);
+    Delay(2500);
+
+    GPIO_Toggle(GPIOA, GPIO_PIN_5);
   }
 }
 
