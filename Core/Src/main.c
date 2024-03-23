@@ -23,11 +23,11 @@ static void ACDC_Init(SystemClockSpeed SCS_x);
 int main(void)
 {
   ACDC_Init(SCS_72MHz);
-  LTCDAC_InitCS(SPI1, GPIOA, GPIO_PIN_10);
+  LTC1451_t DAC = LTCDAC_InitCS(SPI1, GPIOA, GPIO_PIN_10);
 
   while (1)
   {
-    LTCDAC_SetOutputCS(SPI1, GPIOA, GPIO_PIN_10, 0xAAAA);
+    LTCDAC_SetOutputCS(DAC, 0xAAAA);
 
     Delay(500);
     GPIO_Toggle(GPIOA, GPIO_PIN_5);

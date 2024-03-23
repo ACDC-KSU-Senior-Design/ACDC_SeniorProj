@@ -10,7 +10,7 @@ All functions below assume that you have included **"ACDC_LTC1451_DAC.h"**
 
 int main(){
     /* Enable MCU clocks and other peripherals */
-    LTCDAC_InitCS(SPI2, GPIOC, GPIO_PIN_4);             // Setup the DAC, SPI2, and CS pin
-    LTCDAC_SetOutputCS(SPI2, GPIOC, GPIO_PIN_4, 1000);  // Set the DAC output to 1000/4095 or 1v
+    LTC1451_t DAC = LTCDAC_InitCS(SPI2, GPIOC, GPIO_PIN_4); // Setup the DAC, SPI2, and CS pin
+    LTCDAC_SetOutputCS(DAC, 1000);                          // Set the DAC output to 1000/4095 or 1v
 }
 ```
