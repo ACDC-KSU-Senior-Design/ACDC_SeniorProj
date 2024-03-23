@@ -50,6 +50,18 @@ void GPIO_PinDirection(GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN, uint8_t GPIO_MODE
     *REG |= (GPIO_CNF  << ((PIN*4) + GPIO_CNF_OFFSET ));    //Sets the GPIO_CNF (PP, OD, Analog, PU/PD)
 }
 
+void GPIO_Deinit(GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN){
+    const uint32_t GPIO_CRx_RESET_VALUE = 0x44444444;                       // Default CRH/CRL register value {See RM-172}
+    volatile uint32_t *REG = (GPIO_PIN > 7) ? &GPIOx->CRH : &GPIOx->CRL;    // Use CRL for 0-7, else CRH for 8-15
+    uint8_t PIN = GPIO_GetPinNumber(GPIO_PIN);                              // Get the Pin number (GPIO_PIN_3 -> 3)
+    if(GPIO_PIN > 7)
+        PIN -= 8;   // shifts the pin down to accomadate for CRH & CRL
+
+    uint32_t GPIO_Pin_Msk = GPIO_MODE_CNF << (PIN*4);   // Creates a bitmask for the MODE & CNF Bits
+    CLEAR_BIT(*REG, GPIO_Pin_Msk);                      // Clear the MODE & CNF bits
+    SET_BIT(*REG, GPIO_CRx_RESET_VALUE & GPIO_Pin_Msk); // Set the MODE & CNF bits to the default value
+}
+
 void GPIO_Write(GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN, uint16_t GPIO_VALUE){
     if(GPIO_VALUE >= 1)
         GPIO_Set(GPIOx, GPIO_PIN);

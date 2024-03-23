@@ -12,6 +12,8 @@
  */
 
 #include "ACDC_SPI.h"
+#include "ACDC_GPIO.h"
+#include "ACDC_CLOCK.h"
 
 #pragma region PRIVATE_FUNCTION_PROTOTYPES
 /// @brief Enables the SPIx peripheral clock (Needed for peripheral to function)
@@ -24,20 +26,36 @@ static void SPI_InitClk(const SPI_TypeDef *SPIx);
 static void SPI_InitPin(const SPI_TypeDef *SPIx, bool isMaster);
 #pragma endregion
 
-void SPI_Init(SPI_TypeDef *SPIx, bool isMaster) {
-    SPI_InitClk(SPIx);
-    SPI_InitPin(SPIx, isMaster);
+void SPI_InitCS(SPI_TypeDef *SPIx, bool isMaster, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN){
+     SPI_InitClk(SPIx);
+     SPI_InitPin(SPIx, isMaster);
 
     // Configure SPIx
-    SPIx->CR1 &= ~(SPI_CR1_SPE);            // Disable SPIx
-    SPIx->CR1 |= SPI_CR1_SSM | SPI_CR1_SSI; // Set master mode, software NSS
-    SPI_SetBaudDivider(SPIx, SPI_BAUD_DIV_2);
-    SPI_SetBitMode(SPIx, SPI_MODE_16Bit);
-    SPI_SetLsbFirst(SPIx, false);
-    SPIx->CR1 |= SPI_CR1_MSTR; // Set as master
+    CLEAR_BIT(SPIx->CR1, SPI_CR1_SPE);              // Disable SPIx (so it can be configured)
+    SPI_EnableSoftwareCS(SPIx, GPIOx, GPIO_PIN);    // Enable the software CS pin
+    SPI_SetClockPhaseAndPolarity(SPIx, 0, 0);       // 1st Clk transmission is when data is captured, and Clk idles at 0
+    SPI_SetBaudDivider(SPIx, SPI_BAUD_DIV_2);       // Set SPIx to the fastest speed
+    SPI_SetBitMode(SPIx, SPI_MODE_16Bit);           // Set SPIx to 16 bit mode
+    SPI_SetToMaster(SPIx, isMaster);                // Set to Master or Slave
+    SPI_SetLsbFirst(SPIx, false);                   // Set it to MsbFirst
+    SET_BIT(SPIx->CR1, SPI_CR1_SPE);                // Enable SPIx
+}
 
-    // Enable SPI1
-    SPIx->CR1 |= SPI_CR1_SPE;
+void SPI_EnableSoftwareCS(SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN){
+    GPIO_PinDirection(GPIOx, GPIO_PIN, GPIO_MODE_OUTPUT_SPEED_50MHz, GPIO_CNF_OUTPUT_PUSH_PULL);    // Setup Software CS
+    SET_BIT(SPIx->CR1, SPI_CR1_SSM | SPI_CR1_SSI);    // Enable Software Slave & set NSS low
+}
+
+void SPI_EnableRemap(const SPI_TypeDef *SPIx, bool enable){
+    if(SPIx == SPI1){
+        if(enable){
+            SET_BIT(RCC->APB2ENR, RCC_APB2ENR_AFIOEN);  // Enable the Alternate Function Clk
+            SET_BIT(AFIO->MAPR, AFIO_MAPR_SPI1_REMAP);  // Enable Remapping SPI1
+        }
+        else
+            CLEAR_BIT(AFIO->MAPR, AFIO_MAPR_SPI1_REMAP); // Disable SPI1 Remapping
+    }
+    //No remap available for SPI2
 }
 
 void SPI_Transmit(SPI_TypeDef *SPIx, uint16_t data) {
@@ -46,6 +64,8 @@ void SPI_Transmit(SPI_TypeDef *SPIx, uint16_t data) {
 
     // Send data
     SPIx->DR = data;
+
+    while(!READ_BIT(SPIx->SR, SPI_SR_TXE)){}    // Wait to return until the transmission has completed (Needed for CS pin)
 }
 
 uint16_t SPI_Receive(const SPI_TypeDef *SPIx) {
@@ -61,10 +81,43 @@ uint16_t SPI_TransmitReceive(SPI_TypeDef *SPIx, uint16_t data) {
     return SPI_Receive(SPIx);
 }
 
+uint16_t SPI_TransmitReceiveCS(SPI_TypeDef *SPIx, uint16_t data, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN){
+    GPIO_Clear(GPIOx, GPIO_PIN);                                // Set CS Low
+    uint16_t returnedData = SPI_TransmitReceive(SPIx, data);    // Transmit and Recieve the data
+    while(READ_BIT(SPIx->SR, SPI_SR_BSY)){}                     // Wait until the data has finished sending
+    GPIO_Set(GPIOx, GPIO_PIN);                                  // Set CS High
+    return returnedData;                                        // Return the SPI data
+}
+
 void SPI_SetBaudDivider(SPI_TypeDef *SPIx, SPI_BaudDivider SPI_BAUD_DIV_x){
     while(READ_BIT(SPIx->SR, SPI_SR_BSY)){}                 // While SPIx is busy in communication or Tx buffer is not empty
     CLEAR_BIT(SPIx->CR1, SPI_CR1_BR_Msk);                   // Clear the SPIx Baud Divisor bits
     SET_BIT(SPIx->CR1, SPI_BAUD_DIV_x << SPI_CR1_BR_Pos);   // Set the SPIx Baud Divisor bits
+}
+
+void SPI_CalculateAndSetBaudDivider(SPI_TypeDef *SPIx, uint32_t maxPeripheralClockSpeed){
+    uint32_t SpiClockSpeed;
+    if(SPIx == SPI1)
+        SpiClockSpeed = CLOCK_GetAPB2ClockSpeed(); // SPI1 is on the APB2 Clock {See RM-113} (MAX = 72MHz)
+    else // SPI2
+        SpiClockSpeed = CLOCK_GetAPB1ClockSpeed(); // SPI2 is on the APB1 Clock {See RM-116} (MAX = 36MHz)
+
+    if(SpiClockSpeed / 2 <= maxPeripheralClockSpeed)
+        SPI_SetBaudDivider(SPIx, SPI_BAUD_DIV_2);
+    else if(SpiClockSpeed / 4 <= maxPeripheralClockSpeed)
+        SPI_SetBaudDivider(SPIx, SPI_BAUD_DIV_4);
+    else if(SpiClockSpeed / 8 <= maxPeripheralClockSpeed)
+        SPI_SetBaudDivider(SPIx, SPI_BAUD_DIV_8);
+    else if(SpiClockSpeed / 16 <= maxPeripheralClockSpeed)
+        SPI_SetBaudDivider(SPIx, SPI_BAUD_DIV_16);
+    else if(SpiClockSpeed / 32 <= maxPeripheralClockSpeed)
+        SPI_SetBaudDivider(SPIx, SPI_BAUD_DIV_32);
+    else if(SpiClockSpeed / 64 <= maxPeripheralClockSpeed)
+        SPI_SetBaudDivider(SPIx, SPI_BAUD_DIV_64);
+    else if(SpiClockSpeed / 128 <= maxPeripheralClockSpeed)
+        SPI_SetBaudDivider(SPIx, SPI_BAUD_DIV_128);
+    else if(SpiClockSpeed / 256 <= maxPeripheralClockSpeed)
+        SPI_SetBaudDivider(SPIx, SPI_BAUD_DIV_256);
 }
 
 void SPI_SetBitMode(SPI_TypeDef *SPIx, SPI_BitMode SPI_MODE_x){
@@ -89,6 +142,29 @@ void SPI_SetLsbFirst(SPI_TypeDef *SPIx, bool LsbFirst){
         SET_BIT(SPIx->CR1  , SPI_CR1_LSBFIRST); // Set LSB first
     else
         CLEAR_BIT(SPIx->CR1, SPI_CR1_LSBFIRST); // Set MSB first
+}
+
+void SPI_SetClockPhaseAndPolarity(SPI_TypeDef *SPIx, bool ClkPhase, bool ClkPolarity){
+    if(ClkPhase)                                
+        SET_BIT(SPIx->CR1  , SPI_CR1_CPHA);     // The second clock transition is the first data capture edge
+    else
+        CLEAR_BIT(SPIx->CR1, SPI_CR1_CPHA);     // The first clock transition is the first data capture edge
+
+    if(ClkPolarity)
+        SET_BIT(SPIx->CR1  , SPI_CR1_CPOL);     // Set Clock to 1 or High when idle
+    else
+        CLEAR_BIT(SPIx->CR1, SPI_CR1_CPOL);     // Set Clock to 0 or Low when idle
+}
+
+void SPI_SetToMaster(SPI_TypeDef *SPIx, bool isMaster){
+    if(isMaster)
+        SET_BIT(SPIx->CR1, SPI_CR1_MSTR); // Set as master, (Default: Slave)
+    else
+        CLEAR_BIT(SPIx->CR1, SPI_CR1_MSTR);
+}
+
+bool SPI_HasDataToRecieve(SPI_TypeDef *SPIx){
+    return READ_BIT(SPIx->SR, SPI_SR_RXNE) ? true : false; // Checks if the SPIx's recieve buffer is not empty
 }
 
 #pragma region PRIVATE_FUNCTIONS
