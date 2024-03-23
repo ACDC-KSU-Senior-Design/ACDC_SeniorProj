@@ -60,20 +60,18 @@ void GPIO_INT_SetToInterrupt(const GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN, GPIO_
     //External Interrupts are Muxed so you can only use 16 concurrently {See Page 210 RM}
     //https://community.st.com/t5/stm32-mcus-products/nvic-interrupts-on-two-ports-with-same-pin-number/td-p/550469
 
-    RCC->APB2ENR |= RCC_APB2ENR_AFIOEN; //Enable Alternate Functions (Needed for Interrupts)
+    RCC->APB2ENR |= RCC_APB2ENR_AFIOEN; // Enable Alternate Functions (Needed for Interrupts)
 
     uint16_t pin = GPIO_GetPinNumber(GPIO_PIN);
-    EXTI->IMR |= 1 << pin;        //Enable Interrupts on pin
+    EXTI->IMR |= 1 << pin;        // Enable Interrupts on pin
     if(TT_x & TT_RISING_EDGE)
-        EXTI->RTSR |= 1 << pin;   //Enable RisingEdge Interrupts on pin
+        EXTI->RTSR |= 1 << pin;   // Enable RisingEdge Interrupts on pin
     if(TT_x & TT_FALLING_EDGE)
-        EXTI->FTSR |= 1 << pin;   //Enable FallingEdge Interrupts on pin
+        EXTI->FTSR |= 1 << pin;   // Enable FallingEdge Interrupts on pin
 
-    uint16_t CRNumber = pin >> 2; //Gets the EXTICRx number
-    uint16_t GpioMask;            //Gets the GPIO mask {See RM-191}
-    if(GPIOx == GPIOA)
-        GpioMask = 0b0000;
-    else if(GPIOx == GPIOB)
+    uint16_t CRNumber = pin >> 2; // Gets the EXTICRx number
+    uint16_t GpioMask = 0b0000;   // default to GPIOA (GPIO mask {See RM-191})
+    if(GPIOx == GPIOB)
         GpioMask = 0b0001;
     else if(GPIOx == GPIOC)
         GpioMask = 0b0010;
