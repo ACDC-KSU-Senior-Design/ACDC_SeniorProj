@@ -1,8 +1,8 @@
 /**
- * @file ACDC_SPI.h
+ * @file ACDC_SPI.c
  * @author Liam Bramley, Devin Marx
  * @brief Implementation of SPI driver
- * 
+ *
  * This file includes functions to initalize the SPI, transfer and recieve data.
  * 
  * @version 0.1
