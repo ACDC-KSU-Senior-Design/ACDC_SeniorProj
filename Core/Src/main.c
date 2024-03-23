@@ -27,16 +27,15 @@ static void ACDC_Init(SystemClockSpeed SCS_x);
 int main(void)
 {
   ACDC_Init(SCS_72MHz);
-  LTCADC_InitCS(SPI2, GPIOB, GPIO_PIN_1);
 
-  uint16_t oldData = 0;
+  uint64_t oldTime = Micros();
 
   while (1)
   {
-    uint32_t newData = LTCADC_ReadCH0CS(SPI2, GPIOB, GPIO_PIN_1);
-    if(newData != oldData){
-      USART_SendString(USART2, StringConvert(newData)); 
-      oldData = newData;
+    if(Micros() - oldTime >= 1000000){      // 1,000,000us per second     
+      oldTime = Micros();                   // Update time at the top of the if to prevent drifting
+      USART_SendString(USART2, "UART MSG"); // Send a UART messages
+      GPIO_Toggle(GPIOA, GPIO_PIN_5);       // Toggle the LED
     }
   }
 }
