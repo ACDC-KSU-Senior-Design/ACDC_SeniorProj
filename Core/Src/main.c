@@ -14,7 +14,9 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
-static void ACDC_Init(SystemClockSpeed SCS_x);
+/// @brief Initializes the system clock, internal peripherals, and external hardware
+/// @param SCS_x System Clock Speed (Ex. SCS_72Mhz, SCS_36Mhz, ...)
+void ACDC_Init(SystemClockSpeed SCS_x);
 
 /**
   * @brief  The application entry point.
@@ -34,7 +36,7 @@ int main(void)
   }
 }
 
-static void ACDC_Init(SystemClockSpeed SCS_x){
+void ACDC_Init(SystemClockSpeed SCS_x){
   CLOCK_SetSystemClockSpeed(SCS_x);   //72Mhz doesnt quite work Rn
   //APB1 & APB2 Prescalers are set the highest speed in CLOCK_SetSystemClockSpeed
 
