@@ -52,7 +52,7 @@ void INTERRUPT_SetPriority(IRQn_Type IRQn, uint8_t Priority){
     if(IRQn >= STM32_LOWEST_INT_VECTOR)                                     // If it is a STM32 specific interrupt vector
         WRITE_REG(NVIC->IP[IRQn], calcPriority);                            // Write the calculated priority to the register
     else if(IRQn >= CORTEX_M3_LOWEST_CONFIGURABLE_INT_VECTOR)               // If it is a configurable Cortex-M3 interrupt vector
-        WRITE_REG(SCB->SHP[CORTEX_M3_SCB_SHP_OFFSET], calcPriority);        // Write the calcualted priority to the SCB->SHP register
+        WRITE_REG(SCB->SHP[IRQn + CORTEX_M3_SCB_SHP_OFFSET], calcPriority); // Write the calcualted priority to the SCB->SHP register
 }
 
 
