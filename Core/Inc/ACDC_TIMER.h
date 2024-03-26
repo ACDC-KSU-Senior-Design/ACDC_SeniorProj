@@ -27,9 +27,13 @@ void TIMER_Init(SystemClockSpeed SCS_x);
 /// @param SCS_x System Clock Speed (Ex. SCS_72Mhz, SCS_36Mhz, ...)
 void TIMER_SetSystemClockSpeed(SystemClockSpeed SCS_x);
 
-/// @brief Grabs and returns the total number of milliseconds since the Micro turned on
+/// @brief Grabs and returns the total number of milliseconds since the MCU turned on
 /// @return Number of milliseconds since startup
 uint64_t Millis();
+
+/// @brief Grabs and returns the total number of microseconds since the MCU turned on
+/// @return Number of microseconds since startup
+uint64_t Micros();
 
 /// @brief Pauses code execution for delayVal number of milliseconds
 /// @param delayVal Number of milliseconds to delay for
