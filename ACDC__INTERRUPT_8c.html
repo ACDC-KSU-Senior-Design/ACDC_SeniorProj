@@ -106,9 +106,18 @@ $(function(){initNavTree('ACDC__INTERRUPT_8c.html',''); initResizable(); });
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aa22740d36781428cb9e66307a02636ac" id="r_aa22740d36781428cb9e66307a02636ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa22740d36781428cb9e66307a02636ac">GPIO_INT_SetToInterrupt</a> (const GPIO_TypeDef *GPIOx, <a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> GPIO_PIN, <a class="el" href="ACDC__INTERRUPT_8h.html#aa0ae10dd46be9ed141334e3c8ab9af04">GPIO_TriggerType</a> triggerType)</td></tr>
-<tr class="memdesc:aa22740d36781428cb9e66307a02636ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables Interrupts for GPIO_PIN on GPIOx. (Make sure to set GPIO_PIN as an Input)  <br /></td></tr>
-<tr class="separator:aa22740d36781428cb9e66307a02636ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24a54d13ebcae30b5dabfec750a480e8" id="r_a24a54d13ebcae30b5dabfec750a480e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a24a54d13ebcae30b5dabfec750a480e8">INTERRUPT_Enable</a> (IRQn_Type IRQn)</td></tr>
+<tr class="memdesc:a24a54d13ebcae30b5dabfec750a480e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables Interrupts for the specific vector IRQn.  <br /></td></tr>
+<tr class="separator:a24a54d13ebcae30b5dabfec750a480e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a053506dd6882be25c6e8bc50b4e256fe" id="r_a053506dd6882be25c6e8bc50b4e256fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a053506dd6882be25c6e8bc50b4e256fe">INTERRUPT_Disable</a> (IRQn_Type IRQn)</td></tr>
+<tr class="memdesc:a053506dd6882be25c6e8bc50b4e256fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables Interrupts for the specific vector IRQn.  <br /></td></tr>
+<tr class="separator:a053506dd6882be25c6e8bc50b4e256fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03bac4c07a12d0aa8c3c39f6f672eacd" id="r_a03bac4c07a12d0aa8c3c39f6f672eacd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a03bac4c07a12d0aa8c3c39f6f672eacd">INTERRUPT_SetPriority</a> (IRQn_Type IRQn, <a class="el" href="ACDC__stdint_8h.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> Priority)</td></tr>
+<tr class="memdesc:a03bac4c07a12d0aa8c3c39f6f672eacd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the priority of the Interrupt vector IRQn.  <br /></td></tr>
+<tr class="separator:a03bac4c07a12d0aa8c3c39f6f672eacd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcae2f067b670c57517d26c04db2e73d" id="r_abcae2f067b670c57517d26c04db2e73d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abcae2f067b670c57517d26c04db2e73d">GPIO_INT_SetToInterrupt</a> (const GPIO_TypeDef *GPIOx, <a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> GPIO_PIN, <a class="el" href="ACDC__INTERRUPT_8h.html#aa0ae10dd46be9ed141334e3c8ab9af04">GPIO_TriggerType</a> TT_x)</td></tr>
+<tr class="memdesc:abcae2f067b670c57517d26c04db2e73d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables Interrupts for GPIO_PIN on GPIOx. (Make sure to set GPIO_PIN as an Input)  <br /></td></tr>
+<tr class="separator:abcae2f067b670c57517d26c04db2e73d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implementation of general-purpose interrupt configuration functions. </p>
@@ -120,8 +129,8 @@ Functions</h2></td></tr>
 <p>The functions in this file enable the configuration of interrupts, allowing users to set up interrupt triggers on various sources, including GPIO pins.</p>
 <dl class="section note"><dt>Note</dt><dd>External interrupts are muxed, allowing the configuration of up to 16 concurrent interrupts. Refer to RM-210 for details. </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="aa22740d36781428cb9e66307a02636ac" name="aa22740d36781428cb9e66307a02636ac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa22740d36781428cb9e66307a02636ac">&#9670;&#160;</a></span>GPIO_INT_SetToInterrupt()</h2>
+<a id="abcae2f067b670c57517d26c04db2e73d" name="abcae2f067b670c57517d26c04db2e73d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcae2f067b670c57517d26c04db2e73d">&#9670;&#160;</a></span>GPIO_INT_SetToInterrupt()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -150,6 +159,86 @@ Functions</h2></td></tr>
     <tr><td class="paramname">GPIOx</td><td>Port of the GPIO (Ex. GPIOA, GPIOB, ...) </td></tr>
     <tr><td class="paramname">GPIO_PIN</td><td>Desired pin on port GPIOx (Ex. GPIO_PIN_0, GPIO_PIN_1, ...) </td></tr>
     <tr><td class="paramname">triggerType</td><td>Edge that triggers the Interrupt (Ex. RISING_EDGE, FALLING_EDGE, RISING_AND_FALLING_EDGE) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a053506dd6882be25c6e8bc50b4e256fe" name="a053506dd6882be25c6e8bc50b4e256fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a053506dd6882be25c6e8bc50b4e256fe">&#9670;&#160;</a></span>INTERRUPT_Disable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void INTERRUPT_Disable </td>
+          <td>(</td>
+          <td class="paramtype">IRQn_Type</td>          <td class="paramname"><span class="paramname"><em>IRQn</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Disables Interrupts for the specific vector IRQn. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">IRQn</td><td>Interrupt vector to disable </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a24a54d13ebcae30b5dabfec750a480e8" name="a24a54d13ebcae30b5dabfec750a480e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24a54d13ebcae30b5dabfec750a480e8">&#9670;&#160;</a></span>INTERRUPT_Enable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void INTERRUPT_Enable </td>
+          <td>(</td>
+          <td class="paramtype">IRQn_Type</td>          <td class="paramname"><span class="paramname"><em>IRQn</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enables Interrupts for the specific vector IRQn. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">IRQn</td><td>Interrupt vector to enable </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a03bac4c07a12d0aa8c3c39f6f672eacd" name="a03bac4c07a12d0aa8c3c39f6f672eacd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03bac4c07a12d0aa8c3c39f6f672eacd">&#9670;&#160;</a></span>INTERRUPT_SetPriority()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void INTERRUPT_SetPriority </td>
+          <td>(</td>
+          <td class="paramtype">IRQn_Type</td>          <td class="paramname"><span class="paramname"><em>IRQn</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ACDC__stdint_8h.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a></td>          <td class="paramname"><span class="paramname"><em>Priority</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the priority of the Interrupt vector IRQn. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">IRQn</td><td>Interrupt vector </td></tr>
+    <tr><td class="paramname">Priority</td><td>Priority of the IRQn vector (Value: 0-15 Lower value means higher priority) </td></tr>
   </table>
   </dd>
 </dl>

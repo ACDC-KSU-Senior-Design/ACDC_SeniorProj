@@ -103,12 +103,15 @@ $(function(){initNavTree('ACDC__TIMER_8c.html',''); initResizable(); });
 <p>Implementation of timer functions for system clock speed and delay.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="ACDC__TIMER_8h_source.html">ACDC_TIMER.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ACDC__INTERRUPT_8h_source.html">ACDC_INTERRUPT.h</a>&quot;</code><br />
 <code>#include &quot;stm32f1xx.h&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:a52b8ea09cf8de6316116b383b83b951c" id="r_a52b8ea09cf8de6316116b383b83b951c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a52b8ea09cf8de6316116b383b83b951c">MS_PER_SECOND</a>&#160;&#160;&#160;1000</td></tr>
 <tr class="separator:a52b8ea09cf8de6316116b383b83b951c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31ae5fdfe8827f4d8def045948d3986e" id="r_a31ae5fdfe8827f4d8def045948d3986e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a31ae5fdfe8827f4d8def045948d3986e">US_PER_MS</a>&#160;&#160;&#160;1000</td></tr>
+<tr class="separator:a31ae5fdfe8827f4d8def045948d3986e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -121,8 +124,11 @@ Functions</h2></td></tr>
 <tr class="memitem:ab5e09814056d617c521549e542639b7e" id="r_ab5e09814056d617c521549e542639b7e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab5e09814056d617c521549e542639b7e">SysTick_Handler</a> (void)</td></tr>
 <tr class="separator:ab5e09814056d617c521549e542639b7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e5c4d91114c9e78353b666ef06bf80e" id="r_a0e5c4d91114c9e78353b666ef06bf80e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ACDC__stdint_8h.html#ad27ed092432b64ff558d2254c278720f">uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e5c4d91114c9e78353b666ef06bf80e">Millis</a> ()</td></tr>
-<tr class="memdesc:a0e5c4d91114c9e78353b666ef06bf80e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Grabs and returns the total number of milliseconds since the Micro turned on.  <br /></td></tr>
+<tr class="memdesc:a0e5c4d91114c9e78353b666ef06bf80e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Grabs and returns the total number of milliseconds since the MCU turned on.  <br /></td></tr>
 <tr class="separator:a0e5c4d91114c9e78353b666ef06bf80e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af712baa41b04626f70bd0357d93621c1" id="r_af712baa41b04626f70bd0357d93621c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ACDC__stdint_8h.html#ad27ed092432b64ff558d2254c278720f">uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af712baa41b04626f70bd0357d93621c1">Micros</a> ()</td></tr>
+<tr class="memdesc:af712baa41b04626f70bd0357d93621c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Grabs and returns the total number of microseconds since the MCU turned on.  <br /></td></tr>
+<tr class="separator:af712baa41b04626f70bd0357d93621c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b1f4fc7061694a1fa23bfd558e19b4a" id="r_a9b1f4fc7061694a1fa23bfd558e19b4a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b1f4fc7061694a1fa23bfd558e19b4a">Delay</a> (<a class="el" href="ACDC__stdint_8h.html#ad27ed092432b64ff558d2254c278720f">uint64_t</a> delayVal)</td></tr>
 <tr class="memdesc:a9b1f4fc7061694a1fa23bfd558e19b4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pauses code execution for delayVal number of milliseconds.  <br /></td></tr>
 <tr class="separator:a9b1f4fc7061694a1fa23bfd558e19b4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,6 +148,20 @@ Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">#define MS_PER_SECOND&#160;&#160;&#160;1000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a31ae5fdfe8827f4d8def045948d3986e" name="a31ae5fdfe8827f4d8def045948d3986e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31ae5fdfe8827f4d8def045948d3986e">&#9670;&#160;</a></span>US_PER_MS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define US_PER_MS&#160;&#160;&#160;1000</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -174,6 +194,26 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="af712baa41b04626f70bd0357d93621c1" name="af712baa41b04626f70bd0357d93621c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af712baa41b04626f70bd0357d93621c1">&#9670;&#160;</a></span>Micros()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ACDC__stdint_8h.html#ad27ed092432b64ff558d2254c278720f">uint64_t</a> Micros </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Grabs and returns the total number of microseconds since the MCU turned on. </p>
+<dl class="section return"><dt>Returns</dt><dd>Number of microseconds since startup </dd></dl>
+
+</div>
+</div>
 <a id="a0e5c4d91114c9e78353b666ef06bf80e" name="a0e5c4d91114c9e78353b666ef06bf80e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0e5c4d91114c9e78353b666ef06bf80e">&#9670;&#160;</a></span>Millis()</h2>
 
@@ -189,7 +229,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Grabs and returns the total number of milliseconds since the Micro turned on. </p>
+<p>Grabs and returns the total number of milliseconds since the MCU turned on. </p>
 <dl class="section return"><dt>Returns</dt><dd>Number of milliseconds since startup </dd></dl>
 
 </div>

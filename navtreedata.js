@@ -44,7 +44,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "ACDC__CLOCK_8c.html",
-"ACDC__stdint_8h_source.html"
+"ACDC__stdint_8h.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

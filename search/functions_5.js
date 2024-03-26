@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['main_0',['main',['../main_8c.html#a840291bc02cba5474a4cb46a9b9566fe',1,'main.c']]],
-  ['millis_1',['Millis',['../ACDC__TIMER_8h.html#a0e5c4d91114c9e78353b666ef06bf80e',1,'Millis():&#160;ACDC_TIMER.c'],['../ACDC__TIMER_8c.html#a0e5c4d91114c9e78353b666ef06bf80e',1,'Millis():&#160;ACDC_TIMER.c']]]
+  ['ltcadc_5finitcs_0',['LTCADC_InitCS',['../ACDC__LTC1298__ADC_8h.html#a5683ce341b65818bbf638b363002adaf',1,'LTCADC_InitCS(SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN):&#160;ACDC_LTC1298_ADC.c'],['../ACDC__LTC1298__ADC_8c.html#a5683ce341b65818bbf638b363002adaf',1,'LTCADC_InitCS(SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN):&#160;ACDC_LTC1298_ADC.c']]],
+  ['ltcadc_5freadch0cs_1',['LTCADC_ReadCH0CS',['../ACDC__LTC1298__ADC_8h.html#a0967b44f96e168e1b70683f5e7af2405',1,'LTCADC_ReadCH0CS(SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN_x):&#160;ACDC_LTC1298_ADC.c'],['../ACDC__LTC1298__ADC_8c.html#a0967b44f96e168e1b70683f5e7af2405',1,'LTCADC_ReadCH0CS(SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN_x):&#160;ACDC_LTC1298_ADC.c']]],
+  ['ltcadc_5freadch1cs_2',['LTCADC_ReadCH1CS',['../ACDC__LTC1298__ADC_8h.html#a973c6dc3fb5b18e886fcfe63863571da',1,'LTCADC_ReadCH1CS(SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN_x):&#160;ACDC_LTC1298_ADC.c'],['../ACDC__LTC1298__ADC_8c.html#a973c6dc3fb5b18e886fcfe63863571da',1,'LTCADC_ReadCH1CS(SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN_x):&#160;ACDC_LTC1298_ADC.c']]]
 ];

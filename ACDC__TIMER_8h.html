@@ -115,8 +115,11 @@ Functions</h2></td></tr>
 <tr class="memdesc:a16b6f261d23886c5b62255d3a9bd4f4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">(SHOULD NOT BE CALLED BY USER, CALLED IN <a class="el" href="ACDC__CLOCK_8h.html" title="Header file containing functions for configuring the system clock and clock-related peripherals.">ACDC_CLOCK.h</a>) Sets the value for SysClock-&gt;LOAD  <br /></td></tr>
 <tr class="separator:a16b6f261d23886c5b62255d3a9bd4f4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e5c4d91114c9e78353b666ef06bf80e" id="r_a0e5c4d91114c9e78353b666ef06bf80e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ACDC__stdint_8h.html#ad27ed092432b64ff558d2254c278720f">uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e5c4d91114c9e78353b666ef06bf80e">Millis</a> ()</td></tr>
-<tr class="memdesc:a0e5c4d91114c9e78353b666ef06bf80e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Grabs and returns the total number of milliseconds since the Micro turned on.  <br /></td></tr>
+<tr class="memdesc:a0e5c4d91114c9e78353b666ef06bf80e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Grabs and returns the total number of milliseconds since the MCU turned on.  <br /></td></tr>
 <tr class="separator:a0e5c4d91114c9e78353b666ef06bf80e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af712baa41b04626f70bd0357d93621c1" id="r_af712baa41b04626f70bd0357d93621c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ACDC__stdint_8h.html#ad27ed092432b64ff558d2254c278720f">uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af712baa41b04626f70bd0357d93621c1">Micros</a> ()</td></tr>
+<tr class="memdesc:af712baa41b04626f70bd0357d93621c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Grabs and returns the total number of microseconds since the MCU turned on.  <br /></td></tr>
+<tr class="separator:af712baa41b04626f70bd0357d93621c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b1f4fc7061694a1fa23bfd558e19b4a" id="r_a9b1f4fc7061694a1fa23bfd558e19b4a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b1f4fc7061694a1fa23bfd558e19b4a">Delay</a> (<a class="el" href="ACDC__stdint_8h.html#ad27ed092432b64ff558d2254c278720f">uint64_t</a> delayVal)</td></tr>
 <tr class="memdesc:a9b1f4fc7061694a1fa23bfd558e19b4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pauses code execution for delayVal number of milliseconds.  <br /></td></tr>
 <tr class="separator:a9b1f4fc7061694a1fa23bfd558e19b4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,6 +157,26 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="af712baa41b04626f70bd0357d93621c1" name="af712baa41b04626f70bd0357d93621c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af712baa41b04626f70bd0357d93621c1">&#9670;&#160;</a></span>Micros()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ACDC__stdint_8h.html#ad27ed092432b64ff558d2254c278720f">uint64_t</a> Micros </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Grabs and returns the total number of microseconds since the MCU turned on. </p>
+<dl class="section return"><dt>Returns</dt><dd>Number of microseconds since startup </dd></dl>
+
+</div>
+</div>
 <a id="a0e5c4d91114c9e78353b666ef06bf80e" name="a0e5c4d91114c9e78353b666ef06bf80e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0e5c4d91114c9e78353b666ef06bf80e">&#9670;&#160;</a></span>Millis()</h2>
 
@@ -169,7 +192,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Grabs and returns the total number of milliseconds since the Micro turned on. </p>
+<p>Grabs and returns the total number of milliseconds since the MCU turned on. </p>
 <dl class="section return"><dt>Returns</dt><dd>Number of milliseconds since startup </dd></dl>
 
 </div>
