@@ -144,7 +144,7 @@ static void USART_InitPin(const USART_TypeDef *USARTx, bool useUART){
 
         if(!useUART){
             GPIO_PinDirection(GPIO_Port, Ck_Pin , GPIO_MODE_OUTPUT_SPEED_50MHz, GPIO_CNF_OUTPUT_AF_PUSH_PULL);
-            GPIO_PinDirection(GPIOB    , CTS_Pin, GPIO_MODE_AF_INPUT          , GPIO_CNF_INPUT_FLOATING);
+            GPIO_PinDirection(GPIOB    , CTS_Pin, GPIO_MODE_INPUT             , GPIO_CNF_INPUT_FLOATING);
             GPIO_PinDirection(GPIOB    , RTS_Pin, GPIO_MODE_OUTPUT_SPEED_50MHz, GPIO_CNF_OUTPUT_AF_PUSH_PULL);
         }
 
@@ -158,7 +158,7 @@ static void USART_InitPin(const USART_TypeDef *USARTx, bool useUART){
 
         if(!useUART){       
             GPIO_PinDirection(GPIO_Port, Ck_Pin , GPIO_MODE_OUTPUT_SPEED_50MHz, GPIO_CNF_OUTPUT_AF_PUSH_PULL);  
-            GPIO_PinDirection(GPIO_Port, CTS_Pin, GPIO_MODE_AF_INPUT          , GPIO_CNF_INPUT_FLOATING     );
+            GPIO_PinDirection(GPIO_Port, CTS_Pin, GPIO_MODE_INPUT             , GPIO_CNF_INPUT_FLOATING     );
             GPIO_PinDirection(GPIO_Port, RTS_Pin, GPIO_MODE_OUTPUT_SPEED_50MHz, GPIO_CNF_OUTPUT_AF_PUSH_PULL);
         }
     } 

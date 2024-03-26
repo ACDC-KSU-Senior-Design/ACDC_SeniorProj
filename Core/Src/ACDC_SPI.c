@@ -1,8 +1,8 @@
 /**
- * @file ACDC_SPI.h
+ * @file ACDC_SPI.c
  * @author Liam Bramley, Devin Marx
  * @brief Implementation of SPI driver
- * 
+ *
  * This file includes functions to initalize the SPI, transfer and recieve data.
  * 
  * @version 0.1
@@ -51,6 +51,7 @@ void SPI_EnableRemap(const SPI_TypeDef *SPIx, bool enable){
         if(enable){
             SET_BIT(RCC->APB2ENR, RCC_APB2ENR_AFIOEN);  // Enable the Alternate Function Clk
             SET_BIT(AFIO->MAPR, AFIO_MAPR_SPI1_REMAP);  // Enable Remapping SPI1
+            SET_BIT(AFIO->MAPR, AFIO_MAPR_SWJ_CFG_1);   // Disable JTAG (somehow it conflicts and has to be disabled) {https://github.com/zephyrproject-rtos/zephyr/issues/43452}
         }
         else
             CLEAR_BIT(AFIO->MAPR, AFIO_MAPR_SPI1_REMAP); // Disable SPI1 Remapping
@@ -66,6 +67,13 @@ void SPI_Transmit(SPI_TypeDef *SPIx, uint16_t data) {
     SPIx->DR = data;
 
     while(!READ_BIT(SPIx->SR, SPI_SR_TXE)){}    // Wait to return until the transmission has completed (Needed for CS pin)
+}
+
+void SPI_TransmitCS(SPI_TypeDef *SPIx, uint16_t data, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN){
+    GPIO_Clear(GPIOx, GPIO_PIN);
+    SPI_Transmit(SPIx, data);
+    while(READ_BIT(SPIx->SR, SPI_SR_BSY));
+    GPIO_Set(GPIOx, GPIO_PIN);
 }
 
 uint16_t SPI_Receive(const SPI_TypeDef *SPIx) {
@@ -176,7 +184,7 @@ static void SPI_InitClk(const SPI_TypeDef *SPIx){
 }
 
 static void SPI_InitPin(const SPI_TypeDef *SPIx, bool isMaster){
-    GPIO_TypeDef *GPIO_PORT = NULL;
+    GPIO_TypeDef *GPIO_PORT = 0;
     uint16_t SPI_SCK = 0, SPI_MISO = 0, SPI_MOSI = 0;
 
     if(SPIx == SPI1){   //SPI1 Remapping {See RM-181}
