@@ -42,9 +42,36 @@ int main(){
     uint32_t previousTime = Millis();   //Grab the number of milliseconds since startup
 
     while(1){
-        if(Millis() - previousTime >= 1000){
-            GPIO_Toggle(GPIOA, GPIO_PIN_5);
-            previousTime = Millis();
+        if(Millis() - previousTime >= 1000){    // 1,000ms per second
+            previousTime = Millis();            // Update this first to keep accurate timing
+            GPIO_Toggle(GPIOA, GPIO_PIN_5);     // (else it will drift because of the time it takes to call GPIO_Toggle)
+        }
+    }
+
+}
+```
+
+## Use the Micros function to toggle a LED every second
+
+```C
+#include "ACDC_TIMER.h"
+#include "ACDC_CLOCK.h"
+
+//Green LED => GPIOA, GPIO_PIN_5
+
+int main(){
+
+    CLOCK_SetSystemClockSpeed(SCS_72MHz);   //Set the SysClock to 72MHz (CALLS TIMER_Init)
+    CLOCK_SetAPB1Prescaler(APB_DIV_2);      //Set the APB1 Prescaler to /2
+
+    GPIO_PinDirection(GPIOA, GPIO_PIN_5, GPIO_MODE_OUTPUT_2MHz, GPIO_CNF_OUTPUT_PUSH_PULL);   //Set the Green LED to an output
+
+    uint64_t previousTime = Micros();   //Grab the number of milliseconds since startup
+
+    while(1){
+        if(Micros() - previousTime >= 1000000){ // 1,000,000us per second
+            previousTime = Micros();            // Update this value first to keep accurate timing
+            GPIO_Toggle(GPIOA, GPIO_PIN_5);     // (else it will drift because of the time it takes to call GPIO_Toggle)
         }
     }
 
