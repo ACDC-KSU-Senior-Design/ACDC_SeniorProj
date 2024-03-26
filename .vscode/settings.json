@@ -15,5 +15,7 @@
         "acdc_gpio.h": "c",
         "stm32f1xx.h": "c",
         "acdc_spi.h": "c",
+        "acdc_ltc1298_adc.h": "c",
+        "acdc_ltc1451_dac.h": "c"
     }
 }

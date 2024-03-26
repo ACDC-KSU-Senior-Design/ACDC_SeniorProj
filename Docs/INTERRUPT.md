@@ -29,3 +29,48 @@ void EXTI15_10_IRQHandler(void)
     }
 }
 ```
+
+
+## Set the GPIO interrupt to the lowest priority (highest number)
+
+```C
+#include "ACDC_GPIO.h"
+
+//Green LED   => GPIOA, PIN 5
+//Blue Button => GPIOC, PIN 13
+
+int main(){
+    //Set Green Led to ouput, Blue Button to Input W/ Pullup resistor, and enable External Interrupts
+    GPIO_PinDirection(GPIOA, GPIO_PIN_5 , GPIO_MODE_OUTPUT_SPEED_2MHz, GPIO_CNF_OUTPUT_PUSH_PULL);
+    GPIO_PinDirection(GPIOC, GPIO_PIN_13, GPIO_MODE_INPUT            , GPIO_CNF_INPUT_PULLUP    );
+    GPIO_INT_SetToInterrupt(GPIOC, GPIO_PIN_13, RISING_EDGE);
+    INTERRUPT_SetPriority(EXTI15_10_IRQn, 15);  // Lowest priority available
+
+    while(1){}
+}
+```
+
+## Show how to enable or disable a specific interrupt vector
+
+```C
+#include "ACDC_GPIO.h"
+
+//Green LED   => GPIOA, PIN 5
+//Blue Button => GPIOC, PIN 13
+
+int main(){
+    //Set Green Led to ouput, Blue Button to Input W/ Pullup resistor, and enable External Interrupts
+    GPIO_PinDirection(GPIOA, GPIO_PIN_5 , GPIO_MODE_OUTPUT_SPEED_2MHz, GPIO_CNF_OUTPUT_PUSH_PULL);
+    GPIO_PinDirection(GPIOC, GPIO_PIN_13, GPIO_MODE_INPUT            , GPIO_CNF_INPUT_PULLUP    );
+    GPIO_INT_SetToInterrupt(GPIOC, GPIO_PIN_13, RISING_EDGE);
+    INTERRUPT_SetPriority(EXTI15_10_IRQn, 15);  // Lowest priority available
+
+
+    bool iWantToDisableLedInterrupt = true;
+    while(1){
+        if(iWantToDisableLedInterrupt)
+            INTERRUPT_Disable(EXTI15_10_IRQn);
+        else
+            INTERRUPT_Enable(EXTI15_10_IRQn);
+    }
+}

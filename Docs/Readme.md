@@ -15,6 +15,8 @@
   * Set GPIO Pin to a Interrupt (Rising Edge, Falling Edge, Both Edges)
 * [ACDC_LTC1298_ADC.h](LTC1298_ADC.md)
   * Read an analog voltage applied to either channel 0 or 1 on the ADC.
+* [ACDC_LTC1451_ADC.h](LTC1451_DAC.md)
+  * Set an analog voltage to the output of the LTC1451 DAC
 * [ACDC_SPI.h](SPI.md)
   * Setup SPI as Master and transmit data in 8-bit or 16-bit modes
 * [ACDC_TIMER.h](TIMER.md)

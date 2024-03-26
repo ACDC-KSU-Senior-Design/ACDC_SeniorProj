@@ -8,6 +8,8 @@
   - STM32F103xB Datasheet - **[DS5319 Datasheet](https://www.st.com/resource/en/datasheet/stm32f103c8.pdf)**
 - LTC1298 ADC
   - LTC1298 (ADC) Datasheet - **[LTC1298 Datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/128698fs.pdf)**
+- LTC1451 DAC
+  - LTC1451 (DAC) Datasheet - **[LTC1451 Datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/145123fs.pdf)**
 
 ## Documentation
 
