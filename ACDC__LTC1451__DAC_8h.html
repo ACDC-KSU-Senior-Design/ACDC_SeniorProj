@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ACDC Senior Project: Core/Inc/ACDC_LTC1298_ADC.h File Reference</title>
+<title>ACDC Senior Project: Core/Inc/ACDC_LTC1451_DAC.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -67,7 +67,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('ACDC__LTC1298__ADC_8h.html',''); initResizable(); });
+$(function(){initNavTree('ACDC__LTC1451__DAC_8h.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -96,40 +96,46 @@ $(function(){initNavTree('ACDC__LTC1298__ADC_8h.html',''); initResizable(); });
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">ACDC_LTC1298_ADC.h File Reference</div></div>
+  <div class="headertitle"><div class="title">ACDC_LTC1451_DAC.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Header file for the LTC1451 12-bit DAC.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;stm32f1xx.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="ACDC__stdint_8h_source.html">ACDC_stdint.h</a>&quot;</code><br />
 </div>
-<p><a href="ACDC__LTC1298__ADC_8h_source.html">Go to the source code of this file.</a></p>
+<p><a href="ACDC__LTC1451__DAC_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structLTC1298__t.html">LTC1298_t</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structLTC1451__t.html">LTC1451_t</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ab6356ce2702fdd7eb3b911e3cb6d810c" id="r_ab6356ce2702fdd7eb3b911e3cb6d810c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structLTC1298__t.html">LTC1298_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab6356ce2702fdd7eb3b911e3cb6d810c">LTCADC_InitCS</a> (SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, <a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> GPIO_PIN)</td></tr>
-<tr class="memdesc:ab6356ce2702fdd7eb3b911e3cb6d810c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initiliazes SPIx and the external LTC1298IS8 ADC. Also sets up the software CS pin for SPIx.  <br /></td></tr>
-<tr class="separator:ab6356ce2702fdd7eb3b911e3cb6d810c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a843073ca7f8e07e19a17c65bdbd75e" id="r_a3a843073ca7f8e07e19a17c65bdbd75e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a843073ca7f8e07e19a17c65bdbd75e">LTCADC_ReadCH0CS</a> (<a class="el" href="structLTC1298__t.html">LTC1298_t</a> LTC_ADC)</td></tr>
-<tr class="memdesc:a3a843073ca7f8e07e19a17c65bdbd75e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the current ADC value on channel 0 (Software CS)  <br /></td></tr>
-<tr class="separator:a3a843073ca7f8e07e19a17c65bdbd75e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0bd034e941beb301635fbda067c0f9f" id="r_af0bd034e941beb301635fbda067c0f9f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af0bd034e941beb301635fbda067c0f9f">LTCADC_ReadCH1CS</a> (<a class="el" href="structLTC1298__t.html">LTC1298_t</a> LTC_ADC)</td></tr>
-<tr class="memdesc:af0bd034e941beb301635fbda067c0f9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the current ADC value on channel 1 (SoftwareCS)  <br /></td></tr>
-<tr class="separator:af0bd034e941beb301635fbda067c0f9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefd003fcb9f4e6e10a4a6d864e78d3b0" id="r_aefd003fcb9f4e6e10a4a6d864e78d3b0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structLTC1451__t.html">LTC1451_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aefd003fcb9f4e6e10a4a6d864e78d3b0">LTCDAC_InitCS</a> (SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, <a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> GPIO_PIN)</td></tr>
+<tr class="memdesc:aefd003fcb9f4e6e10a4a6d864e78d3b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initiliazes SPIx and the external LTC1451 DAC. Also sets up the sofware CS pin for SPIx.  <br /></td></tr>
+<tr class="separator:aefd003fcb9f4e6e10a4a6d864e78d3b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae66c5cd903df6c6d09a2ca095bede3fb" id="r_ae66c5cd903df6c6d09a2ca095bede3fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae66c5cd903df6c6d09a2ca095bede3fb">LTCDAC_SetOutputCS</a> (<a class="el" href="structLTC1451__t.html">LTC1451_t</a> LTC_DAC, <a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> outputVal)</td></tr>
+<tr class="memdesc:ae66c5cd903df6c6d09a2ca095bede3fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the DAC's ouptut voltage (0-4.095v)  <br /></td></tr>
+<tr class="separator:ae66c5cd903df6c6d09a2ca095bede3fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="ab6356ce2702fdd7eb3b911e3cb6d810c" name="ab6356ce2702fdd7eb3b911e3cb6d810c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab6356ce2702fdd7eb3b911e3cb6d810c">&#9670;&#160;</a></span>LTCADC_InitCS()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Header file for the LTC1451 12-bit DAC. </p>
+<dl class="section author"><dt>Author</dt><dd>Devin Marx </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2024-03-21</dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2023-2024 </dd></dl>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="aefd003fcb9f4e6e10a4a6d864e78d3b0" name="aefd003fcb9f4e6e10a4a6d864e78d3b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefd003fcb9f4e6e10a4a6d864e78d3b0">&#9670;&#160;</a></span>LTCDAC_InitCS()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structLTC1298__t.html">LTC1298_t</a> LTCADC_InitCS </td>
+          <td class="memname"><a class="el" href="structLTC1451__t.html">LTC1451_t</a> LTCDAC_InitCS </td>
           <td>(</td>
           <td class="paramtype">SPI_TypeDef *</td>          <td class="paramname"><span class="paramname"><em>SPIx</em>, </span></td>
         </tr>
@@ -146,7 +152,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Initiliazes SPIx and the external LTC1298IS8 ADC. Also sets up the software CS pin for SPIx. </p>
+<p>Initiliazes SPIx and the external LTC1451 DAC. Also sets up the sofware CS pin for SPIx. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">SPIx</td><td>SPI Peripheral (Ex. SPI1 or SPI2) </td></tr>
@@ -158,55 +164,33 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a3a843073ca7f8e07e19a17c65bdbd75e" name="a3a843073ca7f8e07e19a17c65bdbd75e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3a843073ca7f8e07e19a17c65bdbd75e">&#9670;&#160;</a></span>LTCADC_ReadCH0CS()</h2>
+<a id="ae66c5cd903df6c6d09a2ca095bede3fb" name="ae66c5cd903df6c6d09a2ca095bede3fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae66c5cd903df6c6d09a2ca095bede3fb">&#9670;&#160;</a></span>LTCDAC_SetOutputCS()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> LTCADC_ReadCH0CS </td>
+          <td class="memname">void LTCDAC_SetOutputCS </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structLTC1298__t.html">LTC1298_t</a></td>          <td class="paramname"><span class="paramname"><em>LTC_ADC</em></span></td><td>)</td>
-          <td></td>
+          <td class="paramtype"><a class="el" href="structLTC1451__t.html">LTC1451_t</a></td>          <td class="paramname"><span class="paramname"><em>LTC_DAC</em>, </span></td>
         </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reads the current ADC value on channel 0 (Software CS) </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">LTC_ADC</td><td>Struct containing configuration data for the ADC </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>12-bits of data representing the ADC's input on channel 0 </dd></dl>
-
-</div>
-</div>
-<a id="af0bd034e941beb301635fbda067c0f9f" name="af0bd034e941beb301635fbda067c0f9f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af0bd034e941beb301635fbda067c0f9f">&#9670;&#160;</a></span>LTCADC_ReadCH1CS()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> LTCADC_ReadCH1CS </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structLTC1298__t.html">LTC1298_t</a></td>          <td class="paramname"><span class="paramname"><em>LTC_ADC</em></span></td><td>)</td>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a></td>          <td class="paramname"><span class="paramname"><em>outputVal</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Reads the current ADC value on channel 1 (SoftwareCS) </p>
+<p>Sets the DAC's ouptut voltage (0-4.095v) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">LTC_ADC</td><td>Struct containing configuration data for the ADC </td></tr>
+    <tr><td class="paramname">LTC_DAC</td><td>Struct containing configuration data for the DAC </td></tr>
+    <tr><td class="paramname">outputVal</td><td>Voltage to set on the output pin of the DAC </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>12-bits of data representing the ADC's input on channel 1 </dd></dl>
 
 </div>
 </div>
@@ -215,7 +199,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_c6310732a22f63c0c2fc5595561e68f1.html">Core</a></li><li class="navelem"><a class="el" href="dir_e2489e887f17afa3cbc07a4ec152cdd2.html">Inc</a></li><li class="navelem"><a class="el" href="ACDC__LTC1298__ADC_8h.html">ACDC_LTC1298_ADC.h</a></li>
+    <li class="navelem"><a class="el" href="dir_c6310732a22f63c0c2fc5595561e68f1.html">Core</a></li><li class="navelem"><a class="el" href="dir_e2489e887f17afa3cbc07a4ec152cdd2.html">Inc</a></li><li class="navelem"><a class="el" href="ACDC__LTC1451__DAC_8h.html">ACDC_LTC1451_DAC.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
   </ul>
 </div>

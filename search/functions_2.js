@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['error_5fhandler_0',['Error_Handler',['../main_8h.html#a1730ffe1e560465665eb47d9264826f9',1,'Error_Handler(void):&#160;main.c'],['../main_8c.html#a1730ffe1e560465665eb47d9264826f9',1,'Error_Handler(void):&#160;main.c']]]
+  ['delay_0',['Delay',['../ACDC__TIMER_8h.html#a9b1f4fc7061694a1fa23bfd558e19b4a',1,'Delay(uint64_t delayVal):&#160;ACDC_TIMER.c'],['../ACDC__TIMER_8c.html#a9b1f4fc7061694a1fa23bfd558e19b4a',1,'Delay(uint64_t delayVal):&#160;ACDC_TIMER.c']]]
 ];

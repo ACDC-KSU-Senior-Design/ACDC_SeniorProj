@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['main_0',['main',['../main_8c.html#a840291bc02cba5474a4cb46a9b9566fe',1,'main.c']]],
-  ['micros_1',['Micros',['../ACDC__TIMER_8h.html#af712baa41b04626f70bd0357d93621c1',1,'Micros():&#160;ACDC_TIMER.c'],['../ACDC__TIMER_8c.html#af712baa41b04626f70bd0357d93621c1',1,'Micros():&#160;ACDC_TIMER.c']]],
-  ['millis_2',['Millis',['../ACDC__TIMER_8h.html#a0e5c4d91114c9e78353b666ef06bf80e',1,'Millis():&#160;ACDC_TIMER.c'],['../ACDC__TIMER_8c.html#a0e5c4d91114c9e78353b666ef06bf80e',1,'Millis():&#160;ACDC_TIMER.c']]]
+  ['ltcadc_5finitcs_0',['LTCADC_InitCS',['../ACDC__LTC1298__ADC_8h.html#ab6356ce2702fdd7eb3b911e3cb6d810c',1,'LTCADC_InitCS(SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN):&#160;ACDC_LTC1298_ADC.c'],['../ACDC__LTC1298__ADC_8c.html#ab6356ce2702fdd7eb3b911e3cb6d810c',1,'LTCADC_InitCS(SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN):&#160;ACDC_LTC1298_ADC.c']]],
+  ['ltcadc_5freadch0cs_1',['LTCADC_ReadCH0CS',['../ACDC__LTC1298__ADC_8h.html#a3a843073ca7f8e07e19a17c65bdbd75e',1,'LTCADC_ReadCH0CS(LTC1298_t LTC_ADC):&#160;ACDC_LTC1298_ADC.c'],['../ACDC__LTC1298__ADC_8c.html#a3a843073ca7f8e07e19a17c65bdbd75e',1,'LTCADC_ReadCH0CS(LTC1298_t LTC_ADC):&#160;ACDC_LTC1298_ADC.c']]],
+  ['ltcadc_5freadch1cs_2',['LTCADC_ReadCH1CS',['../ACDC__LTC1298__ADC_8h.html#af0bd034e941beb301635fbda067c0f9f',1,'LTCADC_ReadCH1CS(LTC1298_t LTC_ADC):&#160;ACDC_LTC1298_ADC.c'],['../ACDC__LTC1298__ADC_8c.html#af0bd034e941beb301635fbda067c0f9f',1,'LTCADC_ReadCH1CS(LTC1298_t LTC_ADC):&#160;ACDC_LTC1298_ADC.c']]],
+  ['ltcdac_5finitcs_3',['LTCDAC_InitCS',['../ACDC__LTC1451__DAC_8h.html#aefd003fcb9f4e6e10a4a6d864e78d3b0',1,'LTCDAC_InitCS(SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN):&#160;ACDC_LTC1451_DAC.c'],['../ACDC__LTC1451__DAC_8c.html#aefd003fcb9f4e6e10a4a6d864e78d3b0',1,'LTCDAC_InitCS(SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN):&#160;ACDC_LTC1451_DAC.c']]],
+  ['ltcdac_5fsetoutputcs_4',['LTCDAC_SetOutputCS',['../ACDC__LTC1451__DAC_8h.html#ae66c5cd903df6c6d09a2ca095bede3fb',1,'LTCDAC_SetOutputCS(LTC1451_t LTC_DAC, uint16_t outputVal):&#160;ACDC_LTC1451_DAC.c'],['../ACDC__LTC1451__DAC_8c.html#ae66c5cd903df6c6d09a2ca095bede3fb',1,'LTCDAC_SetOutputCS(LTC1451_t LTC_DAC, uint16_t outputVal):&#160;ACDC_LTC1451_DAC.c']]]
 ];

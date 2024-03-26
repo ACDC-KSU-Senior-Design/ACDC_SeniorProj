@@ -26,6 +26,7 @@ var ACDC__SPI_8h =
     [ "SPI_SetLsbFirst", "ACDC__SPI_8h.html#af560ce4cc52f2cb213a52157c8bbb7ea", null ],
     [ "SPI_SetToMaster", "ACDC__SPI_8h.html#ace33b3cbcebdc19b2499d4a34c2b7132", null ],
     [ "SPI_Transmit", "ACDC__SPI_8h.html#a3b37ff77b5e665642503a6b1e4d53d76", null ],
+    [ "SPI_TransmitCS", "ACDC__SPI_8h.html#af0b3312cac2dc0e87965a9849bdca669", null ],
     [ "SPI_TransmitReceive", "ACDC__SPI_8h.html#a02c7edd37a18dfe0d58624564dddeb28", null ],
     [ "SPI_TransmitReceiveCS", "ACDC__SPI_8h.html#a3d7ccec4bfae512afc758bec0730e492", null ]
 ];

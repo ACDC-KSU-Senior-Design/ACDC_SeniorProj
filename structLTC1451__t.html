@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ACDC Senior Project: Globals</title>
+<title>ACDC Senior Project: LTC1451_t Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -67,7 +67,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('globals_h.html',''); initResizable(); });
+$(function(){initNavTree('structLTC1451__t.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -92,17 +92,81 @@ $(function(){initNavTree('globals_h.html',''); initResizable(); });
 </div>
 </div>
 
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Data Fields</a>  </div>
+  <div class="headertitle"><div class="title">LTC1451_t Struct Reference</div></div>
+</div><!--header-->
 <div class="contents">
-<div class="textblock">Here is a list of all functions, variables, defines, enums, and typedefs with links to the files they belong to:</div>
 
-<h3><a id="index_h" name="index_h"></a>- h -</h3><ul>
-<li>huart2&#160;:&#160;<a class="el" href="main_8c.html#aa9479c261d65eecedd3d9582f7f0f89c">main.c</a></li>
+<p><code>#include &lt;<a class="el" href="ACDC__LTC1451__DAC_8h_source.html">ACDC_LTC1451_DAC.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:a494795212cc0f4f2ffb02c24b9dc4f0c" id="r_a494795212cc0f4f2ffb02c24b9dc4f0c"><td class="memItemLeft" align="right" valign="top">SPI_TypeDef *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a494795212cc0f4f2ffb02c24b9dc4f0c">SPIx</a></td></tr>
+<tr class="separator:a494795212cc0f4f2ffb02c24b9dc4f0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3dab4e9f8ce2192584b012b954d9772" id="r_aa3dab4e9f8ce2192584b012b954d9772"><td class="memItemLeft" align="right" valign="top">GPIO_TypeDef *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa3dab4e9f8ce2192584b012b954d9772">GPIOx_CS</a></td></tr>
+<tr class="separator:aa3dab4e9f8ce2192584b012b954d9772"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae71ffebe42bd4ef6ffb23e4c0e35f8d4" id="r_ae71ffebe42bd4ef6ffb23e4c0e35f8d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae71ffebe42bd4ef6ffb23e4c0e35f8d4">GPIO_PIN_CS</a></td></tr>
+<tr class="separator:ae71ffebe42bd4ef6ffb23e4c0e35f8d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Field Documentation</h2>
+<a id="ae71ffebe42bd4ef6ffb23e4c0e35f8d4" name="ae71ffebe42bd4ef6ffb23e4c0e35f8d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae71ffebe42bd4ef6ffb23e4c0e35f8d4">&#9670;&#160;</a></span>GPIO_PIN_CS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> GPIO_PIN_CS</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>GPIO pin for SPI'x CS <br  />
+ </p>
+
+</div>
+</div>
+<a id="aa3dab4e9f8ce2192584b012b954d9772" name="aa3dab4e9f8ce2192584b012b954d9772"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3dab4e9f8ce2192584b012b954d9772">&#9670;&#160;</a></span>GPIOx_CS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GPIO_TypeDef* GPIOx_CS</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>GPIO port for SPIx's CS <br  />
+ </p>
+
+</div>
+</div>
+<a id="a494795212cc0f4f2ffb02c24b9dc4f0c" name="a494795212cc0f4f2ffb02c24b9dc4f0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a494795212cc0f4f2ffb02c24b9dc4f0c">&#9670;&#160;</a></span>SPIx</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SPI_TypeDef* SPIx</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>SPI Peripheral to be used for the LTC1451 DAC </p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>Core/Inc/<a class="el" href="ACDC__LTC1451__DAC_8h_source.html">ACDC_LTC1451_DAC.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
+    <li class="navelem"><a class="el" href="structLTC1451__t.html">LTC1451_t</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
   </ul>
 </div>

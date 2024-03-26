@@ -8,7 +8,7 @@ var ACDC__LTC1298__ADC_8c =
     [ "ADC_MUX_MSBFIRST", "ACDC__LTC1298__ADC_8c.html#a048eb38e240dee9bd769436504773ebf", null ],
     [ "ADC_TRANSMISSON_START", "ACDC__LTC1298__ADC_8c.html#a74d753ec352a30ed0d06f6daade79de5", null ],
     [ "MAX_CLOCK_SPEED", "ACDC__LTC1298__ADC_8c.html#a99765da39d58d3a0ff733a3b1604af82", null ],
-    [ "LTCADC_InitCS", "ACDC__LTC1298__ADC_8c.html#a5683ce341b65818bbf638b363002adaf", null ],
-    [ "LTCADC_ReadCH0CS", "ACDC__LTC1298__ADC_8c.html#a0967b44f96e168e1b70683f5e7af2405", null ],
-    [ "LTCADC_ReadCH1CS", "ACDC__LTC1298__ADC_8c.html#a973c6dc3fb5b18e886fcfe63863571da", null ]
+    [ "LTCADC_InitCS", "ACDC__LTC1298__ADC_8c.html#ab6356ce2702fdd7eb3b911e3cb6d810c", null ],
+    [ "LTCADC_ReadCH0CS", "ACDC__LTC1298__ADC_8c.html#a3a843073ca7f8e07e19a17c65bdbd75e", null ],
+    [ "LTCADC_ReadCH1CS", "ACDC__LTC1298__ADC_8c.html#af0bd034e941beb301635fbda067c0f9f", null ]
 ];

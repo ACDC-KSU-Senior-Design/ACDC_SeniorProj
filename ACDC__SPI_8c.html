@@ -98,6 +98,9 @@ $(function(){initNavTree('ACDC__SPI_8c.html',''); initResizable(); });
   <div class="headertitle"><div class="title">ACDC_SPI.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implementation of SPI driver.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="ACDC__SPI_8h_source.html">ACDC_SPI.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ACDC__GPIO_8h_source.html">ACDC_GPIO.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ACDC__CLOCK_8h_source.html">ACDC_CLOCK.h</a>&quot;</code><br />
@@ -116,6 +119,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a3b37ff77b5e665642503a6b1e4d53d76" id="r_a3b37ff77b5e665642503a6b1e4d53d76"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b37ff77b5e665642503a6b1e4d53d76">SPI_Transmit</a> (SPI_TypeDef *SPIx, <a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> data)</td></tr>
 <tr class="memdesc:a3b37ff77b5e665642503a6b1e4d53d76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmits data over the given SPI.  <br /></td></tr>
 <tr class="separator:a3b37ff77b5e665642503a6b1e4d53d76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0b3312cac2dc0e87965a9849bdca669" id="r_af0b3312cac2dc0e87965a9849bdca669"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af0b3312cac2dc0e87965a9849bdca669">SPI_TransmitCS</a> (SPI_TypeDef *SPIx, <a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> data, GPIO_TypeDef *GPIOx, <a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> GPIO_PIN)</td></tr>
+<tr class="memdesc:af0b3312cac2dc0e87965a9849bdca669"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmits data over the given SPI, and toggles the CS pins accordingly.  <br /></td></tr>
+<tr class="separator:af0b3312cac2dc0e87965a9849bdca669"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94eb1de2a9699471e9e46f3bd6bd8fec" id="r_a94eb1de2a9699471e9e46f3bd6bd8fec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94eb1de2a9699471e9e46f3bd6bd8fec">SPI_Receive</a> (const SPI_TypeDef *SPIx)</td></tr>
 <tr class="memdesc:a94eb1de2a9699471e9e46f3bd6bd8fec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recieves data from a SPI.  <br /></td></tr>
 <tr class="separator:a94eb1de2a9699471e9e46f3bd6bd8fec"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -147,7 +153,14 @@ Functions</h2></td></tr>
 <tr class="memdesc:aa4a18b045a15c31174df01af9e04772f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if there is data available in the SPIx recieve buffer.  <br /></td></tr>
 <tr class="separator:aa4a18b045a15c31174df01af9e04772f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implementation of SPI driver. </p>
+<dl class="section author"><dt>Author</dt><dd>Liam Bramley, Devin Marx </dd></dl>
+<p>This file includes functions to initalize the SPI, transfer and recieve data.</p>
+<dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2024-01-30</dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2023-2024 </dd></dl>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="af2e58a2729348d398f8e126533f43f61" name="af2e58a2729348d398f8e126533f43f61"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af2e58a2729348d398f8e126533f43f61">&#9670;&#160;</a></span>SPI_CalculateAndSetBaudDivider()</h2>
 
@@ -519,6 +532,48 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">SPIx</td><td>SPI to transmit over </td></tr>
     <tr><td class="paramname">data</td><td>Data to transmit </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af0b3312cac2dc0e87965a9849bdca669" name="af0b3312cac2dc0e87965a9849bdca669"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0b3312cac2dc0e87965a9849bdca669">&#9670;&#160;</a></span>SPI_TransmitCS()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SPI_TransmitCS </td>
+          <td>(</td>
+          <td class="paramtype">SPI_TypeDef *</td>          <td class="paramname"><span class="paramname"><em>SPIx</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a></td>          <td class="paramname"><span class="paramname"><em>data</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GPIO_TypeDef *</td>          <td class="paramname"><span class="paramname"><em>GPIOx</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a></td>          <td class="paramname"><span class="paramname"><em>GPIO_PIN</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Transmits data over the given SPI, and toggles the CS pins accordingly. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">SPIx</td><td>SPI to transmit over </td></tr>
+    <tr><td class="paramname">data</td><td>Data to transmit </td></tr>
+    <tr><td class="paramname">GPIOx</td><td>GPIO Port for the chip select pin (Ex. GPIOA, GPIOB, ...) </td></tr>
+    <tr><td class="paramname">GPIO_PIN</td><td>Desired chip select pin on port GPIOx (Ex. GPIO_PIN_0, GPIO_PIN_1, ...) </td></tr>
   </table>
   </dd>
 </dl>
