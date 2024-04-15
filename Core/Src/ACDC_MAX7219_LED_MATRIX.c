@@ -72,7 +72,7 @@ bool MaxLedMatrix_LedStatus(MAX7219_t Display, uint8_t row, uint8_t col){
     if(row >= 8 || col >= 8) // If the parameters are invalid
         return false;
 
-    return Display.DisplayBuffer[col] & CALC_ROW(row) ? true : false;   // If the row bit in the column is a 1 return true
+    return (Display.DisplayBuffer[col] & CALC_ROW(row)) ? true : false;   // If the row bit in the column is a 1 return true
 }
 
 void MaxLedMatrix_SetIntensity(MAX7219_t Display, MAX7219_DutyCycle dutyCycle){
