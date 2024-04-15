@@ -47,6 +47,7 @@ Core/Src/ACDC_USART.c \
 Core/Src/ACDC_INTERRUPT.c \
 Core/Src/ACDC_LTC1298_ADC.c \
 Core/Src/ACDC_LTC1451_DAC.c \
+Core/Src/ACDC_MAX7219_LED_MATRIX.c \
 Core/Src/ACDC_string.c \
 
 # STM Provided C Files
