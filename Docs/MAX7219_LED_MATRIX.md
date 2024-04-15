@@ -17,7 +17,7 @@ int main(){
 }
 ```
 
-## Change the matrix data and redraw the display
+## Display a grid on the matrix with a brightness of 15/32
 
 ```c
 // SPI    => SPI2
@@ -25,9 +25,16 @@ int main(){
 
 int main(){
     /* Enable MCU clocks and other peripherals */
-    MAX7219_t Display = MaxLedMatrix_Init(SPI2, GPIOB, GPIO_PIN_1); // Setup the Display, SPI2, and CS pin
-    for(int i = 0; i < 8; i++)
-        Display.DisplayBuffer[i] = i;       // Set the 0-7 column with 0-7
-    MaxLedMatrix_RedrawDisplay(Display);    // Force redraw the displays
+    MAX7219_t Display = MaxLedMatrix_Init(SPI2, GPIOB, GPIO_PIN_1);
+    MaxLedMatrix_SetIntensity(Display, MAX_DutyCycle_15_32);
+    Display.DisplayBuffer[0] = 0xAA;
+    Display.DisplayBuffer[1] = 0x55;
+    Display.DisplayBuffer[2] = 0xAA;
+    Display.DisplayBuffer[3] = 0x55;
+    Display.DisplayBuffer[4] = 0xAA;
+    Display.DisplayBuffer[5] = 0x55;
+    Display.DisplayBuffer[6] = 0xAA;
+    Display.DisplayBuffer[7] = 0x55;
+    MaxLedMatrix_RedrawDisplay(Display);
 }
 ```
