@@ -42,8 +42,12 @@ uint64_t Micros(){
     return (SysTickCounter * US_PER_MS) + numSysTicks;           // Gets the total number of us from startup (MS * 1000) + us 
 }
 
-void Delay(uint64_t delayVal){
+void Delay_MS(uint64_t delayVal){
     uint64_t current = Millis();
-    uint64_t wait = delayVal;
-    while(Millis() - current < wait){}
+    while(Millis() - current < delayVal){}
+}
+
+void Delay_US(uint64_t delayVal){
+    uint64_t current = Micros();
+    while(Micros() - current <= delayVal){}
 }

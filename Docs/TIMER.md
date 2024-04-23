@@ -2,7 +2,7 @@
 
 All functions below assume that you have included **"ACDC_TIMER.h"**
 
-## Use the Delay function to toggle a LED every second
+## Use the Delay_MS function to toggle a LED every second
 
 ```C
 #include "ACDC_TIMER.h"
@@ -18,7 +18,7 @@ int main(){
     GPIO_PinDirection(GPIOA, GPIO_PIN_5, GPIO_MODE_OUTPUT_2MHz, GPIO_CNF_OUTPUT_PUSH_PULL);   //Set the Green LED to an output
 
     while(1){
-        Delay(1000);                    // Delays for 1000ms
+        Delay_MS(1000);                    // Delays for 1000ms
         GPIO_Toggle(GPIOA, GPIO_PIN_5); //Toggles the Green LED
     }
 }

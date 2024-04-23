@@ -37,6 +37,10 @@ uint64_t Micros();
 
 /// @brief Pauses code execution for delayVal number of milliseconds
 /// @param delayVal Number of milliseconds to delay for
-void Delay(uint64_t delayVal);
+void Delay_MS(uint64_t delayVal);
+
+/// @brief Pauses code execution for delayVal number of microseconds
+/// @param delayVal Number of microseconds to delay for
+void Delay_US(uint64_t delayVal);
 
 #endif
