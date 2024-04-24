@@ -18,19 +18,13 @@
 #define GPIO_MODE_OFFSET 0                      /**< MODE bit offset                                    */
 #define GPIO_CNF_OFFSET 2                       /**< CNF bit offset                                     */
 
-void GPIO_InitClk(const GPIO_TypeDef *GPIOx){
-    if(GPIOx == GPIOA)
-        RCC->APB2ENR |= RCC_APB2ENR_IOPAEN; 
-    else if(GPIOx == GPIOB)
-        RCC->APB2ENR |= RCC_APB2ENR_IOPBEN;
-    else if(GPIOx == GPIOC)
-        RCC->APB2ENR |= RCC_APB2ENR_IOPCEN;
-    else if(GPIOx == GPIOD)
-        RCC->APB2ENR |= RCC_APB2ENR_IOPDEN;
-    else if(GPIOx == GPIOE)
-        RCC->APB2ENR |= RCC_APB2ENR_IOPEEN;
-}
+#pragma region PRIVATE_FUNCTION_PROTOTYPES
+/// @brief Enables the GPIOx peripheral clock (Needed to read from a pin)
+/// @param GPIOx Port of the GPIO (Ex. GPIOA, GPIOB, ...) 
+static void GPIO_InitClk(const GPIO_TypeDef *GPIOx);
+#pragma endregion
 
+#pragma region PUBLIC_FUNCTIONS
 void GPIO_PinDirection(GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN, uint8_t GPIO_MODE, uint8_t GPIO_CNF){
     GPIO_InitClk(GPIOx);    //Needed in order to use Output / Input
 
@@ -93,3 +87,19 @@ uint8_t GPIO_GetPinNumber(uint16_t GPIO_PIN){
     while(GPIO_PIN >> (1 * ++pin) != 1){}
     return pin;
 }
+#pragma endregion
+
+#pragma region PRIVATE_FUNCTIONS
+static void GPIO_InitClk(const GPIO_TypeDef *GPIOx){
+    if(GPIOx == GPIOA)
+        RCC->APB2ENR |= RCC_APB2ENR_IOPAEN; 
+    else if(GPIOx == GPIOB)
+        RCC->APB2ENR |= RCC_APB2ENR_IOPBEN;
+    else if(GPIOx == GPIOC)
+        RCC->APB2ENR |= RCC_APB2ENR_IOPCEN;
+    else if(GPIOx == GPIOD)
+        RCC->APB2ENR |= RCC_APB2ENR_IOPDEN;
+    else if(GPIOx == GPIOE)
+        RCC->APB2ENR |= RCC_APB2ENR_IOPEEN;
+}
+#pragma endregion
