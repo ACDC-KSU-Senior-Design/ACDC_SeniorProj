@@ -13,8 +13,6 @@ All functions below assume that you have included **"ACDC_TIMER.h"**
 int main(){
 
     CLOCK_SetSystemClockSpeed(SCS_72MHz);   //Set the SysClock to 72MHz (CALLS TIMER_Init)
-    CLOCK_SetAPB1Prescaler(APB_DIV_2);      //Set the APB1 Prescaler to /2
-
     GPIO_PinDirection(GPIOA, GPIO_PIN_5, GPIO_MODE_OUTPUT_2MHz, GPIO_CNF_OUTPUT_PUSH_PULL);   //Set the Green LED to an output
 
     while(1){
@@ -35,8 +33,6 @@ int main(){
 int main(){
 
     CLOCK_SetSystemClockSpeed(SCS_72MHz);   //Set the SysClock to 72MHz (CALLS TIMER_Init)
-    CLOCK_SetAPB1Prescaler(APB_DIV_2);      //Set the APB1 Prescaler to /2
-
     GPIO_PinDirection(GPIOA, GPIO_PIN_5, GPIO_MODE_OUTPUT_2MHz, GPIO_CNF_OUTPUT_PUSH_PULL);   //Set the Green LED to an output
 
     uint32_t previousTime = Millis();   //Grab the number of milliseconds since startup
@@ -62,8 +58,6 @@ int main(){
 int main(){
 
     CLOCK_SetSystemClockSpeed(SCS_72MHz);   //Set the SysClock to 72MHz (CALLS TIMER_Init)
-    CLOCK_SetAPB1Prescaler(APB_DIV_2);      //Set the APB1 Prescaler to /2
-
     GPIO_PinDirection(GPIOA, GPIO_PIN_5, GPIO_MODE_OUTPUT_2MHz, GPIO_CNF_OUTPUT_PUSH_PULL);   //Set the Green LED to an output
 
     uint64_t previousTime = Micros();   //Grab the number of milliseconds since startup
@@ -77,3 +71,48 @@ int main(){
 
 }
 ```
+
+## Create a 1MHz Clock on PA11 using PWM
+
+```C
+#include "ACDC_TIMER.h"
+#include "ACDC_CLOCK.h"
+
+void main(){
+    CLOCK_SetSystemClockSpeed(SCS_72MHz);   //Set the SysClock to 72MHz
+
+    TIMER_PWM_Init(TIM1_CH4_PA11, PWM_MODE_1, 1000000);                         // Needed to drive the ARINC429 Clock
+    TIMER_PWM_SetDuty(TIM1_CH4_PA11, TIMER_PWM_GetPeriod(TIM1_CH4_PA11) / 2);   // Set the Duty cycle to 50%
+
+    while(1){}
+}
+```
+
+## Fade in and out an LED on PA7 using PWM
+
+```C
+#include "ACDC_TIMER.h"
+#include "ACDC_CLOCK.h"
+
+void main(){
+    CLOCK_SetSystemClockSpeed(SCS_72MHz);   //Set the SysClock to 72MHz
+
+    TIMER_PWM_Init(TIM3_CH2_PA7, PWM_MODE_1, 100000);   // Create 100KHz Frequency
+    uint32_t timPeriod = TIMER_PWM_GetPeriod(TIM3_CH2_PA7);
+    int8_t incrementValue = 10;
+
+    while (1)
+    {
+        int64_t currVal = TIMER_PWM_GetDuty(TIM3_CH2_PA7);                          // Get the current duty value
+        if(currVal + incrementValue <= 0 || currVal + incrementValue >= timPeriod)  // If the new value is less than 0 or greator than the period
+          incrementValue *= -1;                                                     // Change the incrementation direction
+        
+        TIMER_PWM_SetDuty(TIM3_CH2_PA7, currVal + incrementValue);                  // Set the new value of the LED
+        Delay_MS(10);
+    }
+}
+```
+
+![LED Pulsing on Waveforms](Photos\Pulsing_LED_Waveforms.gif)
+
+![LED Pulsing video](Photos\Pulsing_LED_Video.gif)
