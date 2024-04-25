@@ -85,6 +85,20 @@ void TIMER_PWM_SetDuty(TIMx_CHx TIMx_CHx_Pxx, uint32_t dutyCycle){
         TIMx_CHx_Pxx.TIMx->CCR4 = dutyCycle;
 }
 
+uint32_t TIMER_PWM_GetDuty(TIMx_CHx TIMx_CHx_Pxx){
+    uint8_t channel = TIMx_CHx_Pxx.TimerChannel; // Grab the specific channel
+    if(channel == 1)                    // If the channel is what we are expecting
+        return TIMx_CHx_Pxx.TIMx->CCR1; // Return the current duty cycle value
+    else if(channel == 2)
+        return TIMx_CHx_Pxx.TIMx->CCR2;
+    else if(channel == 3)
+        return TIMx_CHx_Pxx.TIMx->CCR3;
+    else if(channel == 4)
+        return TIMx_CHx_Pxx.TIMx->CCR4;
+    else 
+        return 0;
+}
+
 uint32_t TIMER_PWM_GetPeriod(TIMx_CHx TIMx_CHx_Pxx){
     return TIMx_CHx_Pxx.TIMx->ARR;
 }

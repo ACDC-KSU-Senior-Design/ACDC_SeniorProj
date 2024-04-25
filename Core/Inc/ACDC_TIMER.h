@@ -74,6 +74,11 @@ void TIMER_PWM_Init(TIMx_CHx TIMx_CHx_Pxx, PWM_MODE PWM_MODE_x, uint32_t frequen
 /// @param dutyCycle Duty cycle value in timer ticks.
 void TIMER_PWM_SetDuty(TIMx_CHx TIMx_CHx_Pxx, uint32_t dutyCycle);
 
+/// @brief Retrieves the current duty cycle of the specified timer and channel
+/// @param TIMx_CHx_Pxx Struct containing configuration data for the specific timer and channel
+/// @return Current duty cycle
+uint32_t TIMER_PWM_GetDuty(TIMx_CHx TIMx_CHx_Pxx);
+
 /// @brief Retrieves the period of the PWM signal on the specified timer
 /// @param TIMx_CHx_Pxx Struct containing configuration data for the specific timer and channel
 /// @return Period of the PWM signal in timer ticks.
