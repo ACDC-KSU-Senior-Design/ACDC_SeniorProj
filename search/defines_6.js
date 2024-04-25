@@ -2,6 +2,22 @@ var searchData=
 [
   ['tck_5fgpio_5fport_0',['TCK_GPIO_Port',['../main_8h.html#a1541f23b870848a43f0274857badd175',1,'main.h']]],
   ['tck_5fpin_1',['TCK_Pin',['../main_8h.html#a9e21d9bed16b0275ff16a864ffb2ab6e',1,'main.h']]],
-  ['tms_5fgpio_5fport_2',['TMS_GPIO_Port',['../main_8h.html#affce477a22cc940d3962932cb33ec422',1,'main.h']]],
-  ['tms_5fpin_3',['TMS_Pin',['../main_8h.html#af2c8a7a0746106e52f6f415b8921c21b',1,'main.h']]]
+  ['tim1_5fch1_5fpb13_2',['TIM1_CH1_PB13',['../ACDC__TIMER_8h.html#abec92702297e5b3441cd5bacf7cd48f9',1,'ACDC_TIMER.h']]],
+  ['tim1_5fch2_5fpb14_3',['TIM1_CH2_PB14',['../ACDC__TIMER_8h.html#ae98c232c7c2ee199d42d3257e8735597',1,'ACDC_TIMER.h']]],
+  ['tim1_5fch3_5fpa10_4',['TIM1_CH3_PA10',['../ACDC__TIMER_8h.html#a212c3ea04451d9313f1e4061f48d1fc9',1,'ACDC_TIMER.h']]],
+  ['tim1_5fch4_5fpa11_5',['TIM1_CH4_PA11',['../ACDC__TIMER_8h.html#a0412448be79bf17635e1deb906e33ad2',1,'ACDC_TIMER.h']]],
+  ['tim2_5fch1_5fpa0_6',['TIM2_CH1_PA0',['../ACDC__TIMER_8h.html#a9d5e317f4d68f61598595c3b6c7aef79',1,'ACDC_TIMER.h']]],
+  ['tim2_5fch2_5fpa1_7',['TIM2_CH2_PA1',['../ACDC__TIMER_8h.html#a59bb282559e5bb9bb2dd43eec5abe156',1,'ACDC_TIMER.h']]],
+  ['tim2_5fch3_5fpa2_8',['TIM2_CH3_PA2',['../ACDC__TIMER_8h.html#a93f90388caf39c92d15d8a4c59856a81',1,'ACDC_TIMER.h']]],
+  ['tim2_5fch4_5fpa3_9',['TIM2_CH4_PA3',['../ACDC__TIMER_8h.html#aac9bc6228be7369f0e49a5c45c92f207',1,'ACDC_TIMER.h']]],
+  ['tim3_5fch1_5fpa6_10',['TIM3_CH1_PA6',['../ACDC__TIMER_8h.html#a69a3b0e32276af1d42da0cf32d5bccce',1,'ACDC_TIMER.h']]],
+  ['tim3_5fch2_5fpa7_11',['TIM3_CH2_PA7',['../ACDC__TIMER_8h.html#a8c5c2963eb1b89b0d6cb67b1db3b8088',1,'ACDC_TIMER.h']]],
+  ['tim3_5fch3_5fpb0_12',['TIM3_CH3_PB0',['../ACDC__TIMER_8h.html#a08cc6f327332ba40e5fb872655c3a392',1,'ACDC_TIMER.h']]],
+  ['tim3_5fch4_5fpb1_13',['TIM3_CH4_PB1',['../ACDC__TIMER_8h.html#acc8038243c60d9c7d76b90524d572595',1,'ACDC_TIMER.h']]],
+  ['tim4_5fch1_5fpb6_14',['TIM4_CH1_PB6',['../ACDC__TIMER_8h.html#a73e54865917b0fb489d84c376e08e922',1,'ACDC_TIMER.h']]],
+  ['tim4_5fch2_5fpb7_15',['TIM4_CH2_PB7',['../ACDC__TIMER_8h.html#a83df93361a90be6a8347fcdf9f3aae60',1,'ACDC_TIMER.h']]],
+  ['tim4_5fch3_5fpb8_16',['TIM4_CH3_PB8',['../ACDC__TIMER_8h.html#a881e3cd6500cd6066fdc6a6e69fa6f8c',1,'ACDC_TIMER.h']]],
+  ['tim4_5fch4_5fpb9_17',['TIM4_CH4_PB9',['../ACDC__TIMER_8h.html#a8c615134be52c28d6bcaa3b194f5b960',1,'ACDC_TIMER.h']]],
+  ['tms_5fgpio_5fport_18',['TMS_GPIO_Port',['../main_8h.html#affce477a22cc940d3962932cb33ec422',1,'main.h']]],
+  ['tms_5fpin_19',['TMS_Pin',['../main_8h.html#af2c8a7a0746106e52f6f415b8921c21b',1,'main.h']]]
 ];

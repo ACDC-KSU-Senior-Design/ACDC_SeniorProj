@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['spix_0',['SPIx',['../structLTC1298__t.html#a494795212cc0f4f2ffb02c24b9dc4f0c',1,'LTC1298_t::SPIx'],['../structLTC1451__t.html#a494795212cc0f4f2ffb02c24b9dc4f0c',1,'LTC1451_t::SPIx']]]
+  ['isrm_0',['isRM',['../structTIMx__CHx.html#a17bdceb1777f50900cb9858e7c33d9ec',1,'TIMx_CHx']]]
 ];

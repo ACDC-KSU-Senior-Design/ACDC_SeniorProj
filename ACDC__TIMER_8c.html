@@ -103,6 +103,7 @@ $(function(){initNavTree('ACDC__TIMER_8c.html',''); initResizable(); });
 <p>Implementation of timer functions for system clock speed and delay.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="ACDC__TIMER_8h_source.html">ACDC_TIMER.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ACDC__GPIO_8h_source.html">ACDC_GPIO.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ACDC__INTERRUPT_8h_source.html">ACDC_INTERRUPT.h</a>&quot;</code><br />
 <code>#include &quot;stm32f1xx.h&quot;</code><br />
 </div><table class="memberdecls">
@@ -121,6 +122,18 @@ Functions</h2></td></tr>
 <tr class="memitem:a16b6f261d23886c5b62255d3a9bd4f4e" id="r_a16b6f261d23886c5b62255d3a9bd4f4e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a16b6f261d23886c5b62255d3a9bd4f4e">TIMER_SetSystemClockSpeed</a> (<a class="el" href="ACDC__CLOCK_8h.html#a9fee4b747c8b3351df21e38fdc3b9b2f">SystemClockSpeed</a> SCS_x)</td></tr>
 <tr class="memdesc:a16b6f261d23886c5b62255d3a9bd4f4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">(SHOULD NOT BE CALLED BY USER, CALLED IN <a class="el" href="ACDC__CLOCK_8h.html" title="Header file containing functions for configuring the system clock and clock-related peripherals.">ACDC_CLOCK.h</a>) Sets the value for SysClock-&gt;LOAD  <br /></td></tr>
 <tr class="separator:a16b6f261d23886c5b62255d3a9bd4f4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68e274a8384b831ec88c2ca2b072d675" id="r_a68e274a8384b831ec88c2ca2b072d675"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a68e274a8384b831ec88c2ca2b072d675">TIMER_PWM_Init</a> (<a class="el" href="structTIMx__CHx.html">TIMx_CHx</a> TIMx_CHx_Pxx, <a class="el" href="ACDC__TIMER_8h.html#ae99d8592e5fac21551d240db82849d09">PWM_MODE</a> PWM_MODE_x, <a class="el" href="ACDC__stdint_8h.html#a33594304e786b158f3fb30289278f5af">uint32_t</a> frequency)</td></tr>
+<tr class="memdesc:a68e274a8384b831ec88c2ca2b072d675"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes PWM output on the specified timer and channel with the given parameters. (Default duty cycle = 0)  <br /></td></tr>
+<tr class="separator:a68e274a8384b831ec88c2ca2b072d675"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6ac9f297de43fa83e5b05a1795c01c4" id="r_ad6ac9f297de43fa83e5b05a1795c01c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad6ac9f297de43fa83e5b05a1795c01c4">TIMER_PWM_SetDuty</a> (<a class="el" href="structTIMx__CHx.html">TIMx_CHx</a> TIMx_CHx_Pxx, <a class="el" href="ACDC__stdint_8h.html#a33594304e786b158f3fb30289278f5af">uint32_t</a> dutyCycle)</td></tr>
+<tr class="memdesc:ad6ac9f297de43fa83e5b05a1795c01c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the duty cycle of the PWM signal on the specified timer and channel.  <br /></td></tr>
+<tr class="separator:ad6ac9f297de43fa83e5b05a1795c01c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfe8b4e4e922425de57ef4e697061a4e" id="r_acfe8b4e4e922425de57ef4e697061a4e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ACDC__stdint_8h.html#a33594304e786b158f3fb30289278f5af">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acfe8b4e4e922425de57ef4e697061a4e">TIMER_PWM_GetDuty</a> (<a class="el" href="structTIMx__CHx.html">TIMx_CHx</a> TIMx_CHx_Pxx)</td></tr>
+<tr class="memdesc:acfe8b4e4e922425de57ef4e697061a4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the current duty cycle of the specified timer and channel.  <br /></td></tr>
+<tr class="separator:acfe8b4e4e922425de57ef4e697061a4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3106c899a67602aa854f5e749957ff5b" id="r_a3106c899a67602aa854f5e749957ff5b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ACDC__stdint_8h.html#a33594304e786b158f3fb30289278f5af">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3106c899a67602aa854f5e749957ff5b">TIMER_PWM_GetPeriod</a> (<a class="el" href="structTIMx__CHx.html">TIMx_CHx</a> TIMx_CHx_Pxx)</td></tr>
+<tr class="memdesc:a3106c899a67602aa854f5e749957ff5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the period of the PWM signal on the specified timer.  <br /></td></tr>
+<tr class="separator:a3106c899a67602aa854f5e749957ff5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5e09814056d617c521549e542639b7e" id="r_ab5e09814056d617c521549e542639b7e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab5e09814056d617c521549e542639b7e">SysTick_Handler</a> (void)</td></tr>
 <tr class="separator:ab5e09814056d617c521549e542639b7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e5c4d91114c9e78353b666ef06bf80e" id="r_a0e5c4d91114c9e78353b666ef06bf80e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ACDC__stdint_8h.html#ad27ed092432b64ff558d2254c278720f">uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e5c4d91114c9e78353b666ef06bf80e">Millis</a> ()</td></tr>
@@ -129,9 +142,12 @@ Functions</h2></td></tr>
 <tr class="memitem:af712baa41b04626f70bd0357d93621c1" id="r_af712baa41b04626f70bd0357d93621c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ACDC__stdint_8h.html#ad27ed092432b64ff558d2254c278720f">uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af712baa41b04626f70bd0357d93621c1">Micros</a> ()</td></tr>
 <tr class="memdesc:af712baa41b04626f70bd0357d93621c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Grabs and returns the total number of microseconds since the MCU turned on.  <br /></td></tr>
 <tr class="separator:af712baa41b04626f70bd0357d93621c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b1f4fc7061694a1fa23bfd558e19b4a" id="r_a9b1f4fc7061694a1fa23bfd558e19b4a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b1f4fc7061694a1fa23bfd558e19b4a">Delay</a> (<a class="el" href="ACDC__stdint_8h.html#ad27ed092432b64ff558d2254c278720f">uint64_t</a> delayVal)</td></tr>
-<tr class="memdesc:a9b1f4fc7061694a1fa23bfd558e19b4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pauses code execution for delayVal number of milliseconds.  <br /></td></tr>
-<tr class="separator:a9b1f4fc7061694a1fa23bfd558e19b4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af15068fee6eb67650172cda461457db3" id="r_af15068fee6eb67650172cda461457db3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af15068fee6eb67650172cda461457db3">Delay_MS</a> (<a class="el" href="ACDC__stdint_8h.html#ad27ed092432b64ff558d2254c278720f">uint64_t</a> delayVal)</td></tr>
+<tr class="memdesc:af15068fee6eb67650172cda461457db3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pauses code execution for delayVal number of milliseconds.  <br /></td></tr>
+<tr class="separator:af15068fee6eb67650172cda461457db3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af921c77c510232ca01667d11f909df7c" id="r_af921c77c510232ca01667d11f909df7c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af921c77c510232ca01667d11f909df7c">Delay_US</a> (<a class="el" href="ACDC__stdint_8h.html#ad27ed092432b64ff558d2254c278720f">uint64_t</a> delayVal)</td></tr>
+<tr class="memdesc:af921c77c510232ca01667d11f909df7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pauses code execution for delayVal number of microseconds.  <br /></td></tr>
+<tr class="separator:af921c77c510232ca01667d11f909df7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implementation of timer functions for system clock speed and delay. </p>
@@ -169,14 +185,14 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a9b1f4fc7061694a1fa23bfd558e19b4a" name="a9b1f4fc7061694a1fa23bfd558e19b4a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b1f4fc7061694a1fa23bfd558e19b4a">&#9670;&#160;</a></span>Delay()</h2>
+<a id="af15068fee6eb67650172cda461457db3" name="af15068fee6eb67650172cda461457db3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af15068fee6eb67650172cda461457db3">&#9670;&#160;</a></span>Delay_MS()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Delay </td>
+          <td class="memname">void Delay_MS </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="ACDC__stdint_8h.html#ad27ed092432b64ff558d2254c278720f">uint64_t</a></td>          <td class="paramname"><span class="paramname"><em>delayVal</em></span></td><td>)</td>
           <td></td>
@@ -188,6 +204,31 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">delayVal</td><td>Number of milliseconds to delay for </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af921c77c510232ca01667d11f909df7c" name="af921c77c510232ca01667d11f909df7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af921c77c510232ca01667d11f909df7c">&#9670;&#160;</a></span>Delay_US()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Delay_US </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ACDC__stdint_8h.html#ad27ed092432b64ff558d2254c278720f">uint64_t</a></td>          <td class="paramname"><span class="paramname"><em>delayVal</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pauses code execution for delayVal number of microseconds. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">delayVal</td><td>Number of microseconds to delay for </td></tr>
   </table>
   </dd>
 </dl>
@@ -270,6 +311,124 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">SCS_x</td><td>System Clock Speed (Ex. SCS_72Mhz, SCS_36Mhz, ...) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acfe8b4e4e922425de57ef4e697061a4e" name="acfe8b4e4e922425de57ef4e697061a4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfe8b4e4e922425de57ef4e697061a4e">&#9670;&#160;</a></span>TIMER_PWM_GetDuty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ACDC__stdint_8h.html#a33594304e786b158f3fb30289278f5af">uint32_t</a> TIMER_PWM_GetDuty </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structTIMx__CHx.html">TIMx_CHx</a></td>          <td class="paramname"><span class="paramname"><em>TIMx_CHx_Pxx</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the current duty cycle of the specified timer and channel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">TIMx_CHx_Pxx</td><td>Struct containing configuration data for the specific timer and channel </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Current duty cycle </dd></dl>
+
+</div>
+</div>
+<a id="a3106c899a67602aa854f5e749957ff5b" name="a3106c899a67602aa854f5e749957ff5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3106c899a67602aa854f5e749957ff5b">&#9670;&#160;</a></span>TIMER_PWM_GetPeriod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ACDC__stdint_8h.html#a33594304e786b158f3fb30289278f5af">uint32_t</a> TIMER_PWM_GetPeriod </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structTIMx__CHx.html">TIMx_CHx</a></td>          <td class="paramname"><span class="paramname"><em>TIMx_CHx_Pxx</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the period of the PWM signal on the specified timer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">TIMx_CHx_Pxx</td><td>Struct containing configuration data for the specific timer and channel </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Period of the PWM signal in timer ticks. </dd></dl>
+
+</div>
+</div>
+<a id="a68e274a8384b831ec88c2ca2b072d675" name="a68e274a8384b831ec88c2ca2b072d675"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68e274a8384b831ec88c2ca2b072d675">&#9670;&#160;</a></span>TIMER_PWM_Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TIMER_PWM_Init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structTIMx__CHx.html">TIMx_CHx</a></td>          <td class="paramname"><span class="paramname"><em>TIMx_CHx_Pxx</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ACDC__TIMER_8h.html#ae99d8592e5fac21551d240db82849d09">PWM_MODE</a></td>          <td class="paramname"><span class="paramname"><em>PWM_MODE_x</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ACDC__stdint_8h.html#a33594304e786b158f3fb30289278f5af">uint32_t</a></td>          <td class="paramname"><span class="paramname"><em>frequency</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes PWM output on the specified timer and channel with the given parameters. (Default duty cycle = 0) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">TIMx_CHx_Pxx</td><td>Struct containing configuration data for the specific timer and channel </td></tr>
+    <tr><td class="paramname">PWM_MODE_x</td><td>Desired PWM mode </td></tr>
+    <tr><td class="paramname">frequency</td><td>Desired frequency (in Hz) for PWM to run at </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad6ac9f297de43fa83e5b05a1795c01c4" name="ad6ac9f297de43fa83e5b05a1795c01c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6ac9f297de43fa83e5b05a1795c01c4">&#9670;&#160;</a></span>TIMER_PWM_SetDuty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TIMER_PWM_SetDuty </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structTIMx__CHx.html">TIMx_CHx</a></td>          <td class="paramname"><span class="paramname"><em>TIMx_CHx_Pxx</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ACDC__stdint_8h.html#a33594304e786b158f3fb30289278f5af">uint32_t</a></td>          <td class="paramname"><span class="paramname"><em>dutyCycle</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the duty cycle of the PWM signal on the specified timer and channel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">TIMx_CHx_Pxx</td><td>Struct containing configuration data for the specific timer and channel </td></tr>
+    <tr><td class="paramname">dutyCycle</td><td>Duty cycle value in timer ticks. </td></tr>
   </table>
   </dd>
 </dl>

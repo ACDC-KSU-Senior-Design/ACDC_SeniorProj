@@ -117,9 +117,6 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a30b7d281944ad620e9f933b7a3f42ddf" id="r_a30b7d281944ad620e9f933b7a3f42ddf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a30b7d281944ad620e9f933b7a3f42ddf">GPIO_InitClk</a> (const GPIO_TypeDef *GPIOx)</td></tr>
-<tr class="memdesc:a30b7d281944ad620e9f933b7a3f42ddf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the GPIOx peripheral clock (Needed to read from a pin)  <br /></td></tr>
-<tr class="separator:a30b7d281944ad620e9f933b7a3f42ddf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a713c73334af5bf15c7a9dbce1850d47f" id="r_a713c73334af5bf15c7a9dbce1850d47f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a713c73334af5bf15c7a9dbce1850d47f">GPIO_PinDirection</a> (GPIO_TypeDef *GPIOx, <a class="el" href="ACDC__stdint_8h.html#a273cf69d639a59973b6019625df33e30">uint16_t</a> GPIO_PIN, <a class="el" href="ACDC__stdint_8h.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> GPIO_MODE, <a class="el" href="ACDC__stdint_8h.html#aba7bc1797add20fe3efdf37ced1182c5">uint8_t</a> GPIO_CNF)</td></tr>
 <tr class="memdesc:a713c73334af5bf15c7a9dbce1850d47f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Direction of the Pin to Input/Output (MODE) and the sets its Configuration (CNF) [CAN ONLY SET ONE PIN AT A TIME].  <br /></td></tr>
 <tr class="separator:a713c73334af5bf15c7a9dbce1850d47f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -301,32 +298,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Number of the pin (Ex. GPIO_PIN = GPIO_PIN_13, then 13 is retured) </dd></dl>
-
-</div>
-</div>
-<a id="a30b7d281944ad620e9f933b7a3f42ddf" name="a30b7d281944ad620e9f933b7a3f42ddf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a30b7d281944ad620e9f933b7a3f42ddf">&#9670;&#160;</a></span>GPIO_InitClk()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void GPIO_InitClk </td>
-          <td>(</td>
-          <td class="paramtype">const GPIO_TypeDef *</td>          <td class="paramname"><span class="paramname"><em>GPIOx</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Enables the GPIOx peripheral clock (Needed to read from a pin) </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">GPIOx</td><td>Port of the GPIO (Ex. GPIOA, GPIOB, ...) <br  />
- </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>

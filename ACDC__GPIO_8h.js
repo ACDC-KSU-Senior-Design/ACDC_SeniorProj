@@ -32,7 +32,6 @@ var ACDC__GPIO_8h =
     [ "GPIO_Clear", "ACDC__GPIO_8h.html#ac997846bbc48929095825d34abcfa7f6", null ],
     [ "GPIO_Deinit", "ACDC__GPIO_8h.html#ad91c568859c9d09b6ff3ced7f1333f42", null ],
     [ "GPIO_GetPinNumber", "ACDC__GPIO_8h.html#abc3111d8f9658bc97ac9998005444839", null ],
-    [ "GPIO_InitClk", "ACDC__GPIO_8h.html#a30b7d281944ad620e9f933b7a3f42ddf", null ],
     [ "GPIO_PinDirection", "ACDC__GPIO_8h.html#a713c73334af5bf15c7a9dbce1850d47f", null ],
     [ "GPIO_Read", "ACDC__GPIO_8h.html#a1938247ca20397cd255b45d99b6a5190", null ],
     [ "GPIO_Set", "ACDC__GPIO_8h.html#ae405913167333ed30a12782a20f460a7", null ],
