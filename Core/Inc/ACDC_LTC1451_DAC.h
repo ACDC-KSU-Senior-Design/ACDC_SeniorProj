@@ -24,6 +24,7 @@ typedef struct {
 /// @param SPIx SPI Peripheral (Ex. SPI1 or SPI2)
 /// @param GPIOx GPIO Port for the chip select pin (Ex. GPIOA, GPIOB, ...)
 /// @param GPIO_PIN Desired chip select pin on port GPIOx (Ex. GPIO_PIN_0, GPIO_PIN_1, ...)
+/// @return Struct containing all necessary data for the DAC
 LTC1451_t LTCDAC_InitCS(SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN);
 
 /// @brief Sets the DAC's ouptut voltage (0-4.095v)

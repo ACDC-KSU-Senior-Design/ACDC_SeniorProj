@@ -1,5 +1,5 @@
 /**
- * @file ACDC_LTC1298IS8_ADC.h
+ * @file ACDC_LTC1298_ADC.h
  * @author Devin Marx
  * @brief Header file for the LTC1298 12-bit ADC
  * @version 0.1
@@ -23,6 +23,7 @@ typedef struct {
 /// @param SPIx SPI Peripheral (Ex. SPI1 or SPI2)
 /// @param GPIOx GPIO Port for the chip select pin (Ex. GPIOA, GPIOB, ...)
 /// @param GPIO_PIN Desired chip select pin on port GPIOx (Ex. GPIO_PIN_0, GPIO_PIN_1, ...)
+/// @return Struct containing all necessary data for the ADC
 LTC1298_t LTCADC_InitCS(SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN);
 
 /// @brief Reads the current ADC value on channel 0 (Software CS)
