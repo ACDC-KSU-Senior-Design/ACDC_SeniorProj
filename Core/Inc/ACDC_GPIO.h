@@ -47,10 +47,6 @@
 #define GPIO_CNF_INPUT_PULLDOWN     ((uint16_t)0b010)  /**< GPIO Input Mode Pulldown */
 #define GPIO_CNF_INPUT_PULLUP       ((uint16_t)0b110)  /**< GPIO Input Mode Pullup   */
 
-/// @brief Enables the GPIOx peripheral clock (Needed to read from a pin)
-/// @param GPIOx Port of the GPIO (Ex. GPIOA, GPIOB, ...) 
-void GPIO_InitClk(const GPIO_TypeDef *GPIOx);
-
 /// @brief Sets the Direction of the Pin to Input/Output (MODE) and the sets its Configuration (CNF) [CAN ONLY SET ONE PIN AT A TIME]
 /// @param GPIOx Port of the GPIO (Ex. GPIOA, GPIOB, ...) 
 /// @param GPIO_PIN Desired pin on port GPIOx (Ex. GPIO_PIN_0, GPIO_PIN_1, ...)
