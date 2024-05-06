@@ -33,6 +33,7 @@ extern "C" {
 #include "ACDC_SPI.h"
 #include "ACDC_LTC1298_ADC.h"
 #include "ACDC_LTC1451_DAC.h"
+#include "ACDC_MAX7219_LED_MATRIX.h"
 
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);

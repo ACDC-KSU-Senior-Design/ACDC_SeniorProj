@@ -16,6 +16,7 @@
         "stm32f1xx.h": "c",
         "acdc_spi.h": "c",
         "acdc_ltc1298_adc.h": "c",
-        "acdc_ltc1451_dac.h": "c"
+        "acdc_ltc1451_dac.h": "c",
+        "acdc_max7219_led_matrix.h": "c"
     }
 }
