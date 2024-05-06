@@ -18,7 +18,8 @@ typedef struct{
     SPI_TypeDef *SPIx;          /**< SPI Peripheral to be used for the MAX7219 LED Driver */
     GPIO_TypeDef *GPIOx_CS;     /**< GPIO port for SPIx's CS                              */
     uint16_t GPIO_PIN_CS;       /**< PIO pin for SPI'x CS                                 */
-    uint8_t DisplayBuffer[8];   /**< Buffer that holds the current state of the display   */
+    uint8_t NumberOfDisplays;   /**< Total number of displays chained together            */
+    uint8_t *DisplayBuffer;     /**< Buffer that holds the current state of the display   */
 } MAX7219_t;
 
 typedef enum{
@@ -44,8 +45,10 @@ typedef enum{
 /// @param SPIx SPI Peripheral (Ex. SPI1 or SPI2)
 /// @param GPIOx GPIO Port for the chip select pin (Ex. GPIOA, GPIOB, ...)
 /// @param GPIO_PIN Desired chip select pin on port GPIOx (Ex. GPIO_PIN_0, GPIO_PIN_1, ...)
+/// @param numDisplays Total number of displays chained together
+/// @param displayMem Memory to contain the arrays contents (Ex. uint8_t displayMem[numDisplays * 8])
 /// @return Struct containing all necessary data for the led matrix
-MAX7219_t MaxLedMatrix_Init(SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN);
+MAX7219_t MaxLedMatrix_Init(SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN, uint8_t numDisplays, uint8_t *displayMem);
 
 /// @brief Completely Redraws the Displays buffer.
 /// @param Display Struct containing configuration data for the MAX7219 chip

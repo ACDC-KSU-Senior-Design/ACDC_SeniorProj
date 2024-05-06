@@ -9,8 +9,10 @@
  */
 
 #include "ACDC_MAX7219_LED_MATRIX.h"
+#include "ACDC_GPIO.h"
 #include "ACDC_SPI.h"
 
+#define NUM_LED_IN_COL              (8)
 #define CALC_COL(col)               (((uint16_t)col + 1) << 8)  /** Calculates the desired column (For SPI Transmission) */
 #define CALC_ROW(row)               (1 << row)                  /** Calculates the desired row (For SPI Transmission)    */
 #define MAX_CLOCK_SPEED             10000000                    /** MAX1729 MAX Clock Freq = 10MHz {See MAX7219-1}       */
@@ -32,52 +34,94 @@ typedef enum {
     MAX_REG_DisplayTest = 0x0F00,   /**< MAX7219 Register for Display Testing */
 } MAX7219_Registers;
 
-MAX7219_t MaxLedMatrix_Init(SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN){
+#pragma region PRIVATE_FUNCTION_PROTOTYPES
+/// @brief Sends a SPI message to the entire display (Sends the same message to each display)
+/// @param Display Struct containing configuration data for the MAX7219 chip
+/// @param Message SPI instruction to send to each of the displays
+static void MaxLedMatrix_SendSpiCommand(MAX7219_t Display, uint16_t Message);
+
+/// @brief Redraws the column col on each attached display
+/// @param Display Struct containing configuration data for the MAX7219 chip
+/// @param column Column to redraw on each display
+static void MaxLedMatrix_UpdateColumn(MAX7219_t Display, uint8_t col);
+#pragma endregion
+
+MAX7219_t MaxLedMatrix_Init(SPI_TypeDef *SPIx, GPIO_TypeDef *GPIOx, uint16_t GPIO_PIN, uint8_t numDisplays, uint8_t *displayMem){
+    for(uint8_t i = 0; i < numDisplays * 8; i++)                        // Iterate over each index of the displays memory
+        displayMem[i] = 0;                                              // Erase the contents of the memory
+
     SPI_InitCS(SPIx, true, GPIOx, GPIO_PIN);                            // Enable SPIx as master and enable the CS pins
-    SPI_CalculateAndSetBaudDivider(SPIx, MAX_CLOCK_SPEED);              // 
+    SPI_CalculateAndSetBaudDivider(SPIx, MAX_CLOCK_SPEED);              
+    MAX7219_t Display = {SPIx, GPIOx, GPIO_PIN, numDisplays, displayMem};
 
-    SPI_TransmitCS(SPIx, MAX_REG_Shutdown   | 0x01 , GPIOx, GPIO_PIN);  // Shutdown:    Normal Mode
-    SPI_TransmitCS(SPIx, MAX_REG_Intensity  | 0x00 , GPIOx, GPIO_PIN);  // Intensity:   1/32 minimum brightness
-    SPI_TransmitCS(SPIx, MAX_REG_ScanLimit  | 0x07 , GPIOx, GPIO_PIN);  // Scan Limit:  Display All Digits
-    SPI_TransmitCS(SPIx, MAX_REG_DecodeMode | 0x00 , GPIOx, GPIO_PIN);  // Decode Mode: No decode for digits 7-0
+    MaxLedMatrix_SendSpiCommand(Display, MAX_REG_Shutdown   | 0x01);    // Shutdown:    Normal Mode
+    MaxLedMatrix_SendSpiCommand(Display, MAX_REG_Intensity  | 0x00);    // Intensity:   1/32 (minimum brightness) 
+    MaxLedMatrix_SendSpiCommand(Display, MAX_REG_ScanLimit  | 0x07);    // Scan Limit:  Display All Digits
+    MaxLedMatrix_SendSpiCommand(Display, MAX_REG_DecodeMode | 0x00);    // Decode Mode: No decode for digits 7-0
+    MaxLedMatrix_RedrawDisplay(Display);                                // Redraw the display with all 0's
 
-    for(int i = 1; i < 9; i++)
-        SPI_TransmitCS(SPIx, i << 8 | 0x00, GPIOx, GPIO_PIN);           // Clear the display (Set it all to 00's)
-
-    return (MAX7219_t){SPIx, GPIOx, GPIO_PIN, {}};
+    return Display;
 }
 
 void MaxLedMatrix_RedrawDisplay(MAX7219_t Display){
-    for(uint8_t i = 0 ; i < 8; i++) // Iterate over each of the Columns
-        SPI_TransmitCS(Display.SPIx, CALC_COL(i) | Display.DisplayBuffer[i], Display.GPIOx_CS, Display.GPIO_PIN_CS); // Redraw the column
+    for(uint8_t i = 0 ; i < 8; i++){                                                    // Iterate over each of the Columns
+        GPIO_Clear(Display.GPIOx_CS, Display.GPIO_PIN_CS);                              // Set the CS pin low until data is sent to each display
+        for(int8_t j = Display.NumberOfDisplays-1; j >= 0; j--){                        // Iterate over each display
+            uint8_t column = j*8 + i;                                                   // Calculate the index of the columns data
+            SPI_Transmit(Display.SPIx, CALC_COL(i) | Display.DisplayBuffer[column]);    // Transmit the updated column data to the display
+        }
+        while(Display.SPIx->SR & SPI_SR_BSY){}                                          // Wait until the SPI Tx has completed
+        GPIO_Set(Display.GPIOx_CS, Display.GPIO_PIN_CS);                                // Set the CS pin high
+    }
 }
 
 void MaxLedMatrix_SetPixel(MAX7219_t *Display, uint8_t row, uint8_t col){
-    if(Display == NULL || row >= 8 || col >= 8) // If the parameters are invalid
+    if(Display == NULL || row >= 8 || col >= Display->NumberOfDisplays*8) // If the parameters are invalid
         return;
 
     Display->DisplayBuffer[col] |= CALC_ROW(row);   // Set the row bit in the column buffer
-    SPI_TransmitCS(Display->SPIx, CALC_COL(col) | Display->DisplayBuffer[col], Display->GPIOx_CS, Display->GPIO_PIN_CS); // Display the updated Column
+    MaxLedMatrix_UpdateColumn(*Display, col);       // Display the updated Column
 }
 
 void MaxLedMatrix_ClearPixel(MAX7219_t *Display, uint8_t row, uint8_t col){
-    if(Display == NULL || row >= 8 || col >= 8) // If the parameters are invalid
+    if(Display == NULL || row >= 8 || col >= Display->NumberOfDisplays*8) // If the parameters are invalid
         return;
 
     Display->DisplayBuffer[col] &= ~CALC_ROW(row);  // Clear the row bit in the column buffer
-    SPI_TransmitCS(Display->SPIx, CALC_COL(col) | Display->DisplayBuffer[col], Display->GPIOx_CS, Display->GPIO_PIN_CS); // Display the updated Column
+    MaxLedMatrix_UpdateColumn(*Display, col);       // Display the updated Column
 }
 
 bool MaxLedMatrix_LedStatus(MAX7219_t Display, uint8_t row, uint8_t col){
-    if(row >= 8 || col >= 8) // If the parameters are invalid
+    if(row >= 8 || col >= Display.NumberOfDisplays*8) // If the parameters are invalid
         return false;
 
     return (Display.DisplayBuffer[col] & CALC_ROW(row)) ? true : false;   // If the row bit in the column is a 1 return true
 }
 
 void MaxLedMatrix_SetIntensity(MAX7219_t Display, MAX7219_DutyCycle dutyCycle){
-    if(dutyCycle < MAX_DutyCycle_1_32 || dutyCycle > MAX_DutyCycle_31_32) // If the parameters are invalid
+    if(dutyCycle < MAX_DutyCycle_1_32 || dutyCycle > MAX_DutyCycle_31_32)   // If the parameters are invalid
         return;
 
-    SPI_TransmitCS(Display.SPIx, MAX_REG_Intensity | dutyCycle, Display.GPIOx_CS, Display.GPIO_PIN_CS); // Set the new LED Intensity
+    MaxLedMatrix_SendSpiCommand(Display, MAX_REG_Intensity | dutyCycle);    // Set the new LED Intensity
 }
+
+#pragma region PRIVATE_FUNCTIONS
+static void MaxLedMatrix_SendSpiCommand(MAX7219_t Display, uint16_t Message){
+    GPIO_Clear(Display.GPIOx_CS, Display.GPIO_PIN_CS);      // Set the CS pin low
+    for(uint8_t i = 0; i < Display.NumberOfDisplays; i++)   // Iterate over each display
+        SPI_Transmit(Display.SPIx, Message);                // Send the same message to each display
+    while(READ_BIT(Display.SPIx->SR, SPI_SR_BSY)){}         // Waits until the SPI message has been sent
+    GPIO_Set(Display.GPIOx_CS, Display.GPIO_PIN_CS);        // Set the CS pin high
+}
+
+static void MaxLedMatrix_UpdateColumn(MAX7219_t Display, uint8_t col){
+    col %= NUM_LED_IN_COL;                                                          // Ensure the column  is between 0 and 7
+    GPIO_Clear(Display.GPIOx_CS, Display.GPIO_PIN_CS);                              // Set the CS pin low
+    for(int8_t i = Display.NumberOfDisplays-1; i>=0; i--){                          // Iterate over each display
+        uint8_t column = i*8 + col;                                                 // Calculate the index of the columns data
+        SPI_Transmit(Display.SPIx, CALC_COL(col) | Display.DisplayBuffer[column]);  // Display the updated Column
+    }
+    while(READ_BIT(Display.SPIx->SR, SPI_SR_BSY)){}                                 // Wait until the SPI message has been sent
+    GPIO_Set(Display.GPIOx_CS, Display.GPIO_PIN_CS);                                // Set the CS pin high to finish the transmission
+}
+#pragma endregion
