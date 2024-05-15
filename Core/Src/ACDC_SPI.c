@@ -33,9 +33,9 @@ void SPI_InitCS(SPI_TypeDef *SPIx, bool isMaster, GPIO_TypeDef *GPIOx, uint16_t 
     // Configure SPIx
     CLEAR_BIT(SPIx->CR1, SPI_CR1_SPE);              // Disable SPIx (so it can be configured)
     SPI_EnableSoftwareCS(SPIx, GPIOx, GPIO_PIN);    // Enable the software CS pin
-    SPI_SetClockPhaseAndPolarity(SPIx, 0, 0);       // 1st Clk transmission is when data is captured, and Clk idles at 0
     SPI_SetBaudDivider(SPIx, SPI_BAUD_DIV_2);       // Set SPIx to the fastest speed
     SPI_SetBitMode(SPIx, SPI_MODE_16Bit);           // Set SPIx to 16 bit mode
+    SPI_SetSpiMode(SPIx, SPI_MODE_0);               // 1st Clk transmission is when data is captured, and Clk idles at 0
     SPI_SetToMaster(SPIx, isMaster);                // Set to Master or Slave
     SPI_SetLsbFirst(SPIx, false);                   // Set it to MsbFirst
     SET_BIT(SPIx->CR1, SPI_CR1_SPE);                // Enable SPIx
@@ -152,16 +152,9 @@ void SPI_SetLsbFirst(SPI_TypeDef *SPIx, bool LsbFirst){
         CLEAR_BIT(SPIx->CR1, SPI_CR1_LSBFIRST); // Set MSB first
 }
 
-void SPI_SetClockPhaseAndPolarity(SPI_TypeDef *SPIx, bool ClkPhase, bool ClkPolarity){
-    if(ClkPhase)                                
-        SET_BIT(SPIx->CR1  , SPI_CR1_CPHA);     // The second clock transition is the first data capture edge
-    else
-        CLEAR_BIT(SPIx->CR1, SPI_CR1_CPHA);     // The first clock transition is the first data capture edge
-
-    if(ClkPolarity)
-        SET_BIT(SPIx->CR1  , SPI_CR1_CPOL);     // Set Clock to 1 or High when idle
-    else
-        CLEAR_BIT(SPIx->CR1, SPI_CR1_CPOL);     // Set Clock to 0 or Low when idle
+void SPI_SetSpiMode(SPI_TypeDef *SPIx, SPI_Mode SPI_MODE_x){
+    CLEAR_BIT(SPIx->CR1, SPI_CR1_CPOL | SPI_CR1_CPHA);  // Clear both the clk polarity and phase bits
+    SET_BIT(SPIx->CR1, SPI_MODE_x & 0b11);              // Set it according to the SPI_MODE_x parameter
 }
 
 void SPI_SetToMaster(SPI_TypeDef *SPIx, bool isMaster){

@@ -30,7 +30,14 @@ typedef enum{   // SPI Data Frame Format
     SPI_MODE_16Bit = 1          /**< 16-bit data frame format for Tx/Rx */
 }SPI_BitMode;
 
-/// @brief Initializes the SPIx peripheral to master or slave, using the chip select pin of your choosing. (Default Values: SPI_MODE_16Bit, SPI_BAUD_DIV_2, MSB First)
+typedef enum{   // SPI Mode (SPI Clock phase and polarity)
+    SPI_MODE_0     = 0b00,      /**< Clk is 0 when idle and the first clock transition is the first data capture edge  */
+    SPI_MODE_1     = 0b01,      /**< Clk is 0 when idle and the second clock transition is the first data capture edge */
+    SPI_MODE_2     = 0b10,      /**< Clk is 1 when idle and the first clock transition is the first data capture edge  */
+    SPI_MODE_3     = 0b11       /**< Clk is 1 when idle and the second clock transition is the first data capture edge */
+}SPI_Mode;
+
+/// @brief Initializes the SPIx peripheral to master or slave, using the chip select pin of your choosing. (Default Values: SPI_MODE_16Bit, SPI_BAUD_DIV_2, SPI_MODE_0, MSB First)
 /// @param SPIx SPI Peripheral (Ex. SPI1 or SPI2)
 /// @param isMaster True if SPIx should act as the master, false if it should act as the slave
 /// @param GPIOx GPIO Port for the chip select pin (Ex. GPIOA, GPIOB, ...)
@@ -99,11 +106,10 @@ void SPI_SetBitMode(SPI_TypeDef *SPIx, SPI_BitMode SPI_MODE_x);
 /// @param LsbFirst True if the data format should be LsbFirst, else false for MsbFirst.
 void SPI_SetLsbFirst(SPI_TypeDef *SPIx, bool LsbFirst);
 
-/// @brief Sets the clock phase and polarity for SPIx.
+/// @brief Sets the clock phase and polarity for SPIx accoriding the SPI mode
 /// @param SPIx SPI Peripheral (Ex. SPI1 or SPI2)
-/// @param ClkPhase True for second clock transition as first data capture edge, False for first clock transition. {See RM-744}
-/// @param ClkPolarity True to set clock to 1 when idle, else false to set low while idle.
-void SPI_SetClockPhaseAndPolarity(SPI_TypeDef *SPIx, bool ClkPhase, bool ClkPolarity);
+/// @param SPI_MODE_x Mode selection for SPIx (Ex. SPI_MODE_0, SPI_MODE_1, ...)
+void SPI_SetSpiMode(SPI_TypeDef *SPIx, SPI_Mode SPI_MODE_x);
 
 /// @brief Configures SPIx peripheral as master or slave mode.
 /// @param SPIx SPI Peripheral (Ex. SPI1 or SPI2)
